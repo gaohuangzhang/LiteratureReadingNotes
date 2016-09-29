@@ -8,5 +8,36 @@ import com.teamghz.connecter.*;
 
 
 public class LoginAction {
+	// user name for sign in or sign in
+	private String name;
+	// password for user
+	private String password;
+	// for name
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	// for password
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	public String signIn() {
+		MysqlConnecter mc = new MysqlConnecter();
+		return "SUCCESS";
+	}
+	public String signUp() {
+		MysqlConnecter mc = new MysqlConnecter();
+		return "SUCCESS";
+	}
+	
+	
+	
 
 }
