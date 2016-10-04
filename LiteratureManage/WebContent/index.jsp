@@ -17,54 +17,92 @@
 				<div class="col-md-12 column">
 					<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 						<div class="navbar-header">
-					 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="home-navbar">
 					 			<span class="sr-only">Toggle navigation</span>
 					 			<span class="icon-bar"></span>
 					 			<span class="icon-bar"></span>
 					 			<span class="icon-bar"></span>
 					 		</button> 
-					 		<a class="navbar-brand" href="#">Home</a>
+					 		<a class="navbar-brand" href="#">主页</a>
 						</div>
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div class="collapse navbar-collapse" id="home-navbar">
 							<form class="navbar-form navbar-left" role="search">
 								<div class="form-group">
 									<input type="text" class="form-control" />
 								</div> 
-								<button type="submit" class="btn btn-default">Search</button>
+								<button type="submit" class="btn btn-default">搜索</button>
 							</form>
-							<ul class="nav navbar-nav navbar-right">
-								<li><a id="modal-657074" href="#modal-container-657074" role="button" class="btn" data-toggle="modal">Sign in</a></li>
-								<li><a href="#">Sign up</a></li>
+							<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
+								<li><a id="login" href="#login-modal" role="button" class="btn" data-toggle="modal">登录</a></li>
+								<li><a id="signup" href="#signup-modal" role="button" class="btn" data-toggle="modal">注册</a></li>
 								<li class="dropdown">
-							 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<strong class="caret"></strong></a>
+							 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">帮助<strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
-										<li><a href="#">About</a></li>
+										<li><a href="#">关于</a></li>
 									</ul>
 								</li>
 							</ul>
 						</div>
 					</nav>
 					<div class="jumbotron">
-						<h1>Hello, world!</h1>
+						<h1>Literature Manager</h1>
 						<p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-						<p><a class="btn btn-primary btn-large" href="#">Learn more</a></p>
+						<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more >></a></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="modal-container-657074" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<!-- 页脚 -->
+		<div class="container">
+			<footer>&copy;GaoHuangZhang</footer>
+		</div>
+		<!-- 登录界面 -->
+		<div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title" id="myModalLabel">标题</h4>
+						<h4 class="modal-title" id="myModalLabel">登录</h4>
 					</div>
-					<div class="modal-body">内容...</div>
+					<div class="modal-body" style="width: 400px; margin-left: 90px;">
+						<div class="form-group">
+							<input class="form-control" type="text" placeholder="请在这儿输入用户名" required="required" style="padding-left: 30px; height: 42px;" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" placeholder="请在这儿输入密码" required="required" style="padding-left: 30px; height: 42px;" />
+						</div>
+					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+						<button type="button" class="btn btn-primary">登录</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- 注册界面 -->
+		<div class="modal fade" id="signup-modal" role="dialog" aria-labelledby="mySignUp" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">注册</h4>
+					</div>
+					<div class="modal-body" style="width: 400px; margin-left: 90px;">
+						<div class="form-group">
+							<input class="form-control" type="text" placeholder="请在这儿输入用户名" required="required" style="padding-left: 30px; height: 42px;" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" placeholder="请在这儿输入密码" required="required" style="padding-left: 30px; height: 42px;" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" placeholder="请再次输入密码" required="required" style="padding-left: 30px; height: 42px;" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">注册</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</body>
 </html>
