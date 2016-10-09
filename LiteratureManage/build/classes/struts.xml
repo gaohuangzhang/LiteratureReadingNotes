@@ -4,6 +4,8 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.i18n.encoding" value="GB2312" />
 	<package name="default" namespace="/" extends="struts-default">
-	
+		<action name="search_issues">
+		
+		</action>
 	</package>
 </struts> 
