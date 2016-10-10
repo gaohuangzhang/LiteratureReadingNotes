@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GHZ主页</title>
+<title>个人中心</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -27,13 +27,13 @@
 					<div class="col-md-8 column">
 						<h2>分享</h2>
 						<hr>
-						<p><img src="1.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>哈哈你好啊</a></br>一些操作</p>
+						<p><img src="sources/pics/Avatar.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>哈哈你好啊</a></br>一些操作</p>
 						<hr>
-						<p><img src="1.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>啦啦你好啊</a></a></br>一些操作</p>
+						<p><img src="sources/pics/Avatar.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>啦啦你好啊</a></a></br>一些操作</p>
 						<hr>
-						<p><img src="1.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>发发你好啊</a></a></br>一些操作</p>
+						<p><img src="sources/pics/Avatar.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>发发你好啊</a></a></br>一些操作</p>
 						<p>
-							<a class="btn" href="#">View details »</a>
+							<a class="btn" href="#">查看更多 >></a>
 						</p>
 					</div>
 					<div class="col-md-4 column">
@@ -111,14 +111,15 @@
 					<ul class="nav navbar-nav navbar-right" style="padding-right:10px;">
 						
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"><img src="1.png" height="20" width="20" /><strong class="caret"></strong></a>
+							data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" /><strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">内容管理</a></li>
-								<li><a href="#">时间线</a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#">设置</a></li>
+								<li><a href=mainPage>我的主页</a></li>
+								<li><a href=fileManage>内容管理</a></li>
+								<li><a href=timeLine>时间线</a></li>
+								
+								<li><a href=settings>设置</a></li>
 								<li class="divider"></li>
-								<li><a href="#">注销</a></li>
+								<li><a href=signOut>注销</a></li>
 							</ul></li>
 					</ul>
 				</div>

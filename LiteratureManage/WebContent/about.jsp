@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>我的主页</title>
+<title>关于我们的项目</title>
 </head>
 <body>
-
+<h2>关于我们的项目</h2>
+<p>balabala......</p>
 </body>
 </html>

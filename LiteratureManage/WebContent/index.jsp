@@ -38,7 +38,7 @@
 								<li class="dropdown">
 							 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">帮助<strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
-										<li><a href="#">关于</a></li>
+										<li><a href=about>关于</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -95,7 +95,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="thumbnail">
-							<img alt="300x200" src="v3/default5.jpg" />
+							<img alt="300x200" src="sources/pics/2.jpg" />
 							<div class="caption">
 								<h3>Thumbnail label</h3>
 								<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -108,7 +108,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="thumbnail">
-							<img alt="300x200" src="v3/default6.jpg" />
+							<img alt="300x200" src="sources/pics/3.jpg" />
 							<div class="caption">
 								<h3>Thumbnail label</h3>
 								<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -136,12 +136,12 @@
 						<h4 class="modal-title" id="myModalLabel">登录</h4>
 					</div>
 					<div class="modal-body" style="width: 400px; margin-left: 90px;">
-						<form action="login" id="login_form">
+						<form action="signIn" id="login_form">
 							<div class="form-group">
-								<input name="useremail_login" class="form-control" type="email" placeholder="请在这儿输入登录邮箱" required="required" style="padding-left: 30px; height: 42px;" />
+								<input name="mail" class="form-control" type="email" placeholder="请在这儿输入登录邮箱" required="required" style="padding-left: 30px; height: 42px;" />
 							</div>
 							<div class="form-group">
-								<input name="passwd_login" class="form-control" type="password" placeholder="请在这儿输入密码" required="required" style="padding-left: 30px; height: 42px;" />
+								<input name="passwd" class="form-control" type="password" placeholder="请在这儿输入密码" required="required" style="padding-left: 30px; height: 42px;" />
 							</div>
 						</form>
 					</div>
@@ -160,15 +160,15 @@
 						<h4 class="modal-title" id="myModalLabel">注册</h4>
 					</div>
 					<div class="modal-body" style="width: 400px; margin-left: 90px;">
-						<form action="signup" id="signup_form">
+						<form action="signUp" id="signup_form">
 							<div class="form-group">
-								<input name="username_signup" class="form-control" type="text" placeholder="请在这儿输入用户名" required="required" style="padding-left: 30px; height: 42px;" />
+								<input name="name" class="form-control" type="text" placeholder="请在这儿输入用户名" required="required" style="padding-left: 30px; height: 42px;" />
 							</div>
 							<div class="form-group">
-								<input name="useremail_signup" class="form-control" type="text" placeholder="请在这儿输入注册邮箱" required="required" style="padding-left: 30px; height: 42px;" />
+								<input name="mail" class="form-control" type="text" placeholder="请在这儿输入注册邮箱" required="required" style="padding-left: 30px; height: 42px;" />
 							</div>
 							<div class="form-group">
-								<input name="passwd_signup" class="form-control" type="password" placeholder="请在这儿输入密码" required="required" style="padding-left: 30px; height: 42px;" />
+								<input name="passwd" class="form-control" type="password" placeholder="请在这儿输入密码" required="required" style="padding-left: 30px; height: 42px;" />
 							</div>
 							<div class="form-group">
 								<input name="passwd_confirm" class="form-control" type="password" placeholder="请再次输入密码" required="required" style="padding-left: 30px; height: 42px;" />
