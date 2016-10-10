@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-	<constant name="struts.devMode" value="true" />
-	<constant name="struts.i18n.encoding" value="GB2312" />
-	<package name="default" namespace="/" extends="struts-default">
+<!--package SIGN-->
+	<package name="SIGN"  extends="struts-default">
+	<!--signIn-->
+		<action name="signIn" class="com.teamghz.action.LoginAction" method="signIn">
+			<result name="SUCCESS">/mainpage.jsp</result>
+			<result name="USERNOTEXIST">/false.jsp</result>
+			<result name="PASSWORDERROR">/false.jsp</result>
+			<result name="OTHERERROR">/false.jsp</result>
+		</action>
+	<!--signUp-->
+		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
+			<result name="SUCCESS">/mainpage.jsp</result>
+			<result name="PASSWORDERROE">/false.jsp</result>
+			<result name="EMAILEXIST">/false.jsp</result>
+			<result name="INSERTERROR">/false.jsp</result>
+		</action>
+	<!--about-->
 	
+		<action name="about" class="com.teamghz.action.LoginAction" method="about">
+			<result name="SUCCESS">/about.jsp</result>
+		</action>
 	</package>
+<!--package MainPage-->
+
 </struts> 
