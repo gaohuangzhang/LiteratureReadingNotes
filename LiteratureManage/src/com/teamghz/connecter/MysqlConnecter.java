@@ -16,6 +16,7 @@ public class MysqlConnecter {
 	private String dbUrl = Configure.URL;// 根据实际情况变化
 	private String dbUser = Configure.USERNAME;
 	private String dbPass = Configure.PASSWORD;
+
 	public Connection getConn() {
 		Connection conn = null;
 		try {
