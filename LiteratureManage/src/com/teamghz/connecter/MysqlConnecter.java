@@ -13,7 +13,7 @@ import com.teamghz.configure.*;
 
 public class MysqlConnecter {
 	private String dbDriver = Configure.DRIVER;
-	private String dbUrl = Configure.URL;// ¸ù¾İÊµ¼ÊÇé¿ö±ä»¯
+	private String dbUrl = Configure.URL;// æ ¹æ®å®é™…æƒ…å†µå˜åŒ–
 	private String dbUser = Configure.USERNAME;
 	private String dbPass = Configure.PASSWORD;
 
@@ -25,7 +25,7 @@ public class MysqlConnecter {
 			e.printStackTrace();
 		}
 		try {
-			conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);// ×¢ÒâÊÇÈı¸ö²ÎÊı
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);// æ³¨æ„æ˜¯ä¸‰ä¸ªå‚æ•°
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class MysqlConnecter {
 		/*
 		 * String
 		 * sql="update author set  authorid=?,name=?,age=?,country=? where authorid=?"
-		 * ;//×¢ÒâÒªÓĞwhereÌõ¼ş
+		 * ;//æ³¨æ„è¦æœ‰whereæ¡ä»¶
 		 */
 		Connection cnn = getConn();
 
@@ -47,13 +47,13 @@ public class MysqlConnecter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return i;// ·µ»ØÓ°ÏìµÄĞĞÊı£¬1ÎªÖ´ĞĞ³É¹¦
+		return i;// è¿”å›å½±å“çš„è¡Œæ•°ï¼Œ1ä¸ºæ‰§è¡ŒæˆåŠŸ
 	}
 
 	public ArrayList<Map<String, String>> select(String sql) {
 		int i;
 		ArrayList<Map<String, String>> result = new ArrayList<>();
-		Connection cnn = getConn();// ´Ë´¦ÎªÍ¨¹ı×Ô¼ºĞ´µÄ·½·¨getConn()»ñµÃÁ¬½Ó
+		Connection cnn = getConn();// æ­¤å¤„ä¸ºé€šè¿‡è‡ªå·±å†™çš„æ–¹æ³•getConn()è·å¾—è¿æ¥
 		try {
 			Statement stmt = cnn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -64,7 +64,7 @@ public class MysqlConnecter {
 				}
 				result.add(tmp);
 			}
-			// ¿ÉÒÔ½«²éÕÒµ½µÄÖµĞ´ÈëÀà£¬È»ºó·µ»ØÏàÓ¦µÄ¶ÔÏó
+			// å¯ä»¥å°†æŸ¥æ‰¾åˆ°çš„å€¼å†™å…¥ç±»ï¼Œç„¶åè¿”å›ç›¸åº”çš„å¯¹è±¡
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -74,13 +74,13 @@ public class MysqlConnecter {
 	public int delete(String sql) {
 		/* String sql = "delete from author where authorid=?"; */
 		int i = 0;
-		Connection conn = getConn();// ´Ë´¦ÎªÍ¨¹ı×Ô¼ºĞ´µÄ·½·¨getConn()»ñµÃÁ¬½Ó
+		Connection conn = getConn();// æ­¤å¤„ä¸ºé€šè¿‡è‡ªå·±å†™çš„æ–¹æ³•getConn()è·å¾—è¿æ¥
 		try {
 			Statement stmt = conn.createStatement();
 			i = stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return i;// Èç¹û·µ»ØµÄÊÇ1£¬ÔòÖ´ĞĞ³É¹¦;
+		return i;// å¦‚æœè¿”å›çš„æ˜¯1ï¼Œåˆ™æ‰§è¡ŒæˆåŠŸ;
 	}
 }
