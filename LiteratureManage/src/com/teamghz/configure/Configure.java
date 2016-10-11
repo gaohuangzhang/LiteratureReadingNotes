@@ -8,9 +8,9 @@ public class Configure {
 	
 	public final static String USERNAME = "root";
 	public final static String PASSWORD = "password";
-	public final static String DBNAME   = "DB";
+	public final static String DBNAME   = "DBGHZ";
 	public final static String DRIVER   = "com.mysql.jdbc.Driver";
-	public final static String URL      = "jdbc:mysql://localhost:3306/" + DBNAME;
+	public final static String URL      = "jdbc:mysql://localhost:3306/" + DBNAME+"?characterEncoding=utf8";
 	
 	
 }

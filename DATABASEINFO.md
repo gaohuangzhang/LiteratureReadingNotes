@@ -28,7 +28,7 @@ TABLE4_NAME: Share: id(PK auto_increment) userid(FK), articleid(FK), time, good,
 ```
 ### 创建命令
 ```
-CREATE DATABASE DBGHZ;
+CREATE DATABASE IF NOT EXISTS DBGHZ DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
 USE DBGHZ;
 
