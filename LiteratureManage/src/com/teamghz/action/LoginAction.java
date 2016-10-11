@@ -60,7 +60,7 @@ public class LoginAction {
 	
 	// Action : Sign In
 	public String signIn() {
-		if (mail == null || passwd == null || mail.contains("") || passwd.contains("")) {
+		if (mail == null || passwd == null || mail.equals("") || passwd.equals("")) {
 			return "OTHERERROR";
 		}
 		String sql = "select * from User where mail=\"" + mail + "\"" ;
@@ -81,7 +81,7 @@ public class LoginAction {
 	// Action : Sign Up
 	public String signUp() {
 		if (mail == null || passwd == null || passwd_confirm == null 
-				|| mail.contains("") || passwd.contains("") || passwd_confirm.equals("")) {
+				|| mail.equals("") || passwd.equals("") || passwd_confirm.equals("")) {
 			return "INSERTERROR";
 		}
 		// test password
