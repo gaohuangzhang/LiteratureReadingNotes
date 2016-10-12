@@ -59,40 +59,49 @@ public class LoginAction {
 	
 	// Action : Sign In
 	public String signIn() {
-		String sql = "select * from User where mail=\"" + mail + "\"";
+		if (mail == null || passwd == null || mail.equals("") || passwd.equals("")) {
+			return "OTHERERROR";
+		}
+		String sql = "select * from User where mail=\"" + mail + "\"" ;
 		MysqlConnecter mc = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc.select(sql);
 		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
-		if (result.size() == 0) 
+		if (result.size() == 0) {
 			return "USERNOTEXIST";
-		else if (!passwd.equals(result.get(0).get("4"))) 
+		} else if (!passwd.equals(result.get(0).get("4"))) {
 			return "PASSWORDERROR";
-		else if (passwd.equals(result.get(0).get("4"))) 
+		} else if (passwd.equals(result.get(0).get("4"))) {
 			return "SUCCESS";
-		else 
+		} else {
 			return "OTHERERROR";
-		            
+		}            
 	}
 	// Action : Sign Up
 	public String signUp() {
+		if (mail == null || passwd == null || passwd_confirm == null 
+				|| mail.equals("") || passwd.equals("") || passwd_confirm.equals("")) {
+			return "INSERTERROR";
+		}
 		// test password
-		if (!passwd.equals(passwd_confirm)) 
+		if (!passwd.equals(passwd_confirm)) {
 			return "PASSWORDERROE";
+		}
 		// test email
 		String sql_email = "select * from User where mail=\"" + mail + "\"";
 		MysqlConnecter mc_email = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
-	
-		if (result.size() != 0) 
+		if (result.size() != 0) {
 			return "EMAILEXIST";
+		}
 		// insert
 		String sql = "insert into User(username, mail, password) "
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
 		MysqlConnecter mc = new MysqlConnecter();
-		if (mc.update(sql) == 1) 
+		if (mc.update(sql) == 1) {
 			return "SUCCESS";
-		else 
+		} else {
 			return "INSERTERROR";
+		}
 	}
 	// Action : About
 	public String about() {

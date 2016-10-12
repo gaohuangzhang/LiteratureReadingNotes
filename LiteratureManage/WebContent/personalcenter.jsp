@@ -20,6 +20,7 @@
 				<div class="row clearfix">
 					<div class="col-md-8 column">
 						<h2>分享</h2>
+						</br>
 						<hr>
 						<p><img src="sources/pics/Avatar.png" height="40" width="40"/> <a>章小石头</a>分享了文章<a>哈哈你好啊</a></br>一些操作</p>
 						<hr>
@@ -31,84 +32,82 @@
 						</p>
 					</div>
 					<div class="col-md-4 column">
-						<h3 class="text-left">阅读统计</h3>
-						<div class="progress active progress-striped">
-							<div class="progress-bar progress-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">完成40%
-								<span class="sr-only">40% 完成</span>
-							</div>
-						</div>
+					   <h2>继续阅读</h2>
+					   <br>
 						<table class="table table-hover table-bordered">
 							<thead>
-								<tr>
-									<th>作品名称</th>
-									<th>上次操作时间</th>
-									<th>阅读状态</th>
-								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>TB - Monthly</td>
-									<td>01/04/2012</td>
-									<td>Default</td>
+									<td>c++ primer</td>
 								</tr>
 								<tr class="success">
-									<td>TB - Monthly</td>
-									<td>01/04/2012</td>
-									<td>Approved</td>
+
+									<td>APUE</td>
+									
 								</tr>
 								<tr class="error">
-									<td>TB - Monthly</td>
-									<td>02/04/2012</td>
-									<td>Declined</td>
+
+									<td>study linux</td>
+									
 								</tr>
 								<tr class="warning">
-									<td>TB - Monthly</td>
-									<td>03/04/2012</td>
-									<td>Pending</td>
+
+									<td>what???</td>
+									
 								</tr>
 								<tr class="info">
-									<td>TB - Monthly</td>
-									<td>04/04/2012</td>
-									<td>Call in to confirm</td>
+
+									<td>haha</td>
 								</tr>
 							</tbody>
+							
 						</table>
+						<div style="text-align:right;"><span><a href="mainPage" >查看更多 >></a></span></div>
+						 <br>
+						<div class="progress active progress-striped">
+						<div class="progress-bar progress-success" role="progressbar" aria-valuenow="60"
+		 aria-valuemin="0" aria-valuemax="100" style="width: 40%;">完成40%
+						<span class="sr-only">40% 完成</span>
+						</div>
+						</div>
 					</div>
 				</div>
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href=main>GHZ</a>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<form class="navbar-form navbar-left" role="search" method="post">
-							<div class="form-group">
-								<input class="form-control" type="text" />
-							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
-						</form>
-						<ul class="nav navbar-nav navbar-right" style="padding-right:10px;">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="sources/pics/Avatar.png" height="20" width="20" />
-									<strong class="caret"></strong>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href=mainPage>我的主页</a></li>
-									<li><a href=fileManage>内容管理</a></li>
-									<li><a href=timeLine>时间线</a></li>
-									<li><a href=settings>设置</a></li>
-									<li class="divider"></li>
-									<li><a href=signOut>注销</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+				<nav class="navbar navbar-default navbar-fixed-top"
+					role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span><span
+							class="icon-bar"></span><span class="icon-bar"></span><span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href=personalCenter>阅读</a>
+				</div>
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					
+					<form action="search" class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input class="form-control" type="text" placeholder="搜索内容"/>
+						</div>
+						<button type="submit" class="btn btn-default">开始搜索</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right" style="padding-right:10px;">
+						
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" /><strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li><a href=mainPage>我的主页</a></li>
+								<li><a href=fileManage>内容管理</a></li>
+								<li><a href=timeLine>时间线</a></li>
+								
+								<li><a href=settings>设置</a></li>
+								<li class="divider"></li>
+								<li><a href=signOut>注销</a></li>
+							</ul></li>
+					</ul>
+				</div>
 				</nav>
 			</div>
 		</div>
@@ -117,7 +116,7 @@
 		</div>
 		<hr>
 		<footer>
-			<p>&copy; Company 2014</p>
+			<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
 		</footer>
 	</div>
 	<!-- /container -->
