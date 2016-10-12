@@ -3,10 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>个人中心</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>个人中心</title>
 </head>
 <body>
 	<!-- after downloading the code, paste them under there -->
@@ -15,12 +14,7 @@
 			<div class="col-md-12 column">
 				<div class="row clearfix">
 					<div class="col-md-12 column">
-						<p>
-							</br>
-							</br>
-							</br>
-							</br>
-						</p>
+						<p><br><br><br><br></p>
 					</div>
 				</div>
 				<div class="row clearfix">
@@ -39,15 +33,13 @@
 					</div>
 					<div class="col-md-4 column">
 					   <h2>继续阅读</h2>
-					   </br>
+					   <br>
 						<table class="table table-hover table-bordered">
 							<thead>
 							</thead>
 							<tbody>
 								<tr>
-
 									<td>c++ primer</td>
-									
 								</tr>
 								<tr class="success">
 
@@ -67,11 +59,7 @@
 								<tr class="info">
 
 									<td>haha</td>
-									
 								</tr>
-								
-								
-								
 							</tbody>
 							
 						</table>
@@ -128,17 +116,14 @@
 		</div>
 		<hr>
 		<footer>
-		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
+			<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
 		</footer>
-	</div>
-
 	</div>
 	<!-- /container -->
 	<!-- end your code here -->
 
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
-	<link href="sources/bootstrap-3.3.7-dist/css/bootstrap.min.css"
-		rel="stylesheet">
+	<link href="sources/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- 可选的Bootstrap主题文件（一般不使用） -->
 	<script src="sources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>

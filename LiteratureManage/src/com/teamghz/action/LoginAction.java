@@ -36,7 +36,6 @@ public class LoginAction {
 		return passwd;
 	}
 	
-	
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
@@ -75,8 +74,7 @@ public class LoginAction {
 			return "SUCCESS";
 		} else {
 			return "OTHERERROR";
-		}
-		            
+		}            
 	}
 	// Action : Sign Up
 	public String signUp() {
@@ -89,10 +87,9 @@ public class LoginAction {
 			return "PASSWORDERROE";
 		}
 		// test email
-		String sql_email = "select * from User where mail=\"" + mail + "\"" ;
+		String sql_email = "select * from User where mail=\"" + mail + "\"";
 		MysqlConnecter mc_email = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
-	
 		if (result.size() != 0) {
 			return "EMAILEXIST";
 		}
