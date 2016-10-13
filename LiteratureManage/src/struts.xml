@@ -28,6 +28,10 @@
 		<action name="signOut">
 			<result>/index.jsp</result>
 		</action>
+	<!--个人中心-->
+	    <action name="personalCenter">
+			<result>/personalcenter.jsp</result>
+		</action>
 	<!--去我的主页-->
 		<action name="mainPage">
 			<result>/mainpage.jsp</result>
@@ -45,5 +49,20 @@
 			<result>/settings.jsp</result>
 		</action>
 	</package>
+<!--package PersonalCenter：所有个人中心的动作 -->
+	<package name="PersonalCenter" extends="struts-default">
+		<action name="printShareInfo" class="com.teamghz.action.PersonalCenterAction" method="getShareInfo">
+		</action>
+		<action name="getArticle" class="com.teamghz.action.PersonalCenterAction" method="getPersonalArticle">
+		</action>
+	</package>
+<!--检查登录状态-->
+	<package name="otherAction" extends="struts-default">
+		<action name="checkSign" class="com.teamghz.action.OtherAction" method="checkSignStatus">
+			<result name="FALSE">/false.jsp</result>
+			<result name="SUCCESS">/nothing.jsp</result>
+		</action>
+	</package>
+	
 
 </struts> 
