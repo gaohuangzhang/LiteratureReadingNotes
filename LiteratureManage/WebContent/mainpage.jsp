@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,17 +8,24 @@
 <title>我的主页</title>
 </head>
 <body>
+<% String usermail = (String) session.getAttribute("usermail"); %>
+<% String username = (String) session.getAttribute("username"); %>
+<% if (usermail == null) {%>
+<% out.println("你的输入不合法哎，瞧瞧是不是掉线了呢 ╮(╯▽╰)╭"); %>
+<% out.print("<div class=\"container\"  style=\"display: none\">");%>
+<%} else { %>
+<% out.print("<div class=\"container\" >");%>
+<%} %>
 
-<div class="container">
 	<div class="row clearfix">	
 		<div class="col-md-12 column">
 			<div class="row clearfix">
 			<div class="col-md-12 column">
 						<p>
-							</br>
-							</br>
-							</br>
-							</br>
+							<br>
+							<br>
+							<br>
+							<br>
 						</p>
 					</div>
 				<div class="col-md-4 column;" style='text-align:center'>
@@ -25,8 +33,14 @@
 					
 					<p class="text-center">
 					<br>
-					章小石头<br>
-					dongchangzhang@gmail.com
+					
+					<%
+						
+					   
+					    out.print(username);
+					    out.print("<br>");
+						out.print(usermail);
+						%>
 					</p>
 				</div>
 				<div class="col-md-8 column">
@@ -58,6 +72,10 @@
 							<div class="tab-pane" id="panel-238826">
 								<p>
 									已经粗读过哦
+									<%
+						
+						out.print("<p>adsf" + usermail+ "</p>");
+						%>
 								</p>
 							</div>
 							<div class="tab-pane" id="panel-238827">
@@ -83,7 +101,7 @@
 							class="icon-bar"></span><span class="icon-bar"></span><span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href=personalCenter>阅读</a>
+					<a class="navbar-brand" href=personalCenter?<%out.print("2333"); %>>阅读</a>
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
