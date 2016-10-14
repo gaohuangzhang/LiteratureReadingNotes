@@ -136,7 +136,8 @@ textarea {
 						<div class="row clearfix">
 							<div class="col-md-12 column">
 								<h3></h3>
-								<a class="media" href="tlcl-cn.pdf">PDF</a>
+								
+								<a class="media" href="<% out.print(request.getParameter("url"));%>">PDF</a>
 							</div>
 						</div>
 						<div class="row clearfix">
