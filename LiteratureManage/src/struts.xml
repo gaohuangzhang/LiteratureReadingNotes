@@ -25,8 +25,8 @@
 <!--package Panel : 除了登录界面的所有导航栏的上的动作-->
 	<package name="Panel"  extends="struts-default">
 	<!--sign out-->
-		<action name="signOut">
-			<result>/index.jsp</result>
+		<action name="signOut" class="com.teamghz.action.PanelAction" method="signOut">
+			<result name="SUCCESS">/index.jsp</result>
 		</action>
 	<!--个人中心-->
 	    <action name="personalCenter">
@@ -56,4 +56,6 @@
 		<action name="getArticle" class="com.teamghz.action.PersonalCenterAction" method="getPersonalArticle">
 		</action>
 	</package>
+	
+	
 </struts> 

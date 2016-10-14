@@ -122,6 +122,7 @@ public class LoginAction {
 	}
 	// Action : About
 	public String about() {
+		
 		return "SUCCESS";
 	}
 
