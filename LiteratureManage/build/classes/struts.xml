@@ -57,5 +57,24 @@
 		</action>
 	</package>
 	
-	
+<!--文件上传和下载-->
+<package name="FileLoad" extends="struts-default">	
+<action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
+        <result name="SUCCESS">/message.jsp</result>
+        </action>
+        	
+<action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
+            <result name="success" type="stream">
+                <param name="contentDisposition">attachment;filename="通讯录2012年9月4日.xls"</param>
+                <param name="inputName">downloadFile</param>
+            </result>
+        </action>
+  </package>
+  <!--文章阅读-->
+  <package name="FileRead" extends="struts-default">	
+<action name="readArticle" class="com.teamghz.action.ReadArticle" method="readPDF">
+        <result name="SUCCESS">/read_pdf.jsp</result>
+        </action>
+  </package>
+ 
 </struts> 
