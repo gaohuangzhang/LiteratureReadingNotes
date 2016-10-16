@@ -8,6 +8,12 @@ import com.teamghz.connecter.*;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 public class LoginAction {
 	// user name for sign in or sign in
 	private String name;
@@ -36,7 +42,6 @@ public class LoginAction {
 		return passwd;
 	}
 	
-	
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
@@ -60,37 +65,64 @@ public class LoginAction {
 	
 	// Action : Sign In
 	public String signIn() {
-		
+		if (mail == null || passwd == null || mail.equals("") || passwd.equals("")) {
+			return "OTHERERROR";
+		}
 		String sql = "select * from User where mail=\"" + mail + "\"" ;
 		MysqlConnecter mc = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc.select(sql);
 		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
-		if (result.size() == 0) return "USERNOTEXIST";
-		else if (!passwd.equals(result.get(0).get("4"))) return "PASSWORDERROR";
-		else if (passwd.equals(result.get(0).get("4"))) return "SUCCESS";
-		else return "OTHERERROR";
-		            
+		if (result.size() == 0) {
+			return "USERNOTEXIST";
+		} else if (!passwd.equals(result.get(0).get("4"))) {
+			return "PASSWORDERROR";
+		} else if (passwd.equals(result.get(0).get("4"))) {
+			ServletRequest request = ServletActionContext.getRequest();
+			HttpServletRequest req = (HttpServletRequest) request;
+			HttpSession session = req.getSession();
+			session.setAttribute("usermail", mail);
+			session.setAttribute("username", result.get(0).get("2"));
+			
+			return "SUCCESS";
+		} else {
+			return "OTHERERROR";
+		}            
 	}
 	// Action : Sign Up
 	public String signUp() {
-		
+		if (mail == null || passwd == null || passwd_confirm == null 
+				|| mail.equals("") || passwd.equals("") || passwd_confirm.equals("")) {
+			return "INSERTERROR";
+		}
 		// test password
-		if (!passwd.equals(passwd_confirm)) return "PASSWORDERROE";
+		if (!passwd.equals(passwd_confirm)) {
+			return "PASSWORDERROE";
+		}
 		// test email
-		String sql_email = "select * from User where mail=\"" + mail + "\"" ;
+		String sql_email = "select * from User where mail=\"" + mail + "\"";
 		MysqlConnecter mc_email = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
-	
-		if (result.size() != 0) return "EMAILEXIST";
+		if (result.size() != 0) {
+			return "EMAILEXIST";
+		}
 		// insert
 		String sql = "insert into User(username, mail, password) "
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
 		MysqlConnecter mc = new MysqlConnecter();
-		if (mc.update(sql) == 1) return "SUCCESS";
-		else return "INSERTERROR";
+		if (mc.update(sql) == 1) {
+			ServletRequest request = ServletActionContext.getRequest();
+			HttpServletRequest req = (HttpServletRequest) request;
+			HttpSession session = req.getSession();
+			session.setAttribute("usermail", mail);
+			session.setAttribute("username", name);
+			return "SUCCESS";
+		} else {
+			return "INSERTERROR";
+		}
 	}
 	// Action : About
 	public String about() {
+		
 		return "SUCCESS";
 	}
 
