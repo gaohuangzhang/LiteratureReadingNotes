@@ -7,8 +7,9 @@ package com.teamghz.configure;
 public class Configure {
 	
 	public final static String USERNAME = "root";
-	public final static String PASSWORD = "password";
-	
+
+	public final static String PASSWORD = "123456";
+
 	public final static String DBNAME   = "DBGHZ";
 	
 	public final static String DRIVER   = "com.mysql.jdbc.Driver";
@@ -21,12 +22,12 @@ public class Configure {
 	 * Windows, you should edit like: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac like: "/home/me/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
-	public final static String LOCATION = "/home/me/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/";
+	public final static String LOCATION = "C:\\Users\\Lenovo\\Documents\\GitHub\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";
 	 */
-	public final static String  SEPARATOR = "/";
+	public final static String  SEPARATOR = "\\";/*windows add twice*/
 	/**
 	 * url begin with this
 	 */
