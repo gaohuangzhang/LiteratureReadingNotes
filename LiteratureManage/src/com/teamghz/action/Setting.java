@@ -11,7 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import com.teamghz.connecter.MysqlConnecter;
 public class Setting {
 private String name;
-	private int i = 2;
+	private int i;
 	// email
 	private String oldpasswd;
 	// password for user
@@ -67,13 +67,16 @@ private String name;
 		ArrayList<Map<String, String>> result =  mc.select(sql);
 		if(result.size()==0){
 			i = 0;
+			session.setAttribute("i", i);
 			return "FAILED";}
 		password=result.get(0).get("4");
 		if (!oldpasswd.equals(result.get(0).get("4"))){
 			i = 0;
+			session.setAttribute("i", i);
 			return "FAILED";}
 		if (!passwd.equals(passwd_confirm)) {
 			i=0;
+			session.setAttribute("i", i);
 			return "FAILED";}
 		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
 		sql="update User set password=\""+passwd+"\" where mail=\""+usermail+"\"";
@@ -85,14 +88,15 @@ private String name;
 			return "FAILED";
 	}
 	public String setting2(){
-		if (name == null 
-				|| name.equals("") ) {
-			i = 0;
-			return "INSERTERROR";
-		}
 		ServletRequest request = ServletActionContext.getRequest();
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
+		if (name == null 
+				|| name.equals("") ) {
+			i = 0;
+			session.setAttribute("i", i);
+			return "INSERTERROR";
+		}
 		String usermail = (String) session.getAttribute("usermail");
 		MysqlConnecter mc = new MysqlConnecter();
 		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime

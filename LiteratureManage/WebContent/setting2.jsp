@@ -79,7 +79,7 @@
 				</li>
 		</ul>
 		</div>
-		<div class="col-md-6 column">
+		<div class="col-md-4 column">
 			<h2>设置</h2>
 			<form action="setting2" id="setting_form" method="post">
 				<div class="form-group">
@@ -88,14 +88,18 @@
 				</div>
 				<div class="modal-footer">
 				<button type="submit" class="btn btn-default" form="setting_form">更改</button>
-				<% if(i==1)
-					{out.print("更改成功");}
-					else if(i==0)
-					{out.print("更改失败");}%>
 				</div>
+				<% if(i==1)
+					{out.print("<div class=\"alert alert-success\"><button type=\"but"
+				+"ton\" class=\"close\" data-dismiss=\"alert\">×</button>"+
+					"<h4>提示!</h4> <strong>更改成功!</strong></div>");}
+					else if(i==0)
+					{out.print("<div class=\"alert alert-error\"><button type=\"but"
+							+"ton\" class=\"close\" data-dismiss=\"alert\">×</button>"+
+								"<h4>提示!</h4> <strong>更改失败，密码错误!</strong></div>");}%>
 			</form>
 		</div>
-		<div class="col-md-4 column" style='text-align:center'>
+		<div class="col-md-6 column" style='text-align:center'>
 			<img alt="140x140" src="sources/pics/setting2.jpg" />
 		</div>
 	</div>
