@@ -17,16 +17,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class FileUpLoadAction extends ActionSupport {
 	private String username;
-
-	// 娉ㄦ剰锛宖ile骞朵笉鏄寚鍓嶇jsp涓婁紶杩囨潵鐨勬枃浠舵湰韬紝鑰屾槸鏂囦欢涓婁紶杩囨潵瀛樻斁鍦ㄤ复鏃舵枃浠跺す涓嬮潰鐨勬枃浠�
 	private File file;
-
-	// 鎻愪氦杩囨潵鐨刦ile鐨勫悕瀛�
 	private String fileFileName;
 	private String articlename;
-	// 鎻愪氦杩囨潵鐨刦ile鐨凪IME绫诲瀷
 	private String fileContentType;
-
+	
 	public String getArticlename() {
 		return articlename;
 	}
@@ -72,13 +67,13 @@ public class FileUpLoadAction extends ActionSupport {
 		String usermail = (String) session.getAttribute("usermail");
 		File f = new File(Configure.LOCATION + usermail + Configure.SEPARATOR);
 		if (!f.exists() && !f.isDirectory()) {
-			System.out.println("//涓嶅瓨鍦�");
+			System.out.println("没有文件夹");
 			f.mkdir();
-			System.out.println("鍒涘缓鏂囦欢澶�");
+			System.out.println("创建成功");
 		} else {
-			System.out.println("//鐩綍瀛樺湪");
+			System.out.println("文件存在");
 		}
-		// fileFileName = URLEncoder.encode(fileFileName);
+		//fileFileName = URLEncoder.encode(fileFileName);
 		File fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
 		while (true) {
 			if (!fs.exists()) {
@@ -94,8 +89,8 @@ public class FileUpLoadAction extends ActionSupport {
 				fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
 			}
 		}
-		String url = Configure.ARTICLE_URL_START + Configure.SEPARATOR + Configure.SEPARATOR + usermail
-				+ Configure.SEPARATOR + Configure.SEPARATOR + fileFileName;
+		String url = Configure.ARTICLE_URL_START  + Configure.MYSQL_SEPARATOR + usermail
+				+ Configure.MYSQL_SEPARATOR  + fileFileName;
 		MysqlConnecter mc = new MysqlConnecter();
 		System.out.println(url);
 		ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + usermail + "\"");
