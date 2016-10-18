@@ -82,7 +82,7 @@ public class LoginAction {
 			HttpSession session = req.getSession();
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", result.get(0).get("2"));
-			
+			session.setAttribute("i", 2);
 			return "SUCCESS";
 		} else {
 			return "OTHERERROR";
@@ -115,6 +115,7 @@ public class LoginAction {
 			HttpSession session = req.getSession();
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", name);
+			session.setAttribute("i", 2);
 			return "SUCCESS";
 		} else {
 			return "INSERTERROR";
