@@ -47,6 +47,7 @@
 	<!--去设置-->
 		<action name="settings">
 			<result>/setting1.jsp</result>
+
 		</action>
 	</package>
 <!--package PersonalCenter：所有个人中心的动作 -->
@@ -56,7 +57,12 @@
 		<action name="getArticle" class="com.teamghz.action.PersonalCenterAction" method="getPersonalArticle">
 		</action>
 	</package>
-	
+<!--个人主页动作-->
+	<package name="MainPage" extends="struts-default">
+		<action name="getAllKindOfArticles" class="com.teamghz.action.MainPageAction" method="findAllKindOfArticles">
+		</action>
+		
+	</package>
 <!--文件上传和下载-->
 <package name="FileLoad" extends="struts-default">	
 <action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
