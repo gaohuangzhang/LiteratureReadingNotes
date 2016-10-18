@@ -79,7 +79,7 @@
 				</li>
 		</ul>
 		</div>
-		<div class="col-md-6 column">
+		<div class="col-md-4 column">
 			<h2>设置</h2>
 			<form action="setting1" id="setting_form" method="post">
 				<div class="form-group">
@@ -96,32 +96,19 @@
 					 <span class=""></span>
 				</div>
 				<div class="modal-footer">
-				<button type="submit" class="btn btn-default" form="setting_form" href="#modal-container-671484" data-toggle="modal">更改</button>
-				<div id="modal-container-671484" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h3 id="myModalLabel">
-						更新结果
-					</h3>
+				<button type="submit" class="btn btn-default" form="setting_form">更改</button>
 				</div>
-				<div class="modal-body">
-					<p>
-						<% if(i==1)
-					{out.print("更改成功");}
+				<% if(i==1)
+					{out.print("<div class=\"alert alert-success\"><button type=\"but"
+				+"ton\" class=\"close\" data-dismiss=\"alert\">×</button>"+
+					"<h4>提示!</h4> <strong>更改成功!</strong></div>");}
 					else if(i==0)
-					{out.print("更改失败,密码错误");}
-					else
-					out.print("error");%>
-					</p>
-				</div>
-				<div class="modal-footer">
-					 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				</div>
-			</div>
-				</div>
+					{out.print("<div class=\"alert alert-error\"><button type=\"but"
+							+"ton\" class=\"close\" data-dismiss=\"alert\">×</button>"+
+								"<h4>提示!</h4> <strong>更改失败，密码错误!</strong></div>");}%>
 			</form>
 		</div>
-		<div class="col-md-4 column" style='text-align:center'>
+		<div class="col-md-6 column" style='text-align:center'>
 			<img alt="140x140" src="sources/pics/setting2.jpg" />
 		</div>
 	</div>
