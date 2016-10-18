@@ -96,7 +96,7 @@
 			</form>
 		</div>
 		<div class="col-md-4 column" style='text-align:center'>
-			<img alt="140x140" src="sources/pics/setting2.jpg" /> <button type="button" class="btn btn-lg btn-info">返回</button>
+			<img alt="140x140" src="sources/pics/setting2.jpg" />
 		</div>
 	</div>
 </div>

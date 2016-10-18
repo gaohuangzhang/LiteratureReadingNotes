@@ -96,16 +96,33 @@
 					 <span class=""></span>
 				</div>
 				<div class="modal-footer">
-				<button type="submit" class="btn btn-default" form="setting_form">更改</button>
-				<%if(i==1)
-					out.print("更改成功");
-				else if(i==0)
-					out.print("更改失败");%>
+				<button type="submit" class="btn btn-default" form="setting_form" href="#modal-container-671484" data-toggle="modal">更改</button>
+				<div id="modal-container-671484" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="myModalLabel">
+						更新结果
+					</h3>
+				</div>
+				<div class="modal-body">
+					<p>
+						<% if(i==1)
+					{out.print("更改成功");}
+					else if(i==0)
+					{out.print("更改失败,密码错误");}
+					else
+					out.print("error");%>
+					</p>
+				</div>
+				<div class="modal-footer">
+					 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+				</div>
+			</div>
 				</div>
 			</form>
 		</div>
 		<div class="col-md-4 column" style='text-align:center'>
-			<img alt="140x140" src="sources/pics/setting2.jpg" /> <button type="button" class="btn btn-lg btn-info">返回</button>
+			<img alt="140x140" src="sources/pics/setting2.jpg" />
 		</div>
 	</div>
 </div>
@@ -126,21 +143,10 @@
 	</style>
 	<script type="text/javascript">
 		$(function() {
-			var oldpasswdsetting = false;
 			var passwdConfirm = false;
 			var passwdsetting = false;
 			//验证旧密码
-			$('input[name="oldpasswd"]').focus(function() {
-				$(this).next().text('密码错误').addClass('state2');}).blur(function() {
-					if ($(this).val() != '' && $(this).value == $('password').value) {
-						$(this).next().text('密码正确').removeClass().addClass('state4');
-						oldpasswdsetting = true;
-					}
-					else {
-						$(this).next().text('密码错误').removeClass().addClass('state3');
-					}
-				});
-			//验证密码
+			
 			$('input[name="passwd"]').focus(function() {
 				$(this).next().text('密码应大于等于6位').addClass('state2');}).blur(function() {
 					if ($(this).val().length >= 6 && $(this).val() != '') {
@@ -164,7 +170,7 @@
 				});
 			//所有验证通过方可提交表单
 			$('.submit').click(function() {
-				if (oldpasswdsetting && passwdsetting && passwdConfirm) {
+				if (passwdsetting && passwdConfirm) {
 					$('form').submit();
 				}
 				else {

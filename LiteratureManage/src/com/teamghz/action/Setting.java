@@ -44,9 +44,7 @@ private String name;
 	public String getPasswd() {
 		return passwd;
 	}
-	public String getPassword() {
-		return password;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -73,10 +71,10 @@ private String name;
 		password=result.get(0).get("4");
 		if (!oldpasswd.equals(result.get(0).get("4"))){
 			i = 0;
-			return "PASSWORDERROR";}
+			return "FAILED";}
 		if (!passwd.equals(passwd_confirm)) {
 			i=0;
-			return "PASSWORDERROE";}
+			return "FAILED";}
 		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
 		sql="update User set password=\""+passwd+"\" where mail=\""+usermail+"\"";
 		i=mc.update(sql);
