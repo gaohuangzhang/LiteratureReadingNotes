@@ -4,7 +4,6 @@
 <%@ page import="org.apache.commons.fileupload.*" %>
 <%@ page import="org.apache.commons.fileupload.disk.*" %>
 <%@ page import="org.apache.commons.fileupload.servlet.*" %>
-<%@ page import="org.json.simple.*" %>
 <%
 
 /**
