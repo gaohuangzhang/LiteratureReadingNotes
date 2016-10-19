@@ -25,8 +25,23 @@
         	}, 16);
     	};
 	</script>
+	<style>
+		.city {
+			float: left;
+			margin: 5px;
+			padding: 20px;			
+			background-color: #F9F9F9;
+		} 
+		.city1 {
+			float: left;
+			margin: 2px;
+			padding: 10px;			
+			background-color: #e8e8e8;
+			width: 99%;
+		} 
+	</style>
 </head>
-<body>
+<body style="background:#e8e8e8;">
     <% String usermail = null; %>
     <% String username = null; %>
     <% try { %>
@@ -49,7 +64,7 @@
 		<div class="col-md-12 column">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<p><br><br></p>
+					<p><br><br><br><br></p>
 				</div>
 			</div>
 			<div class="row clearfix">
@@ -58,80 +73,33 @@
 					<br>
 					<div class="btn-group">
 						<!-- 分享标题下的用户名和邮箱 -->
-						<button data-toggle="dropdown" class="btn btn-info dropdown-toggle"> 
-							<span class="glyphicon glyphicon-user "></span><% out.print(username); %> &nbsp;	
-							<span class="glyphicon glyphicon-envelope "></span><%out.print(usermail);%>&nbsp;						
-							<span class="caret"></span>
-						</button>
-						<!-- 属于该按钮的下拉菜单 -->
-						<ul class="dropdown-menu">
-							<li><a href="#">操作</a></li>
-							<li class="divider"></li>
-							<li><a href="#">其它</a></li>
-						</ul>
+						<button data-toggle="dropdown" class="btn  dropdown-toggle"> 
+							<span class="glyphicon glyphicon-user "> <% out.print(username); %></span> &nbsp;	
+						</button>			
 					</div>
 					<!-- 刷新页面执行打印分享信息动作 -->
 					<s:action name="printShareInfo" executeResult="true" />
-  					<hr>
+  				<hr style="height:10px;border:none;border-top:2px groove #f1f1f1;" />
   					<% try { %>
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
-    				<% for (int i = list.size() - 1; i >= 0; --i) { %>
-    				<div class="panel panel-info">
-        				<div class="panel-heading">
-            				<h3 class="panel-title">
-                				<div class="container">
-                    				<div class="row clearfix">
-                        				<div class="col-md-2 column">
-                            				<!--用户头像-->
-                            				<img src=<%out.print( "sources/pics/Avatar.png");%> height="80" width="80" lass="img-rounded" />
-                        				</div>
-                        				<div class="col-md-6 column" style="color: rgb(0, 0, 0);">
-                            				<h4>
-                                				<!--用户名和作品名-->
-                                				<span class="glyphicon glyphicon-user "></span>&nbsp;
-                                				<% out.print(list.get(i).get("1")); %> 
-                                			</h4>
-                                			<hr align="left" style="border:0; background-color:#ff0000; height:1px; width:70%;"/>
-                                			<span class="glyphicon glyphicon-file"></span>
-                                   			<% out.print("<a style=\"color: rgb(0, 0, 0);\">" + list.get(i).get("3") + "</a>"); %> 
-                        				</div>
-                    				</div>
-                				</div>
-            				</h3>
-        				</div>
-        				<div class="panel-body">
-            				<!--评论-->
-            				<div class="wall">
-            					<span class="glyphicon  glyphicon-comment "></span>&nbsp;
-                				<% out.print(list.get(i).get("5")); %>
-                				<div style="text-align:right">
-                					<a class="btn" href="#">查看更多 >></a>
-                				</div>
-            				</div>
-        				</div>
-        				<div class="panel-footer">           		
-                			<div style="text-align:left;">
-                  				<!--时间-->
-                  				<span class="glyphicon  glyphicon-time "></span>
-                   				<span style="font-weight:bold;"> &nbsp;&nbsp;&nbsp;<% out.print(list.get(i).get("6"));%>&nbsp;&nbsp;&nbsp;</span>
-               				</div>
-               				<!-- 按钮 -->
-           					<div style="text-align:right;">
-           						<!--good-->
-        						<button type="button" class="btn btn-sm btn-success">
-									<span class="glyphicon glyphicon-thumbs-up "></span> 点赞 &nbsp;<span class="badge "><% out.print(list.get(i).get("7"));%></span>
-								</button>
-                				<!--bad-->
-                				<button type="button" class=" btn btn-sm btn-warning">
-            						<span class="glyphicon glyphicon-thumbs-down"></span> 反对 &nbsp;<span class="badge"><% out.print(list.get(i).get("8"));%></span>
-        						</button>
-                				<!--添加到自己的资料库-->
-                				<button type="button" class="btn btn-sm btn-primary">
-									<span class="glyphicon glyphicon-bookmark"></span> 收藏 &nbsp;<span class="badge ">0</span>		
-								</button>
-							</div>
-        				</div>
-    				</div>
+    				<% for (int i = list.size() - 1; i >= 0; --i) { %>			
+    				<div class="city" style="width:20%;background-color:#e8e8e8;text-align:center;" >
+							<img src=<%out.print( "sources/pics/Avatar.png");%> height="80" width="80" lass="img-rounded" />		
+							<h4> <% out.print(list.get(i).get("1")); %>	</h4>	
+					</div>	
+					<div class="city" style="width:77%;background-color:#e8e8e8;">
+						分享了：
+						<a href=readArticle?url=<% out.print(list.get(i).get("4"));%>&articlename=<% out.print(list.get(i).get("3"));%>>
+							<% out.print(list.get(i).get("3") ); %>
+						</a>
+						<hr>
+						<span class="glyphicon  glyphicon-comment "></span>&nbsp;
+							西施越溪女，出自苎萝山。秀色掩今古，荷花羞玉颜。浣纱弄碧水，自与清波闲。皓齿信难开，沉吟碧云间。勾践徵绝艳，扬蛾入吴关。提携馆娃宫，杳渺讵可攀。一破夫差国，千秋竟不还。
+										
+						<br><br>
+						<span class="glyphicon  glyphicon-time "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6"));%>&nbsp;&nbsp;&nbsp;</span></span>
+                   				<% out.print(list.get(i).get("5")); %>
+					</div>
    					<% } %>
    					<% } catch(Exception e) { %>
    					<% out.println("ERROR"); %>
@@ -142,13 +110,21 @@
             	</div>		
 				<div class="col-md-4 column">
 					<br>
-					<div class="panel panel-default">
+					<!-- 返回成功信息 -->
+					<% String a = (String)request.getAttribute("flag"); %>
+					<% if (a == "TRUE"){%>					
+					<div class="alert alert-success">
+					    <a href="#" class="close" data-dismiss="alert">
+					        &times;
+					    </a>
+					    <strong>成功！</strong>您已经成功传入新的文件。
+					</div>
+					<%} %>
+					<div class="panel" style="background:#f9f9f9;">
     					<div class="panel-heading">
-    				    	<span class="glyphicon glyphicon-th-list"></span>
-    						<span style="font-weight:bold;">你的阅读列表</span>
     						<div style="text-align:right;">
     							<a id="upload" href="#upload-modal" data-toggle="modal">
-        				    		<button type="button" class="btn btn-success btn-sm" >上传你的新的文件</button>
+        				    		<button type="button" class="btn btn-success" >上传新的文件</button>
         				    	</a>
         					</div>
     					</div>
@@ -158,49 +134,39 @@
                     			<span class="input-group-btn">
                         			<button class="btn btn-default" type="button">搜索</button>	
                     			</span>
-                   			</div><!-- /input-group -->
-    					</div>
-						<table class="table table-hover"">
-							<tbody>
+                   			</div>
 								<!-- 刷新页面执行查找书籍 -->
 					    		<s:action name="getArticle" executeResult="true" />
+					    		<br>
 					    		<% try { %>
 								<% ArrayList<Map<String, String>> list1 = (ArrayList<Map<String, String>>) session.getAttribute("personalbooklist");
-						  	       for (int i = 0; i < list1.size(); ++i) { %>
-								<tr>
-									<td>
+								int max_size = 9;
+								int min_size = 0;
+								if (list1.size() >= max_size) {
+									max_size = list1.size() - 1;
+									min_size = max_size - 9;
+								} else {
+									max_size = list1.size() - 1;
+									min_size = 0;
+								}
+						  	       for (int i = max_size; i >= min_size ; --i) { %>
+								    <div class="city1">
 										<a href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("3"));%>>
-											<span class="glyphicon glyphicon-paperclip"></span>
-											<% out.print(list1.get(i).get("1")); %>
+											<span class="glyphicon glyphicon-paperclip"> <% out.print(list1.get(i).get("1")); %></span>
+											
 										</a>
-									</td>
-								</tr>
+									</div>
+								
 								<% } %>				
-							</tbody>
-						</table>
-						<div class="panel-footer">
+							<% } catch (Exception e) { %>
+							<% out.print("ERROR"); %>
+							<% } %>
 							<div style="text-align: right;">	
-								<span><a href="mainPage">查看更多 >></a></span>
+								<span><a href="mainPage"> <br>查看更多 >></a></span>
 							</div>
 						</div>
 					</div>
 					<br>
-					<!-- 百分比 -->
-					<div class="progress active progress-striped">
-						<%
-							if (list1.size() == 0) {
-								out.print("<div class=\"progress-bar progress-success\" role=\"progressbar\" aria-valuenow=\"60\"");
-								out.print(" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%;\">100%");
-							} else {
-								out.print("<div class=\"progress-bar progress-success\" role=\"progressbar\" aria-valuenow=\"60\"");
-								out.print(" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 10%;\">10%");
-							}
-						%>
-						<% } catch (Exception e) { %>
-						<% out.print("ERROR"); %>
-						<% } %>
-						<span class="sr-only">40% 完成</span>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -242,12 +208,12 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column"></div>
 		</div>
-		<hr>
+		<hr style="height:10px;border:none;border-top:1px groove #000000;" />
 		<footer>
 	    	<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
 		</footer>
 	</div>
-	<div class="modal fade" id="upload-modal" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
+	<div class="modal fade" id="upload-modal" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -269,7 +235,20 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	<div class="modal fade" id="success" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-open"></span> 上传成功</h4>
+				</div>
+				<div class="modal-body" style="width: 400px; margin-left: 90px;">
+				<span class="glyphicon glyphicon-ok" style="color: rgb(107, 208, 128); font-size: 200px;"> </span>
+				</div>
+			</div>
+		</div>
+	</div>		
 	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 90px; bottom: 160px;">
 		<img src= "sources/pics/up.png" />
 	</div>

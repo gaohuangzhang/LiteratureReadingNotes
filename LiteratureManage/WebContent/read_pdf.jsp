@@ -41,7 +41,7 @@
 		});
 	</script>	
 </head>
-<body>
+<body style="background:#e8e8e8;">
 	<!-- style="background:#C7EDCC" -->
 	<div class="container">
 		<div class="row clearfix">
@@ -96,7 +96,7 @@
 					</div>	
 				</div>
 				<!-- 顶部栏 -->
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background:#F8F8F8">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
@@ -131,7 +131,7 @@
 				</nav>
 			</div>
 		</div>
-		<hr>
+		<hr style="height:10px;border:none;border-top:1px groove #000000;" />
 		<footer>
 			<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
 		</footer>
