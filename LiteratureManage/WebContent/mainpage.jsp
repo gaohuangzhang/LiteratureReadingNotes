@@ -13,8 +13,8 @@
 			padding: 20px;
 			width: 48.5%;
 			height: 100px;
-			border: 1px solid green;
-			background-color: #F9F9F9;
+			
+			background-color: #F9f9f9;
 		} 
 	</style>
 	<script type="text/javascript">
@@ -36,7 +36,7 @@
     	};
 	</script>
 </head>
-<body>
+<body style="background:#e8e8e8;">
 	<!-- 得到当前用户信息 -->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
@@ -52,7 +52,7 @@
 		<div class="col-md-12 column">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<p><br><br><br></p>
+					<p><br><br><br><br></p>
 				</div>
 				<div class="col-md-4 column;" style='text-align:center'>
 					<!-- 显示头像 -->
@@ -121,7 +121,7 @@
 							<div class="tab-pane fade in active" id="panel-779078">
 								<!-- 没有读的 -->
 								<% for (int i = not_read - 1; i >= 0; i--) { %>								
-								<div class="city" style="border: 1px solid #9D0808;">
+								<div class="city" >
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);"> 
 											<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>>
@@ -135,7 +135,7 @@
 							<div class="tab-pane fade" id="panel-238826">								
 								<!-- 已经粗读过哦 -->								
 								<% for (int i = read_little - 1; i >= 0; i--) { %>
-								<div class="city" style="border: 1px solid #CFC500;">
+								<div class="city" >
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
 											<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>>
@@ -151,7 +151,7 @@
 								<% for (int i = read_all - 1; i >= 0; i--) { %>
 								<div class="city" style="border: 1px solid #51C200;">
 									<h5>
-										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
+										<span class="glyphicon glyphicon-paperclip" >  
 	  										<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>>
 	    									<%out.print(readall.get(i).get("1")); %></a>
 	    								</span>
@@ -163,7 +163,7 @@
 							<div class="tab-pane fade" id="panel-238828">
 								<!--  全部哦 -->								
 								<% for (int i = all_files - 1; i >= 0; i--) { %>
-								<div class="city" style="border: 1px solid black;">	
+								<div class="city" >	
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
 											<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>>		
@@ -214,7 +214,7 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column"></div>
 	</div>
-	<hr>
+	<hr style="height:10px;border:none;border-top:1px groove #000000;" />
 	<footer>
 		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
 	</footer>

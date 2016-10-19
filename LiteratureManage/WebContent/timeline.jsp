@@ -121,12 +121,12 @@
         	</ul>
       	</div>
     </div>
-    <link href="sources/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  	<link href="sources/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="sources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  	<link href="sources/css/bootstrap.css" rel="stylesheet" type="text/css">
   	<link href="sources/css/custom.css" rel="stylesheet" type="text/css">
     <script src="sources/js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="sources/js/jquery-ui.js" type="text/javascript"></script>
-    <script src="sources/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="sources/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="sources/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
     <script src="sources/js/fullcalendar.min.js" type="text/javascript"></script>
     <script src="sources/js/jquery.dataTables.min.js" type="text/javascript"></script>

@@ -66,7 +66,7 @@
 <!--文件上传和下载-->
 <package name="FileLoad" extends="struts-default">	
 <action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
-        <result name="SUCCESS">/message.jsp</result>
+        <result name="SUCCESS">/personalcenter.jsp</result>
         </action>
         	
 <action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
