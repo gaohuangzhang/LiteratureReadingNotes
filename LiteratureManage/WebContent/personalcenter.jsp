@@ -66,7 +66,7 @@
 					<!-- 分享标题下的用户名和邮箱 -->
 						<button data-toggle="dropdown" class="btn btn-info dropdown-toggle"> 
 							<span class="glyphicon glyphicon-user "></span><% out.print(username); %> &nbsp;	
-							<span class="glyphicon glyphicon-envelope "></span><%out.print(usermail);%>"&nbsp;						
+							<span class="glyphicon glyphicon-envelope "></span><%out.print(usermail);%>&nbsp;						
 							<span class="caret"></span>
 						</button>
 					<!-- 属于该按钮的下拉菜单 -->
