@@ -99,10 +99,7 @@
             		</div>
             		<div class="timeline-content">
    						<h2>评论了用户dongchangzhang关于233.pdf的笔记</h2>
-   						<p>2333333333333333333333333333333333333333333333333333333  
-   							3232324232242422424242
-   							ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-   						</p>
+   						<p>2333333333333333333333333333333333333333333333333333333</p>
    						<button class="btn btn-info" href="#">详细信息 >></button>
             		</div>
           		</li>
