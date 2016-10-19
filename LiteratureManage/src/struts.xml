@@ -10,7 +10,7 @@
 			<result name="PASSWORDERROR">/index.jsp</result>
 			<result name="OTHERERROR">/index.jsp</result>
 		</action>
-	<!--signUp-->
+	<!--"src/com/teamghz"signUp-->
 		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
 			<result name="SUCCESS">/personalcenter.jsp</result>
 			<result name="PASSWORDERROE">/index.jsp</result>

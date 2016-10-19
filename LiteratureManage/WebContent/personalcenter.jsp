@@ -126,7 +126,7 @@
 	<link href="sources/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- 可选的Bootstrap主题文件（一般不使用） -->
-	<script src="sources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+	<link href="sources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="sources/jquery-3.1.1/jquery-3.1.1.min.js"></script>

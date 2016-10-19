@@ -1,0 +1,267 @@
+@CHARSET "UTF-8";
+.navbar.scroll-hide.closed {
+  	top: -45px; 
+}
+
+body {
+  	font-family: "Lato", sans-serif !important;
+  	color: #666666;
+  	background: #e8e8e8;
+  	padding-top: 80px;
+  	height: 100%; 
+	width: 100%;
+}
+
+p {
+ 	margin: 0 0 15px; 
+ 	word-wrap: break-word; 
+ 	word-break: normal; 
+}
+p.lead {
+    font-weight: 300; 
+}
+/*----------------------------------------------------------------------------------- */
+/*  Modal Styles */
+/*----------------------------------------------------------------------------------- */
+.modal {
+	overflow-y: hidden; 
+}
+
+.modal-open .modal {
+	overflow-y: scroll; 
+}
+
+.modal-open .modal-shiftfix,
+.modal-open .modal-shiftfix .navbar-fixed-top,
+.modal-open .modal-shiftfix .navbar-fixed-bottom {
+	overflow-y: scroll; 
+}
+
+/*  List groups */
+/*----------------------------------------------------------------------------------- */
+.list-group {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
+}
+.list-group .list-group-item.active, .list-group .list-group-item.active:hover, .list-group .list-group-item.active:focus {
+    background-color: #007aff; 
+}
+.list-group .list-group-item.active p, .list-group .list-group-item.active:hover p, .list-group .list-group-item.active:focus p {
+    border-bottom: 0; 
+}
+.list-group .list-group-item.active .badge, .list-group .list-group-item.active:hover .badge, .list-group .list-group-item.active:focus .badge {
+    color: #007aff;
+    background-color: white; 
+}
+
+.list-group-item {
+  	padding: 0 0 0 15px;
+  	border: 0;
+  	margin-bottom: 0; 
+}
+.list-group-item p {
+    margin-bottom: 0;
+    padding: 10px 15px 10px 0;
+    border-bottom: 1px solid #dddddd; 
+}
+.list-group-item .badge {
+    float: right; 
+}
+.list-group-item:first-child {
+    border-radius: 0; 
+}
+.list-group-item:last-child {
+    border-radius: 0; 
+}
+.list-group-item:last-child p {
+    border-bottom: 0; 
+}
+      
+.container-fluid.main-content {
+	left: 240px; 
+}      
+  
+.container-fluid.main-content {
+    position: relative;
+    left: 0;
+    -webkit-transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    transition: left 0.3s; 
+}  
+
+/*----------------------------------------------------------------------------------- */
+/*  Page Titles */
+/*----------------------------------------------------------------------------------- */
+.page-title {
+	position: relative;
+  	padding: 0 20px; 
+}
+.page-title h1 {
+    margin-bottom: 25px;
+    color: #5e5e5e;
+    font-weight: 300; 
+}  
+      
+/*----------------------------------------------------------------------------------- */
+/*  Timeline */
+/*----------------------------------------------------------------------------------- */
+ul.timeline {
+  	list-style: none;
+  	position: relative;
+  	max-width: 1200px;
+  	padding: 20px;
+  	margin: 0 auto;
+  	overflow: hidden; 
+}
+ul.timeline:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -2px;
+    background-color: #d2d2d2;
+    height: 100%;
+    width: 4px;
+    border-radius: 2px;
+    display: block; 
+}
+ul.timeline li {
+    padding-left: 50%;
+    position: relative;
+    z-index: 10; 
+}
+ul.timeline li .timeline-time {
+    position: absolute;
+    right: 50%;
+    top: 31px;
+    text-align: right;
+    margin-right: 40px;
+    font-size: 16px;
+    line-height: 1.0; 
+}
+ul.timeline li .timeline-time strong {
+    display: block;
+    text-transform: uppercase;
+    color: #999999;
+    font-size: 11px;
+    font-weight: 400; 
+}
+ul.timeline li .timeline-icon {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: limegreen;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 3px; 
+}
+ul.timeline li .timeline-icon > div {
+    border-radius: 50%;
+    line-height: 34px;
+    font-size: 16px; 
+}
+ul.timeline li .timeline-content {
+    background-color: white;
+    padding: 15px 15px 15px;
+    margin-left: 50px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative; 
+}
+ul.timeline li .timeline-content:after, ul.timeline li .timeline-content:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0; 
+}
+ul.timeline li .timeline-content:after {
+    top: 38px;
+    left: -20px;
+    border: 10px solid transparent;
+    border-right: 10px solid white; 
+}
+ul.timeline li .timeline-content:before {
+    top: 36px;
+    left: -24px;
+    border: 12px solid transparent;
+    border-right: 12px solid #dddddd; 
+}
+ul.timeline li .timeline-content h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    line-height: 1.2; 
+}
+ul.timeline li .timeline-content.image, ul.timeline li .timeline-content.video {
+    padding: 15px 10px 0px; 
+}
+ul.timeline li .timeline-content.image h2, ul.timeline li .timeline-content.video h2 {
+    padding: 0 5px 15px;
+    margin-bottom: 0; 
+}
+ul.timeline li .timeline-content.image img, ul.timeline li .timeline-content.video img {
+    width: 100%; 
+}
+ul.timeline li .timeline-content.image p, ul.timeline li .timeline-content.video p {
+    padding: 15px 5px;
+}
+ul.timeline li:nth-child(odd) {
+    padding-left: 0;
+    padding-right: 50%; 
+}
+ul.timeline li:nth-child(odd) .timeline-time {
+    right: auto;
+    left: 50%;
+    text-align: left;
+    margin-right: 0;
+    margin-left: 40px; 
+}
+ul.timeline li:nth-child(odd) .timeline-content {
+    margin-right: 40px;
+    margin-left: 0;
+}
+ul.timeline li:nth-child(odd) .timeline-content:after {
+    left: auto;
+    right: -20px;
+    border: 10px solid transparent;
+    border-left: 10px solid white; 
+}
+ul.timeline li:nth-child(odd) .timeline-content:before {
+	left: auto;
+    right: -24px;
+    border: 12px solid transparent;
+    border-left: 12px solid #dddddd; 
+}
+ul.timeline.animated li .timeline-content {
+    opacity: 0;
+    left: 20px;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    transition: all 0.8s; 
+}
+ul.timeline.animated li:nth-child(odd) .timeline-content {
+    left: -20px; 
+}
+ul.timeline.animated li.active .timeline-content {
+    opacity: 1;
+    left: 0; 
+}
+ul.timeline.animated li.active:nth-child(odd) .timeline-content {
+    left: 0; 
+}    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
