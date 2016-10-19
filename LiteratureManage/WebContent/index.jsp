@@ -181,10 +181,10 @@
 			</div>
 		</div>
 	</div>
-	<link href="sources/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="sources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
-	<script src="sources/jquery-3.1.1/jquery-3.1.1.min.js"></script>
-	<script src="sources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
+	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="sources/js/jquery-3.1.1.min.js"></script>
+	<script src="sources/js/bootstrap.min.js"></script>
 	<style>
 		.state2 {
 			color: #000;
