@@ -62,12 +62,13 @@
 				</nav>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-2 column">
-		<img alt="140x140" src="sources/pics/Avatar.png" height="200" width="200" class="img-rounded" />
-		<ul class="nav nav-list">
-				<li class="nav-header">
-					设置
-				</li>
+		<div class="col-md-4 column">
+		<div class="panel panel-primary">
+    		<div class="panel-heading">
+        		<h3 class="panel-title">设置</h3>
+    		</div>
+    		<div class="panel-body">
+       			<ul class="nav nav-pills nav-stacked">
 				<li>
 					<a href="setting1.jsp">修改密码</a>
 				</li>
@@ -77,9 +78,14 @@
 				<li>
 					<a href="#">空</a>
 				</li>
-		</ul>
+				</ul>
+    		</div>
 		</div>
-		<div class="col-md-4 column">
+		<footer>
+		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
+		</footer>
+		</div>
+		<div class="col-md-8 column">
 			<h2>设置</h2>
 			<form action="setting2" id="setting_form" method="post">
 				<div class="form-group">
@@ -98,9 +104,6 @@
 							+"ton\" class=\"close\" data-dismiss=\"alert\">×</button>"+
 								"<h4>提示!</h4> <strong>更改失败，密码错误!</strong></div>");}%>
 			</form>
-		</div>
-		<div class="col-md-6 column" style='text-align:center'>
-			<img alt="140x140" src="sources/pics/setting2.jpg" />
 		</div>
 	</div>
 </div>
