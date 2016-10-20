@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>我的主页</title>
 	<!-- 去往开始和结尾 -->
@@ -54,7 +55,7 @@
 				<div class="col-md-12 column">
 					<p><br><br><br><br></p>
 				</div>
-				<div class="col-md-4 column;" style='text-align:center'>
+				<div class="col-md-4 column; animated pulse" style='text-align:center'>
 					<!-- 显示头像 -->
 					<img src="sources/pics/Avatar.png" height="200" width="200" class="img-rounded"/>
 					<p class="text-center">
@@ -121,7 +122,7 @@
 							<div class="tab-pane fade in active" id="panel-779078">
 								<!-- 没有读的 -->
 								<% for (int i = not_read - 1; i >= 0; i--) { %>								
-								<div class="city" >
+								<div class="city animated fadeInRight ">
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);"> 
 											<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>>
@@ -135,7 +136,7 @@
 							<div class="tab-pane fade" id="panel-238826">								
 								<!-- 已经粗读过哦 -->								
 								<% for (int i = read_little - 1; i >= 0; i--) { %>
-								<div class="city" >
+								<div class="city  animated fadeInRight" >
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
 											<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>>
@@ -149,7 +150,7 @@
 							<div class="tab-pane fade" id="panel-238827">
 								<!--  	已经精读过哦 -->	
 								<% for (int i = read_all - 1; i >= 0; i--) { %>
-								<div class="city" style="border: 1px solid #51C200;">
+								<div class="city  animated fadeInRight">
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" >  
 	  										<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>>
@@ -163,7 +164,7 @@
 							<div class="tab-pane fade" id="panel-238828">
 								<!--  全部哦 -->								
 								<% for (int i = all_files - 1; i >= 0; i--) { %>
-								<div class="city" >	
+								<div class="city  animated fadeInRight" >	
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
 											<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>>		
@@ -178,7 +179,7 @@
 					</div>
 				</div>
 			</div>
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation ">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>

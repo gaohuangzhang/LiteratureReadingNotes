@@ -3,9 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="sources/css/bootstrap.min.css" rel="stylesheet">
+	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="sources/js/jquery-3.1.1.min.js"></script>
+	<script src="sources/js/bootstrap.min.js"></script>
+	<script src="sources/js/modernizr.custom.js" type="text/javascript"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>个人中心</title>
+	<link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 	<!-- 去往开始和结尾 -->
 	<script type="text/javascript">
     	var goToWhere = function (where) {
@@ -82,12 +88,13 @@
   				<hr style="height:10px;border:none;border-top:2px groove #f1f1f1;" />
   					<% try { %>
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
-    				<% for (int i = list.size() - 1; i >= 0; --i) { %>			
-    				<div class="city" style="width:20%;background-color:#e8e8e8;text-align:center;" >
+    				<% for (int i = list.size() - 1; i >= 0; --i) { %>		
+    				<!-- 头像 -->	
+    				<div class="city animated fadeInLeft" style="width:20%;background-color:#e8e8e8;text-align:center;" >
 							<img src=<%out.print( "sources/pics/Avatar.png");%> height="80" width="80" lass="img-rounded" />		
 							<h4> <% out.print(list.get(i).get("1")); %>	</h4>	
 					</div>	
-					<div class="city" style="width:77%;background-color:#e8e8e8;">
+					<div class="city animated fadeInRight" style="width:77%;background-color:#e8e8e8;">
 						分享了：
 						<a href=readArticle?url=<% out.print(list.get(i).get("4"));%>&articlename=<% out.print(list.get(i).get("3"));%>>
 							<% out.print(list.get(i).get("3") ); %>
@@ -110,16 +117,7 @@
             	</div>		
 				<div class="col-md-4 column">
 					<br>
-					<!-- 返回成功信息 -->
-					<% String a = (String)request.getAttribute("flag"); %>
-					<% if (a == "TRUE"){%>					
-					<div class="alert alert-success">
-					    <a href="#" class="close" data-dismiss="alert">
-					        &times;
-					    </a>
-					    <strong>成功！</strong>您已经成功传入新的文件。
-					</div>
-					<%} %>
+					
 					<div class="panel" style="background:#f9f9f9;">
     					<div class="panel-heading">
     						<div style="text-align:right;">
@@ -170,7 +168,7 @@
 				</div>
 			</div>
 		</div>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle navigation</span>
@@ -221,43 +219,30 @@
 					<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-open"></span>上传文件</h4>
 				</div>
 				<div class="modal-body" style="width: 400px; margin-left: 90px;">
+				
 					<form action="fileUpLoad" id="upload_form"  method="post" enctype="multipart/form-data">
 						<div class="form-group">
                 			<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
     					</div>
     					<div class="form-group">
-        					<input name="file" class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
+        					<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
         				</div>
     				</form>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-success" form="upload_form">上传</button>
+					<button type="submit" class="btn btn-success" form="upload_form" >上传</button>
+					
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="success" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-open"></span> 上传成功</h4>
-				</div>
-				<div class="modal-body" style="width: 400px; margin-left: 90px;">
-				<span class="glyphicon glyphicon-ok" style="color: rgb(107, 208, 128); font-size: 200px;"> </span>
-				</div>
-			</div>
-		</div>
-	</div>		
+
 	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 90px; bottom: 160px;">
 		<img src= "sources/pics/up.png" />
 	</div>
 	<div id="back-up" onclick="goToWhere(1)" style="position: fixed; cursor: pointer; right: 90px; bottom: 50px;">
 		<img src= "sources/pics/down.png" />
 	</div>
-	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
-	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
-	<script src="sources/js/jquery-3.1.1.min.js"></script>
-	<script src="sources/js/bootstrap.min.js"></script>
+	
 </body>
 </html>
