@@ -66,7 +66,7 @@
 <!--文件上传和下载-->
 <package name="FileLoad" extends="struts-default">	
 <action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
-        <result name="SUCCESS">/personalcenter.jsp</result>
+        <result name="SUCCESS">/temporary.jsp</result>
         <result name="FALSE">/personalcenter.jsp</result>
         </action>
         	
@@ -98,4 +98,11 @@
         <result name="FAILED">/setting2.jsp</result>
         </action>
   </package>
+  <!--不刷新页面提交表单的例子-->
+  <package name="ajax" extends="json-default">
+        <action name="ajaxRequest"
+            class="com.teamghz.action.AjaxExampleAction">
+            <result type="json"></result>
+        </action>
+    </package>
 </struts> 
