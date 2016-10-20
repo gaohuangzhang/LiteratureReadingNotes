@@ -3,9 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="sources/js/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="sources/js/jquery.hideseek.min.js"></script>
+<script type="text/javascript" src="sources/js/initializers.js"></script>
 <link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
-	<script src="sources/js/jquery-3.1.1.min.js"></script>
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script src="sources/js/modernizr.custom.js" type="text/javascript"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -77,15 +79,21 @@
 				<div class="col-md-8 column">
 					<h2>分享</h2>
 					<br>
-					<div class="btn-group">
+					<div class="animated pulse" style="text-align:right;padding:5px">
+					<div class="btn-group pull-left" >
 						<!-- 分享标题下的用户名和邮箱 -->
 						<button data-toggle="dropdown" class="btn  dropdown-toggle"> 
 							<span class="glyphicon glyphicon-user "> <% out.print(username); %></span> &nbsp;	
 						</button>			
 					</div>
+					<!-- 搜索分享 -->
+					<input class="inputs" id="search-highlight1" name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
+				</div>			
 					<!-- 刷新页面执行打印分享信息动作 -->
 					<s:action name="printShareInfo" executeResult="true" />
-  				<hr style="height:10px;border:none;border-top:2px groove #f1f1f1;" />
+  				<hr style="border-top:1px groove #f1f1f1;" />
+  				
+  				<div class=" vertical highlight_list1">
   					<% try { %>
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
     				<% for (int i = list.size() - 1; i >= 0; --i) { %>		
@@ -111,6 +119,7 @@
    					<% } catch(Exception e) { %>
    					<% out.println("ERROR"); %>
    					<% } %>
+   					</div>
 					<div style="text-align:right">
 						<a class="btn" href="#" >查看更多 >></a>
 					</div>
@@ -121,37 +130,27 @@
 					<div class="panel" style="background:#f9f9f9;">
     					<div class="panel-heading">
     						<div style="text-align:right;">
+    						<!-- 搜索书籍 -->
+    						<div class="input-group pull-left" >
+                   				<input class="inputs" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
+                   			</div >
+                   			<!-- 上传文件 -->
     							<a id="upload" href="#upload-modal" data-toggle="modal">
         				    		<button type="button" class="btn btn-success" >上传新的文件</button>
         				    	</a>
         					</div>
     					</div>
     					<div class="panel-body">
-        			    	<div class="input-group">
-                   				<input type="text" class="form-control" placeholder="搜索你的资料库">
-                    			<span class="input-group-btn">
-                        			<button class="btn btn-default" type="button">搜索</button>	
-                    			</span>
-                   			</div>
 								<!-- 刷新页面执行查找书籍 -->
 					    		<s:action name="getArticle" executeResult="true" />
-					    		<br>
+					    		<div class="vertical highlight_list2" style="max-height:565px;overflow:hidden;">
 					    		<% try { %>
 								<% ArrayList<Map<String, String>> list1 = (ArrayList<Map<String, String>>) session.getAttribute("personalbooklist");
-								int max_size = 9;
-								int min_size = 0;
-								if (list1.size() >= max_size) {
-									max_size = list1.size() - 1;
-									min_size = max_size - 9;
-								} else {
-									max_size = list1.size() - 1;
-									min_size = 0;
-								}
-						  	       for (int i = max_size; i >= min_size ; --i) { %>
-								    <div class="city1">
+								
+						  	       for (int i = list1.size() - 1; i >= 0 ; --i) { %>
+								    <div class="city1 animated slideInUp">
 										<a href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("3"));%>>
-											<span class="glyphicon glyphicon-paperclip"> <% out.print(list1.get(i).get("1")); %></span>
-											
+											<span class="glyphicon glyphicon-paperclip"> <% out.print(list1.get(i).get("1")); %></span>			
 										</a>
 									</div>
 								
@@ -159,6 +158,7 @@
 							<% } catch (Exception e) { %>
 							<% out.print("ERROR"); %>
 							<% } %>
+							</div>
 							<div style="text-align: right;">	
 								<span><a href="mainPage"> <br>查看更多 >></a></span>
 							</div>
