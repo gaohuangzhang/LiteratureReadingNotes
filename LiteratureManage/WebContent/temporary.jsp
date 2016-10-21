@@ -53,6 +53,7 @@
 				 <a href="#" class="close" data-dismiss="alert">
 					 &times;
 				 </a>
+				 <span id="show"></span> 
 				<h3> <strong>失败！</strong>上传失败。</h3>
 				  <a href="personalcenter.jsp">点击这里返回个人中心</a>
 			</div>

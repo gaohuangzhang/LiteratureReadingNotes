@@ -1,37 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+  <head>
+  
+    <script src="sources/js/jquery-3.1.1.min.js"></script>
+    <script src="sources/js/jquery.sidr.min.js"></script>
+    <link rel="stylesheet" href="sources/css/jquery.sidr.dark.min.css">
+  </head>
+  <body>
+  <a id="simple-menu" href="#sidr">Toggle menu</a>
 
+<div id="sidr">
+  <!-- Your content -->
+  <ul>
+    <li><a href="#">List 1</a></li>
+    <li class="active"><a href="#">List 2</a></li>
+    <li><a href="#">List 3</a></li>
+  </ul>
+</div>
 
-</head>
-<body>
- <script src="sources/js/jquery-3.1.1.min.js"></script>
-        
+<script>
+$(document).ready(function() {
+  $('#simple-menu').sidr();
+});
+</script>
+ 
+<a id="right-menu" href="#right-menu">Right Menu</a>
 
-        <input id="name" type="text">
-        <input type="button" value="ok" onclick="javascript:clickButton();" clientidmode="Static">
-        <SCRIPT type="text/javascript">
-            
-            function clickButton()
-            {    
-                var url = 'ajaxRequest.action';
-                
-                var params = {
-                        name:eval(document.getElementById('name')).value
-                };
-                
-                jQuery.post(url, params, callbackFun, 'json');
-            }
-            function callbackFun(data)
-            {
-            	
-               alert(data.result);//对应HelloWorld类的message属性
-                    //获取数据后渲染页面
-            }
-        </SCRIPT>	
-</body>
+<script>
+$(document).ready(function() {
+   
+    $('#right-menu').sidr({
+      name: 'sidr-right',
+      side: 'right'
+    });
+});
+</script>
+  </body>
 </html>

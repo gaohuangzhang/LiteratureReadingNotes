@@ -47,6 +47,13 @@
 			background-color: #e8e8e8;
 			width: 99%;
 		} 
+		.white {
+			float: left;
+			margin: 2px;
+			padding: 10px;			
+			background-color: #B3FFB3;
+			width: 99%;
+		} 
 	</style>
 </head>
 <body style="background:#e8e8e8;">
@@ -77,7 +84,7 @@
 			</div>
 			<div class="row clearfix">
 				<div class="col-md-8 column">
-					<h2>分享</h2>
+					<h2  class="animated  pulse ">分享</h2>
 					<br>
 					<div class="animated pulse" style="text-align:right;padding:5px">
 					<div class="btn-group pull-left" >
@@ -100,12 +107,12 @@
     				<!-- 头像 -->	
     				<div class="city animated fadeInLeft" style="width:20%;background-color:#e8e8e8;text-align:center;" >
 							<img src=<%out.print( "sources/pics/Avatar.png");%> height="80" width="80" lass="img-rounded" />		
-							<h4> <% out.print(list.get(i).get("1")); %>	</h4>	
+							<h4> <% out.print(username); %>	</h4>	
 					</div>	
 					<div class="city animated fadeInRight" style="width:77%;background-color:#e8e8e8;">
 						分享了：
-						<a href=readArticle?url=<% out.print(list.get(i).get("4"));%>&articlename=<% out.print(list.get(i).get("3"));%>>
-							<% out.print(list.get(i).get("3") ); %>
+						<a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
+							<% out.print(list.get(i).get("1") ); %>
 						</a>
 						<hr>
 						<span class="glyphicon  glyphicon-comment "></span>&nbsp;
@@ -113,7 +120,7 @@
 										
 						<br><br>
 						<span class="glyphicon  glyphicon-time "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6"));%>&nbsp;&nbsp;&nbsp;</span></span>
-                   				<% out.print(list.get(i).get("5")); %>
+                   				<% out.print(list.get(i).get("4")); %>
 					</div>
    					<% } %>
    					<% } catch(Exception e) { %>
@@ -148,13 +155,18 @@
 								<% ArrayList<Map<String, String>> list1 = (ArrayList<Map<String, String>>) session.getAttribute("personalbooklist");
 								
 						  	       for (int i = list1.size() - 1; i >= 0 ; --i) { %>
-								    <div class="city1 animated slideInUp">
-										<a href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("3"));%>>
+								    <div class="city1 animated slideInUp" onMouseMove="this.className='white'" onmouseout="this.className='city1'">
+										<a href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("1"));%>&id=<% out.print(list1.get(i).get("3"));%>>
 											<span class="glyphicon glyphicon-paperclip"> <% out.print(list1.get(i).get("1")); %></span>			
 										</a>
 									</div>
 								
-								<% } %>				
+								<% } %>
+								<%if (list1.size() == 0) {%>
+								 <div class="city1 animated slideInUp">
+								空空如也啊！
+								</div>
+								<%} %>			
 							<% } catch (Exception e) { %>
 							<% out.print("ERROR"); %>
 							<% } %>

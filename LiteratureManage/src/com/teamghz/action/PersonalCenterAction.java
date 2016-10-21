@@ -24,7 +24,7 @@ public class PersonalCenterAction {
 		String usermail = (String) session.getAttribute("usermail");
 		ArrayList<Map<String, String>> tmp = mc.select("select userid from User where mail=\"" + usermail +"\"");
 		String id = tmp.get(0).get("1");
-		String sql = "select User.username, User.mail, Article.articlename, Article.url, Article.comment, Share.time, Share.good, Share.bad from User, Article, Share  WHERE Share.userid=User.userid and Share.articleid=Article.articleid";
+		String sql = "select Article.articlename, Article.url, Article.articleid, Article.comment, Share.time, Share.good, Share.bad from User, Article, Share  WHERE Share.userid=User.userid and Share.articleid=Article.articleid";
 		ArrayList<Map<String, String>> result = mc.select(sql);
 		session.setAttribute("sharelist", result);
 		} catch (Exception e) {
@@ -39,7 +39,7 @@ public class PersonalCenterAction {
 		MysqlConnecter mc = new  MysqlConnecter();
 		try {
 		String usermail = (String) session.getAttribute("usermail");
-		String sql = "select Article.articlename, Article.url, Article.status, User.username from Article, User where Article.userid=User.userid and User.mail="+ "\"" + usermail + "\"";	
+		String sql = "select Article.articlename, Article.url, Article.articleid,  Article.status from Article, User where Article.userid=User.userid and User.mail="+ "\"" + usermail + "\"";	
 		ArrayList<Map<String, String>> result = mc.select(sql);
 		session.setAttribute("personalbooklist", result);
 		} catch (Exception e) {
