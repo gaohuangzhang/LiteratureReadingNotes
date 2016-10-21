@@ -3,38 +3,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>我的主页</title>
-	<!-- 去往开始和结尾 -->
-	<style>
-		.city {
-			float: left;
-			margin: 5px;
-			padding: 20px;
-			width: 48.5%;
-			height: 100px;
-			
-			background-color: #F9f9f9;
-		} 
-	</style>
-	<script type="text/javascript">
-    	var goToWhere = function (where) {
-        	var me = this;
-        	clearInterval (me.interval);
-        	me.site = [];
-        	var dom = !/.*chrome.*/i.test (navigator.userAgent) ? document.documentElement : document.body;
-        	var height = !!where ? dom.scrollHeight : 0;
-        	me.interval = setInterval (function () {
-            	var speed = (height - dom.scrollTop) / 16;
-            	if (speed == me.site[0]) {
-                	clearInterval (me.interval);
-                	return null;
-            	}
-            	dom.scrollTop += speed;
-            	me.site.unshift (speed);
-        	}, 16);
-    	};
-	</script>
+<!-- 实现搜索的3个必须引入的包 -->
+<script type="text/javascript" src="sources/js/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="sources/js/jquery.hideseek.min.js"></script>
+<script type="text/javascript" src="sources/js/initializers.js"></script>
+<!-- 实现动画必须引入的包 -->
+<link href="sources/css/animate.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的主页</title>
+<!-- 分块的样式 -->
+<style>
+	.city {
+		float: left;
+		margin: 5px;
+		padding: 20px;
+		width: 48.5%;
+		height: 100px;
+		
+		background-color: #F9f9f9;
+	}
+	.inputs {
+	float: right;
+	width:500px;
+	margin: 8px;
+	}
+</style>
+<!-- 去往开始和结尾 -->
+<script type="text/javascript">
+   	var goToWhere = function (where) {
+       	var me = this;
+       	clearInterval (me.interval);
+       	me.site = [];
+       	var dom = !/.*chrome.*/i.test (navigator.userAgent) ? document.documentElement : document.body;
+       	var height = !!where ? dom.scrollHeight : 0;
+       	me.interval = setInterval (function () {
+           	var speed = (height - dom.scrollTop) / 16;
+           	if (speed == me.site[0]) {
+               	clearInterval (me.interval);
+               	return null;
+           	}
+           	dom.scrollTop += speed;
+           	me.site.unshift (speed);
+       	}, 16);
+   	};
+</script>
 </head>
 <body style="background:#e8e8e8;">
 	<!-- 得到当前用户信息 -->
@@ -53,8 +65,9 @@
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<p><br><br><br><br></p>
+					
 				</div>
-				<div class="col-md-4 column;" style='text-align:center'>
+				<div class="col-md-4 column; animated pulse" style='text-align:center'>
 					<!-- 显示头像 -->
 					<img src="sources/pics/Avatar.png" height="200" width="200" class="img-rounded"/>
 					<p class="text-center">
@@ -88,7 +101,7 @@
 					<% read_little = readlittle.size(); %>
 					<% read_all = readall.size(); %>
 					<% all_files = all.size(); %>
-					<!-- 选项卡栏 -->
+					<!-- 选项卡栏 -->				
 					<div class="tabbable" id="tabs-79182">
 						<ul class="nav nav-tabs">
 							<li class="active">
@@ -104,24 +117,18 @@
 								<a href="#panel-238828" data-toggle="tab">全部内容&nbsp;<span class="badge"><%out.println(all_files); %></span></a>
 							</li>
 						</ul>						
-						<!-- 搜索面板 -->
-						<div class="panel panel-default">
-							<div class="panel-body">
-        			    		<div class="input-group">
-                   					<input type="text" class="form-control" placeholder="搜索你的资料库">
-                    					<span class="input-group-btn">
-                        					<button class="btn btn-success" type="button" style="width:200px;">搜索</button>                   		
-                    					</span>
-                   				</div><!-- /input-group -->
-    						</div>
-    					</div>
-						<hr>
+						
 						<!-- 那些信息们 -->
 						<div class="tab-content">
-							<div class="tab-pane fade in active" id="panel-779078">
-								<!-- 没有读的 -->
+							<div class="tab-pane fade in active" id="panel-779078">	
+							<!-- 搜索入口1 -->
+							<div class="animated fadeInRight ">		
+								<input class="inputs" id="search-highlight1" name="search-highlight1" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
+							</div>	
+							<!-- 没有读的 -->
+							<div class=" vertical highlight_list1">
 								<% for (int i = not_read - 1; i >= 0; i--) { %>								
-								<div class="city" >
+								<div class="city animated fadeInRight ">
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);"> 
 											<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>>
@@ -130,12 +137,17 @@
 									</h5>
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> 标签</span>
 								</div>								
-								<% } %>											
+								<% } %>	
+							</div>
 							</div>
 							<div class="tab-pane fade" id="panel-238826">								
-								<!-- 已经粗读过哦 -->								
+							<!-- 已经粗读过哦 -->	
+							<div class="animated fadeInRight ">										 
+								<input class="inputs" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
+							</div>
+								<div class=" vertical highlight_list2">						
 								<% for (int i = read_little - 1; i >= 0; i--) { %>
-								<div class="city" >
+								<div class="city  animated fadeInRight" >
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
 											<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>>
@@ -145,11 +157,16 @@
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
 								</div>
 								<% } %>	
+								</div>
 							</div>
 							<div class="tab-pane fade" id="panel-238827">
 								<!--  	已经精读过哦 -->	
+							<div class="animated fadeInRight ">	
+							<input class="inputs" id="search-highlight3" name="search-highlight3" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list3" autocomplete="off">
+							</div>
+								<div class=" vertical highlight_list3">
 								<% for (int i = read_all - 1; i >= 0; i--) { %>
-								<div class="city" style="border: 1px solid #51C200;">
+								<div class="city  animated fadeInRight">
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" >  
 	  										<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>>
@@ -159,11 +176,16 @@
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"></span>
 								</div>
 								<% } %>
+								</div>
 							</div>					
 							<div class="tab-pane fade" id="panel-238828">
-								<!--  全部哦 -->								
+							<!--  全部哦 -->		
+							<div class="animated fadeInRight ">		 
+							<input class="inputs" id="search-highlight4" name="search-highlight4" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list4" autocomplete="off">
+							</div>	
+								<div class="vertical highlight_list4">						
 								<% for (int i = all_files - 1; i >= 0; i--) { %>
-								<div class="city" >	
+								<div class="city  animated fadeInRight" >	
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
 											<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>>		
@@ -173,12 +195,13 @@
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"></span>
 								</div>
 								<% } %>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation ">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
@@ -224,9 +247,11 @@
 	<div id="back-up" onclick="goToWhere(1)" style="position: fixed; cursor: pointer; right: 90px; bottom: 50px;">
 		<img src= "sources/pics/down.png" />
 	</div>
+	 <!-- JS -->
+
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
-	<script src="sources/js/jquery-3.1.1.min.js"></script>
+
 	<script src="sources/js/bootstrap.min.js"></script>
 </body>
 </html>
