@@ -22,12 +22,21 @@
 		
 		background-color: #F9f9f9;
 	}
+	.white {
+		float: left;
+		margin: 5px;
+		padding: 20px;
+		width: 48.5%;
+		height: 100px;
+		
+		background-color: #B3FFB3;
+	}
 	.inputs {
 	float: right;
 	width:500px;
 	margin: 8px;
 	}
-</style>
+</style> 
 <!-- 去往开始和结尾 -->
 <script type="text/javascript">
    	var goToWhere = function (where) {
@@ -67,7 +76,7 @@
 					<p><br><br><br><br></p>
 					
 				</div>
-				<div class="col-md-4 column; animated pulse" style='text-align:center'>
+				<div class="col-md-4 column; animated pulse"  style='text-align:center'>
 					<!-- 显示头像 -->
 					<img src="sources/pics/Avatar.png" height="200" width="200" class="img-rounded"/>
 					<p class="text-center">
@@ -128,48 +137,60 @@
 							<!-- 没有读的 -->
 							<div class=" vertical highlight_list1">
 								<% for (int i = not_read - 1; i >= 0; i--) { %>								
-								<div class="city animated fadeInRight ">
+								<div class="city animated fadeInRight "  onMouseMove="this.className='white'" onmouseout="this.className='city'">
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);"> 
-											<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>>
+											<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
 											<%out.print(notread.get(i).get("1")); %></a>
 										</span>
 									</h5>
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> 标签</span>
 								</div>								
 								<% } %>	
+								
 							</div>
+							<%if (not_read == 0) {%>
+								<div class="city animated fadeInRight ">
+								<h4>已经没有未读的内容了，真棒</h4>
+								</div>
+								<%} %>
 							</div>
 							<div class="tab-pane fade" id="panel-238826">								
 							<!-- 已经粗读过哦 -->	
-							<div class="animated fadeInRight ">										 
+							<div class="animated fadeInRight " >										 
 								<input class="inputs" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
 							</div>
-								<div class=" vertical highlight_list2">						
+								<div class=" vertical highlight_list2" onMouseMove="this.className='white'" onmouseout="this.className='city'">						
 								<% for (int i = read_little - 1; i >= 0; i--) { %>
 								<div class="city  animated fadeInRight" >
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
-											<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>>
+											<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
 											<%out.print(readlittle.get(i).get("1")); %></a>
 										</span>
 									</h5>
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
 								</div>
 								<% } %>	
+								
 								</div>
+								<%if (read_little == 0) {%>
+								<div class="city animated fadeInRight ">
+								<h4>这是空的呢，加油啊！</h4>
+								</div>
+								<%} %>
 							</div>
 							<div class="tab-pane fade" id="panel-238827">
 								<!--  	已经精读过哦 -->	
-							<div class="animated fadeInRight ">	
+							<div class="animated fadeInRight " >	
 							<input class="inputs" id="search-highlight3" name="search-highlight3" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list3" autocomplete="off">
 							</div>
 								<div class=" vertical highlight_list3">
 								<% for (int i = read_all - 1; i >= 0; i--) { %>
-								<div class="city  animated fadeInRight">
+								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'">
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" >  
-	  										<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>>
+	  										<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
 	    									<%out.print(readall.get(i).get("1")); %></a>
 	    								</span>
 	  								</h5>
@@ -177,18 +198,23 @@
 								</div>
 								<% } %>
 								</div>
+								<%if (read_all == 0) {%>
+								<div class="city animated fadeInRight ">
+								<h4>还没有精读过的内容，要努力啊！</h4>
+								</div>
+								<%} %>
 							</div>					
 							<div class="tab-pane fade" id="panel-238828">
 							<!--  全部哦 -->		
-							<div class="animated fadeInRight ">		 
+							<div class="animated fadeInRight " >		 
 							<input class="inputs" id="search-highlight4" name="search-highlight4" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list4" autocomplete="off">
 							</div>	
 								<div class="vertical highlight_list4">						
 								<% for (int i = all_files - 1; i >= 0; i--) { %>
-								<div class="city  animated fadeInRight" >	
+								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'" >	
 									<h5>
 										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
-											<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>>		
+											<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>		
 											<%out.print(all.get(i).get("1")); %></a>
 										</span>						
 									</h5>
@@ -196,6 +222,11 @@
 								</div>
 								<% } %>
 								</div>
+								<%if (all_files == 0) {%>
+								<div class="city animated fadeInRight ">
+								<h4>你还没有添加过内容呢，我等你哦！</h4>
+								</div>
+								<%} %>
 							</div>
 						</div>
 					</div>
@@ -251,7 +282,6 @@
 
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
-
 	<script src="sources/js/bootstrap.min.js"></script>
 </body>
 </html>

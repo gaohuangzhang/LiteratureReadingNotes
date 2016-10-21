@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
 <head>
@@ -11,6 +12,18 @@
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
+ <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
+    <script src="sources/js/jquery.sidr.min.js"></script>
+    <link rel="stylesheet" href="sources/css/jquery.sidr.light.min.css">
+  <style>
+		.city {
+			float: left;
+			margin: 5px;
+			padding: 20px;
+			width:100%;		
+			background-color: #F9F9F9;
+		} 
+	</style>
 	<title>阅读PDF</title>
 	<!-- pdf阅读器 -->
 	<script type="text/javascript">
@@ -40,8 +53,44 @@
 			});
 		});
 	</script>	
+	<script>
+$(document).ready(function() {
+   
+    $('#right-menu').sidr({
+      name: 'sidr-right',
+      side: 'right',
+      source: ' #sidr'
+    });
+});
+</script>
+<script >
+window.onbeforeunload = function(event) {
+	alert(111);
+	return confirm("确定退出吗");
+	} 
+</script>
 </head>
 <body style="background:#e8e8e8;">
+
+ <div class=" animated flash	" style="padding:10px;float:right;">
+<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif"/></a>
+</div>
+<div id="sidr" style="display: none;">
+  <!-- Your content -->
+  <ul>
+    <li > &nbsp;&nbsp;&nbsp;操作</li>
+    <li>
+       <button type="submit" class="btn btn-sm btn-block" form="note">####保存文章笔记并且退出####</button>
+    </li>
+    <li><a href=mainPage>返回主页</a></li>
+    <li><a href=personalCenter>返回个人中心</a></li>
+	<li><a href=fileManage>内容管理</a></li>
+	<li><a href=timeLine>时间线</a></li>
+	<li><a href=settings>设置</a></li>
+	
+	
+  </ul>
+</div>
 	<!-- style="background:#C7EDCC" -->
 	<div class="container">
 		<div class="row clearfix">
@@ -53,82 +102,72 @@
 			</div>
 			<div class="col-md-12 column">
 				<!-- 文件名 -->
-				<h3 class="text-center">			
+				<h5 class="text-center">			
 					<% out.print(request.getParameter("articlename"));%>
-				</h3>
+				</h5>
 				<!-- 标签栏 -->
 				<div class="tabbable" id="tabs-960120">
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="#panel-921674" data-toggle="tab">阅读</a>
+							<a href="#panel-1" data-toggle="tab">阅读</a>
 						</li>
 						<li>
-							<a href="#panel-666652" data-toggle="tab">记录笔记</a>
+							<a href="#panel-2" data-toggle="tab">记录笔记</a>
+						</li>
+						<li>
+							<a href="#panel-3" data-toggle="tab">已有笔记</a>
 						</li>
 					</ul>
-					<div class="tab-content">
+					<div class="tab-content ">
 						<!-- 显示pdf -->
-						<div class="tab-pane fade in active" id="panel-921674">
+						<div class="tab-pane  fade in active" id="panel-1">
 							<a class="media" href="<% out.print(request.getParameter("url"));%>"></a>						
 						</div>
 						<!-- 显示输入框和文本编辑器 -->
-						<div class="tab-pane fade" id="panel-666652">
+						<div class="tab-pane  animated fadeInUp" id="panel-2">
 							<div class="panel panel-default">
 								<div class="panel-body">      			   
-									<form>
+									<form action="saveAndLeave" id="note" method="post">
 										<!-- 标题栏 -->
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="输入评论标题" style="background-color:#C7EDCC;"/>
+										<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
+										<input type='text' name="id" class="pull-left" readonly style="width:5%;" value=<%out.print(request.getAttribute("id")); %>></input>
+											
 										</div >
+										<br><br>
 										<!-- 文本区域 -->
+										
 										<textarea name="content" style="width:100%;height:500px;visibility:hidden;">KindEditor</textarea>
 										<br>
 										<!-- 右下角按钮 -->
 										<div class="btn-toolbar" role="toolbar" style="text-align:right;">
-											<input type="button" name="getHtml" value="取得HTML" />
-											<input type="button" name="clear" value="清空内容" />
-											<input type="reset" name="reset" value="Reset" />
+											<input type="button" name="getHtml" value="HTML" />
+											<input type="button" name="clear" value="清空" />
+											<input type="reset" name="reset" value="撤销" />
+											<input type="submit" value="提交并退出"></input>
 										</div>		
 									</form>
     							</div>		
 							</div>
 						</div>
+						<% ArrayList<Map<String, String>> note = (ArrayList<Map<String, String>>) session.getAttribute("note");%>
+						<div class="tab-pane " id="panel-3">
+						<%for (int i = note.size() -1; i >= 0; --i) { %>
+						
+						<div class="city animated fadeInUp">
+						<h2>
+						<%out.print(note.get(i).get("1")); %>
+						</h2>
+						<%out.print(note.get(i).get("3")); %>
+						<br></br>
+						<%out.print(note.get(i).get("2")); %>
+						</div>
+					   <%} %>	
+						</div>
 					</div>	
 				</div>
 				<!-- 顶部栏 -->
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background:#F8F8F8">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
-							<span class="icon-bar"></span><span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href=personalCenter>阅读</a>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<form action="search" class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<input class="form-control" type="text" placeholder="搜索内容" />
-							</div>
-							<button type="submit" class="btn btn-default">开始搜索</button>
-						</form>
-						<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="sources/pics/Avatar.png" height="20" width="20" />
-									<strong class="caret"></strong>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href=mainPage>我的主页</a></li>
-									<li><a href=fileManage>内容管理</a></li>
-									<li><a href=timeLine>时间线</a></li>
-									<li><a href=settings>设置</a></li>
-									<li class="divider"></li>
-									<li><a href=signOut>注销</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</nav>
+				
 			</div>
 		</div>
 		<hr style="height:10px;border:none;border-top:1px groove #000000;" />

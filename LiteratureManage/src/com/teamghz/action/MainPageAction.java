@@ -22,7 +22,7 @@ public class MainPageAction {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		String usermail = (String) session.getAttribute("usermail");
-		String sql_base = "select Article.articlename, Article.url from Article, User where Article.userid=User.userid and User.mail=";
+		String sql_base = "select Article.articlename, Article.url, Article.articleid from Article, User where Article.userid=User.userid and User.mail=";
 		String sql_notread = sql_base + "\"" + usermail + "\""+ " and Article.status=\"NOT_READ\""; 
 		String sql_readlittle = sql_base + "\"" + usermail + "\""+ " and Article.status=\"COARSE_READ\""; 
 		String sql_readall = sql_base+ "\"" + usermail + "\"" + " and Article.status=\"INTENSIVE_READ\"";                   
