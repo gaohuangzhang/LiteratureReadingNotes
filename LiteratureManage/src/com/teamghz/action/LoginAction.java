@@ -8,6 +8,12 @@ import com.teamghz.connecter.*;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 public class LoginAction {
 	// user name for sign in or sign in
 	private String name;
@@ -71,6 +77,12 @@ public class LoginAction {
 		} else if (!passwd.equals(result.get(0).get("4"))) {
 			return "PASSWORDERROR";
 		} else if (passwd.equals(result.get(0).get("4"))) {
+			ServletRequest request = ServletActionContext.getRequest();
+			HttpServletRequest req = (HttpServletRequest) request;
+			HttpSession session = req.getSession();
+			session.setAttribute("usermail", mail);
+			session.setAttribute("username", result.get(0).get("2"));
+			session.setAttribute("i", 2);
 			return "SUCCESS";
 		} else {
 			return "OTHERERROR";
@@ -98,6 +110,12 @@ public class LoginAction {
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
 		MysqlConnecter mc = new MysqlConnecter();
 		if (mc.update(sql) == 1) {
+			ServletRequest request = ServletActionContext.getRequest();
+			HttpServletRequest req = (HttpServletRequest) request;
+			HttpSession session = req.getSession();
+			session.setAttribute("usermail", mail);
+			session.setAttribute("username", name);
+			session.setAttribute("i", 2);
 			return "SUCCESS";
 		} else {
 			return "INSERTERROR";
@@ -105,6 +123,7 @@ public class LoginAction {
 	}
 	// Action : About
 	public String about() {
+		
 		return "SUCCESS";
 	}
 

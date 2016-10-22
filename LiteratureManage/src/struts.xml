@@ -10,7 +10,7 @@
 			<result name="PASSWORDERROR">/index.jsp</result>
 			<result name="OTHERERROR">/index.jsp</result>
 		</action>
-	<!--signUp-->
+	<!--"src/com/teamghz"signUp-->
 		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
 			<result name="SUCCESS">/personalcenter.jsp</result>
 			<result name="PASSWORDERROE">/index.jsp</result>
@@ -25,8 +25,12 @@
 <!--package Panel : 除了登录界面的所有导航栏的上的动作-->
 	<package name="Panel"  extends="struts-default">
 	<!--sign out-->
-		<action name="signOut">
-			<result>/index.jsp</result>
+		<action name="signOut" class="com.teamghz.action.PanelAction" method="signOut">
+			<result name="SUCCESS">/index.jsp</result>
+		</action>
+	<!--个人中心-->
+	    <action name="personalCenter">
+			<result>/personalcenter.jsp</result>
 		</action>
 	<!--去我的主页-->
 		<action name="mainPage">
@@ -42,8 +46,82 @@
 		</action>
 	<!--去设置-->
 		<action name="settings">
-			<result>/settings.jsp</result>
+			<result>/setting1.jsp</result>
+
+		</action>
+	<!--去搜索-->
+		<action name="search">
+			<result>/search.jsp</result>
+
 		</action>
 	</package>
-
+<!--package PersonalCenter：所有个人中心的动作 -->
+	<package name="PersonalCenter" extends="struts-default">
+		<action name="printShareInfo" class="com.teamghz.action.PersonalCenterAction" method="getShareInfo">
+		</action>
+		<action name="getArticle" class="com.teamghz.action.PersonalCenterAction" method="getPersonalArticle">
+		</action>
+	</package>
+<!--个人主页动作-->
+	<package name="MainPage" extends="struts-default">
+		<action name="getAllKindOfArticles" class="com.teamghz.action.MainPageAction" method="findAllKindOfArticles">
+		</action>
+		
+	</package>
+<!--文件上传和下载-->
+<package name="FileLoad" extends="struts-default">	
+<action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
+        <result name="SUCCESS">/temporary.jsp</result>
+        <result name="FALSE">/temporary.jsp</result>
+        </action>
+        	
+<action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
+            <result name="success" type="stream">
+                <param name="contentDisposition">attachment;filename="通讯录2012年9月4日.xls"</param>
+                <param name="inputName">downloadFile</param>
+            </result>
+        </action>
+  </package>
+  <!--文章阅读-->
+  <package name="FileRead" extends="struts-default">	
+<action name="readArticle" class="com.teamghz.action.ReadArticle" method="readPDF">
+        <result name="SUCCESS">/read_pdf.jsp</result>
+        </action>
+        <action name="saveAndLeave" class="com.teamghz.action.ReadArticle" method="saveAndLeave">
+        <result name="SUCCESS">/temporary.jsp</result>
+        <result name="FALSE">/temporary.jsp</result>
+        </action>
+  </package>
+ <!--设置-->
+  <package name="Setting" extends="struts-default">	
+<action name="setting1" class="com.teamghz.action.Setting" method="setting1">
+        <result name="SUCCESS">/setting1.jsp</result>
+        <result name="PASSWORDERROE">/setting1.jsp</result>
+        <result name="INSERTERROR">/setting1.jsp</result>
+        <result name="FAILED">/setting1.jsp</result>
+        </action>
+<action name="setting2" class="com.teamghz.action.Setting" method="setting2">
+        <result name="SUCCESS">/setting2.jsp</result>
+        <result name="PASSWORDERROE">/setting2.jsp</result>
+        <result name="INSERTERROR">/setting2.jsp</result>
+        <result name="FAILED">/setting2.jsp</result>
+        </action>
+  </package>
+  <!--分享-->
+	<package name="Share" extends="struts-default">
+		<action name="toShare">
+			<result>/share.jsp</result>
+		</action>
+		<action name="share" class="com.teamghz.action.ShareAction" method="shareArticle">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+		</action>
+	</package>
+  <!--不刷新页面提交表单的例子-->
+  <package name="ajax" extends="json-default">
+        <action name="ajaxRequest"
+            class="com.teamghz.action.AjaxExampleAction">
+            <result type="json"></result>
+        </action>
+    </package>
 </struts> 
