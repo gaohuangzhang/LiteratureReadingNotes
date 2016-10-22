@@ -12,10 +12,10 @@
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
- <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
+ 	<link href="sources/css/animate.css" rel="stylesheet" type="text/css">
     <script src="sources/js/jquery.sidr.min.js"></script>
     <link rel="stylesheet" href="sources/css/jquery.sidr.light.min.css">
-  <style>
+  	<style>
 		.city {
 			float: left;
 			margin: 5px;
@@ -40,6 +40,11 @@
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="content"]', {
 			allowFileManager : true,
+			 allowImageUpload:true,
+			 uploadJson:'sources/kindeditor/jsp/upload_json.jsp',
+			 afterUpload: function(){this.sync();},
+			 afterBlur: function(){this.sync();}, 
+			 
 			items : [
 				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
 				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
@@ -54,44 +59,48 @@
 		});
 	</script>	
 	<script>
-$(document).ready(function() {
-   
-    $('#right-menu').sidr({
-      name: 'sidr-right',
-      side: 'right',
-      source: ' #sidr'
-    });
-});
-</script>
-<script >
-window.onbeforeunload = function(event) {
-	alert(111);
-	return confirm("确定退出吗");
-	} 
-</script>
+		$(document).ready(function() {
+   			 $('#right-menu').sidr({
+		      name: 'sidr-right',
+		      side: 'right',
+		      source: ' #sidr'
+		    });
+		});
+	</script>
+	<script >
+	window.onbeforeunload = function(event) {
+		alert(111);
+		return confirm("确定退出吗");
+		} 
+	</script>
 </head>
 <body style="background:#e8e8e8;">
-
- <div class=" animated flash	" style="padding:10px;float:right;">
-<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif"/></a>
+<% String usermail = (String) session.getAttribute("usermail"); %>
+<% String username = (String) session.getAttribute("username"); %>
+<!-- 侧边栏 -->
+<div class=" animated flash	" style="padding:10px;float:right;">
+	<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif"/></a>
 </div>
 <div id="sidr" style="display: none;">
-  <!-- Your content -->
-  <ul>
-    <li > &nbsp;&nbsp;&nbsp;操作</li>
-    <li>
-       <button type="submit" class="btn btn-sm btn-block" form="note">####保存文章笔记并且退出####</button>
-    </li>
-    <li><a href=mainPage>返回主页</a></li>
-    <li><a href=personalCenter>返回个人中心</a></li>
-	<li><a href=fileManage>内容管理</a></li>
-	<li><a href=timeLine>时间线</a></li>
-	<li><a href=settings>设置</a></li>
-	
-	
-  </ul>
+  <!-- 侧边栏选项 -->
+	<ul>
+	    <li > &nbsp;&nbsp;&nbsp;操作</li>
+	    <li>
+	       <button type="submit" class="btn btn-sm btn-block" form="note">####保存文章笔记并且退出####</button>
+	    </li>
+	    <!-- 获取分享的id和文章名 -->
+	    <%
+			String articlename = request.getParameter("articlename");
+			String id = request.getParameter("id");
+		%>
+	    <li><a href=toShare?articlename=<%out.print(articlename); %>&id=<%out.print(id); %>>分享这篇文章</a></li>
+	    <li><a href=mainPage>返回主页</a></li>
+	    <li><a href=personalCenter>返回个人中心</a></li>
+		<li><a href=fileManage>内容管理</a></li>
+		<li><a href=timeLine>时间线</a></li>
+		<li><a href=settings>设置</a></li>
+	</ul>
 </div>
-	<!-- style="background:#C7EDCC" -->
 	<div class="container">
 		<div class="row clearfix">
 			<div class="row clearfix">
@@ -130,13 +139,12 @@ window.onbeforeunload = function(event) {
 									<form action="saveAndLeave" id="note" method="post">
 										<!-- 标题栏 -->
 										<div class="form-group">
-										<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
-										<input type='text' name="id" class="pull-left" readonly style="width:5%;" value=<%out.print(request.getAttribute("id")); %>></input>
-											
+											<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
+											<!-- 隐藏的文章id -->
+											<input type='text' name="id" class="pull-left" readonly style="width:5%;display:none;"  value=<%out.print(request.getAttribute("id")); %>></input>	
 										</div >
 										<br><br>
 										<!-- 文本区域 -->
-										
 										<textarea name="content" style="width:100%;height:500px;visibility:hidden;">KindEditor</textarea>
 										<br>
 										<!-- 右下角按钮 -->
@@ -150,12 +158,14 @@ window.onbeforeunload = function(event) {
     							</div>		
 							</div>
 						</div>
+						<!-- 显示笔记 -->
 						<% ArrayList<Map<String, String>> note = (ArrayList<Map<String, String>>) session.getAttribute("note");%>
 						<div class="tab-pane " id="panel-3">
 						<%for (int i = note.size() -1; i >= 0; --i) { %>
 						
 						<div class="city animated fadeInUp">
 						<h2>
+						[<%out.print(note.get(i).get("4")); %>]
 						<%out.print(note.get(i).get("1")); %>
 						</h2>
 						<%out.print(note.get(i).get("3")); %>
@@ -167,9 +177,9 @@ window.onbeforeunload = function(event) {
 					</div>	
 				</div>
 				<!-- 顶部栏 -->
-				
 			</div>
 		</div>
+		<!-- 页脚 -->
 		<hr style="height:10px;border:none;border-top:1px groove #000000;" />
 		<footer>
 			<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>

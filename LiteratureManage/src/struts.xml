@@ -107,6 +107,16 @@
         <result name="FAILED">/setting2.jsp</result>
         </action>
   </package>
+  <!--分享-->
+	<package name="Share" extends="struts-default">
+		<action name="toShare">
+			<result>/share.jsp</result>
+		</action>
+		<action name="share" class="com.teamghz.action.ShareAction" method="shareArticle">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+		</action>
+	</package>
   <!--不刷新页面提交表单的例子-->
   <package name="ajax" extends="json-default">
         <action name="ajaxRequest"

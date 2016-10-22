@@ -19,16 +19,23 @@
 		padding: 20px;
 		width: 48.5%;
 		height: 100px;
-		
+		overflow:hidden;
 		background-color: #F9f9f9;
 	}
+	.city1 {
+	margin:0 auto;
+	height: 300px;
+ 	width: 500px;
+	
+	padding: 50px;			
+} 
 	.white {
 		float: left;
 		margin: 5px;
 		padding: 20px;
 		width: 48.5%;
 		height: 100px;
-		
+		overflow:hidden;
 		background-color: #B3FFB3;
 	}
 	.inputs {
@@ -36,26 +43,8 @@
 	width:500px;
 	margin: 8px;
 	}
-</style> 
-<!-- 去往开始和结尾 -->
-<script type="text/javascript">
-   	var goToWhere = function (where) {
-       	var me = this;
-       	clearInterval (me.interval);
-       	me.site = [];
-       	var dom = !/.*chrome.*/i.test (navigator.userAgent) ? document.documentElement : document.body;
-       	var height = !!where ? dom.scrollHeight : 0;
-       	me.interval = setInterval (function () {
-           	var speed = (height - dom.scrollTop) / 16;
-           	if (speed == me.site[0]) {
-               	clearInterval (me.interval);
-               	return null;
-           	}
-           	dom.scrollTop += speed;
-           	me.site.unshift (speed);
-       	}, 16);
-   	};
-</script>
+	</style> 
+
 </head>
 <body style="background:#e8e8e8;">
 	<!-- 得到当前用户信息 -->
@@ -63,7 +52,15 @@
 	<% String username = (String) session.getAttribute("username"); %>
 	<!-- 没有登录或者掉线 设置页面隐藏-->
 	<% if (usermail == null) {%>
-	<% out.println("你的输入不合法哎，瞧瞧是不是掉线了呢 ╮(╯▽╰)╭"); %>
+	<div class="city1" style="text-align:center;">
+		<div class="alert animated wobble" style="background-color:#d8d8d8;">
+			<a href="#" class="close" data-dismiss="alert">
+				&times;
+			</a>
+			<h3> <strong>失败</h3>
+			<a href="index.jsp">瞧瞧是不是掉线了呢,这里重新登录</a>
+		</div>
+	</div>
 	<% out.print("<div class=\"container\"  style=\"display: none\">");%>
 	<!-- session中含有登录信息 -->
 	<% } else { %>
@@ -72,9 +69,9 @@
 	<div class="row clearfix">	
 		<div class="col-md-12 column">
 			<div class="row clearfix">
+			<!-- 防止标题栏遮盖内容 -->
 				<div class="col-md-12 column">
 					<p><br><br><br><br></p>
-					
 				</div>
 				<div class="col-md-4 column; animated pulse"  style='text-align:center'>
 					<!-- 显示头像 -->
@@ -93,6 +90,7 @@
 						%>
 					</p>
 				</div>
+				<!-- 所有的书籍信息页面 -->
 				<div class="col-md-8 column">					
 					<br>
 					<!-- 载入页面过程中执行action 得到各种书籍 -->
@@ -126,7 +124,6 @@
 								<a href="#panel-238828" data-toggle="tab">全部内容&nbsp;<span class="badge"><%out.println(all_files); %></span></a>
 							</li>
 						</ul>						
-						
 						<!-- 那些信息们 -->
 						<div class="tab-content">
 							<div class="tab-pane fade in active" id="panel-779078">	
@@ -138,16 +135,18 @@
 							<div class=" vertical highlight_list1">
 								<% for (int i = not_read - 1; i >= 0; i--) { %>								
 								<div class="city animated fadeInRight "  onMouseMove="this.className='white'" onmouseout="this.className='city'">
-									<h5>
-										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);"> 
-											<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
-											<%out.print(notread.get(i).get("1")); %></a>
-										</span>
-									</h5>
-									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> 标签</span>
+									<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);"> 
+										<a href=readArticle?url=<% out.print(notread.get(i).get("2"));%>&articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
+										<%out.print(notread.get(i).get("1")); %></a>
+									</span>
+									<br><br>
+									<!-- 显示分类标签 -->
+									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
+									<br>
+									<!-- 分享链接 -->
+									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>								
 								<% } %>	
-								
 							</div>
 							<%if (not_read == 0) {%>
 								<div class="city animated fadeInRight ">
@@ -157,22 +156,28 @@
 							</div>
 							<div class="tab-pane fade" id="panel-238826">								
 							<!-- 已经粗读过哦 -->	
+							<!-- 搜索入口2 -->
 							<div class="animated fadeInRight " >										 
 								<input class="inputs" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
 							</div>
-								<div class=" vertical highlight_list2" onMouseMove="this.className='white'" onmouseout="this.className='city'">						
+							<!-- 鼠标放在上边显示动态效果 -->
+							<div class=" vertical highlight_list2" onMouseMove="this.className='white'" onmouseout="this.className='city'">						
 								<% for (int i = read_little - 1; i >= 0; i--) { %>
 								<div class="city  animated fadeInRight" >
-									<h5>
-										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
-											<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
-											<%out.print(readlittle.get(i).get("1")); %></a>
-										</span>
-									</h5>
+									<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
+										<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
+											<%out.print(readlittle.get(i).get("1")); %>
+										</a>
+									</span>
+									<br><br>
+									<!-- 显示标签 -->
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
+									<br>
+									<!-- 分享链接 -->
+									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>
 								<% } %>	
-								
+								<!-- 无内容 -->
 								</div>
 								<%if (read_little == 0) {%>
 								<div class="city animated fadeInRight ">
@@ -188,13 +193,15 @@
 								<div class=" vertical highlight_list3">
 								<% for (int i = read_all - 1; i >= 0; i--) { %>
 								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'">
-									<h5>
-										<span class="glyphicon glyphicon-paperclip" >  
-	  										<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
-	    									<%out.print(readall.get(i).get("1")); %></a>
-	    								</span>
-	  								</h5>
-									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"></span>
+									<span class="glyphicon glyphicon-paperclip" >  
+	  									<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
+	    									<%out.print(readall.get(i).get("1")); %>
+	    								</a>
+	    							</span>
+	  								<br><br>
+									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
+									<br>
+									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>
 								<% } %>
 								</div>
@@ -212,13 +219,15 @@
 								<div class="vertical highlight_list4">						
 								<% for (int i = all_files - 1; i >= 0; i--) { %>
 								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'" >	
-									<h5>
-										<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
-											<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>		
-											<%out.print(all.get(i).get("1")); %></a>
-										</span>						
-									</h5>
-									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"></span>
+									<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
+										<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>		
+											<%out.print(all.get(i).get("1")); %>
+										</a>
+									</span>						
+									<br><br>
+									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
+									<br>
+									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>
 								<% } %>
 								</div>
@@ -232,6 +241,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 导航栏 -->
 			<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation ">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

@@ -73,7 +73,8 @@ public class ReadArticle {
 	public String readPDF() {
 		System.out.println("HEHEH" + id + articlename);
 		MysqlConnecter mc = new  MysqlConnecter();
-		String sql = "select notename, note, time from Note where articleid=" + id;
+		String sql = "select Note.notename, Note.note, Note.time, User.username from Note, User where Note.articleid=" + id + " and User.userid = Note.userid";
+		System.out.println(sql);
 		ArrayList<Map<String, String>> r = mc.select(sql);
 		ServletRequest request = ServletActionContext.getRequest();
 		HttpServletRequest req = (HttpServletRequest) request;
