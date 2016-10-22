@@ -27,7 +27,7 @@ DB_NAME: DBGHZ
 
 日志表： 主id(PK auto_increment), 用户id，文章id ，操作时间（时间戳类型）， 动作内容
 
-分享表： 主id(PK auto_increment)， 用户id，文章id，分享时间(时间戳)，赞次数，反对次数
+分享表： 主id(PK auto_increment)， 用户id，文章id，分享时间(时间戳)，分享感受，赞次数，反对次数
 
 笔记表： 主id(PK auto_increment)， 用户id，文章id，笔记时间(时间戳)，笔记名， 笔记
 ```
@@ -91,8 +91,11 @@ CREATE TABLE Note
 );
 
 # 请增加执行
-# 头像位置，
-ALTER TABLE User ADD avatar VARCHAR(255) NOT NULL;
+USE DBGHZ;
+# 头像url
+ALTER TABLE User ADD avatar VARCHAR(255);
+# 文章感受
+ALTER TABLE Share ADD feeling VARCHAR(1000);
 ```
 
 ### 检查创建结果
