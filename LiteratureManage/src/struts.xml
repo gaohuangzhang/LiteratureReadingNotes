@@ -49,6 +49,11 @@
 			<result>/setting1.jsp</result>
 
 		</action>
+	<!--去搜索-->
+		<action name="search">
+			<result>/search.jsp</result>
+
+		</action>
 	</package>
 <!--package PersonalCenter：所有个人中心的动作 -->
 	<package name="PersonalCenter" extends="struts-default">
@@ -66,7 +71,8 @@
 <!--文件上传和下载-->
 <package name="FileLoad" extends="struts-default">	
 <action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
-        <result name="SUCCESS">/message.jsp</result>
+        <result name="SUCCESS">/temporary.jsp</result>
+        <result name="FALSE">/temporary.jsp</result>
         </action>
         	
 <action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
@@ -80,6 +86,10 @@
   <package name="FileRead" extends="struts-default">	
 <action name="readArticle" class="com.teamghz.action.ReadArticle" method="readPDF">
         <result name="SUCCESS">/read_pdf.jsp</result>
+        </action>
+        <action name="saveAndLeave" class="com.teamghz.action.ReadArticle" method="saveAndLeave">
+        <result name="SUCCESS">/temporary.jsp</result>
+        <result name="FALSE">/temporary.jsp</result>
         </action>
   </package>
  <!--设置-->
@@ -97,4 +107,21 @@
         <result name="FAILED">/setting2.jsp</result>
         </action>
   </package>
+  <!--分享-->
+	<package name="Share" extends="struts-default">
+		<action name="toShare">
+			<result>/share.jsp</result>
+		</action>
+		<action name="share" class="com.teamghz.action.ShareAction" method="shareArticle">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+		</action>
+	</package>
+  <!--不刷新页面提交表单的例子-->
+  <package name="ajax" extends="json-default">
+        <action name="ajaxRequest"
+            class="com.teamghz.action.AjaxExampleAction">
+            <result type="json"></result>
+        </action>
+    </package>
 </struts> 

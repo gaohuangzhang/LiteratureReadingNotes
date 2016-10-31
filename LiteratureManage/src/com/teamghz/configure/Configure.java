@@ -8,7 +8,7 @@ public class Configure {
 	
 	public final static String USERNAME = "root";
 
-	public final static String PASSWORD = "toor";
+	public final static String PASSWORD = "password";
 
 	public final static String DBNAME   = "DBGHZ";
 	
@@ -22,7 +22,7 @@ public class Configure {
 	 * Windows: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
-	public final static String LOCATION = "/home/hp/LiteratureReadingNotes/LiteratureManage/WebContent/Files/";
+	public final static String LOCATION = "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";
