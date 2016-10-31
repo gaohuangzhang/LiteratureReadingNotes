@@ -17,12 +17,22 @@ public class Configure {
 	public final static String URL      = "jdbc:mysql://localhost:3306/" + DBNAME +"?characterEncoding=utf8";
 	
 	/**
-	 * the location of the user's folder (used for storing pdf files)
-	 * 
+	 * true when run on tomcat
+	 * false when run on your computer
+	 */
+	public final static boolean ONTOMCAT = false;
+	/**
+	 * if run on your computer, edit this please
+	 * ---Where is the Files will be save---
 	 * Windows: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
-	public final static String LOCATION = "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/";
+	public final static String LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
+	/**
+	 * when run on tomcat maybe you want to edit it
+	 * where you want to save on the server, 
+	 */
+	public final static String SLOCATION = "Files/";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";
