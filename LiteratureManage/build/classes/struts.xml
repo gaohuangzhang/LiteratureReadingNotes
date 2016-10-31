@@ -12,7 +12,7 @@
 		</action>
 	<!--"src/com/teamghz"signUp-->
 		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
-			<result name="SUCCESS">/personalcenter.jsp</result>
+			<result name="SUCCESS">/index.jsp</result>
 			<result name="PASSWORDERROE">/index.jsp</result>
 			<result name="EMAILEXIST">/index.jsp</result>
 			<result name="INSERTERROR">/index.jsp</result>
