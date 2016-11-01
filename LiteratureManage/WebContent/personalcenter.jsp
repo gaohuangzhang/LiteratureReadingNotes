@@ -35,17 +35,17 @@
 	</script>
 	<style>
 		.city {
-			float: left;
+			
 			margin: 5px;
 			padding: 10px;		
-			height:200px;	
-			background-color: #F9F9F9;
+			height:180px;	
+			background-color: #f9f9f9;
 		} 
 		.city1 {
 			float: left;
 			margin: 2px;
 			padding: 10px;			
-			background-color: #e8e8e8;
+			background-color: #f6f6f6;
 			width: 99%;
 		} 
 		.city2 {
@@ -64,7 +64,7 @@
 		} 
 	</style>
 </head>
-<body style="background:#e8e8e8;">
+<body >
     <% String usermail = null; %>
     <% String username = null; %>
     <% try { %>
@@ -95,10 +95,10 @@
 				</div>
 			</div>
 			<div class="row clearfix">
-				<div class="col-md-8 column">
-					<h2  class="animated  pulse ">分享</h2>
+						<div class="col-md-8 column">
+					<h1  class="animated  pulse" >分享</h1>
 					<br>
-					<div class="animated pulse" style="text-align:right;padding:5px">
+					<div class="animated pulse" style="text-align:right;padding:5px;">
 					<div class="btn-group pull-left" >
 						<!-- 分享标题下的用户名和邮箱 -->
 						<button data-toggle="dropdown" class="btn  dropdown-toggle"> 
@@ -106,7 +106,7 @@
 						</button>			
 					</div>
 					<!-- 搜索分享 -->
-					<input class="inputs" id="search-highlight1" name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
+					<input class="inputs" id="search-highlight1"  name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
 				</div>			
 					<!-- 刷新页面执行打印分享信息动作 -->
 					<s:action name="printShareInfo" executeResult="true" />
@@ -116,13 +116,16 @@
   					<% try { %>
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
     				<% for (int i = list.size() - 1; i >= 0; --i) { %>		
-    				<!-- 头像 -->	
-    				<div class="city animated fadeInLeft" style="width:20%;background-color:#e8e8e8;text-align:center;" >
-							<img src=<%out.print( "sources/pics/Avatar.png");%> height="80" width="80" lass="img-rounded" />		
-							<h4> <% out.print(list.get(i).get("5")); %>	</h4>	
+    				<!-- 头像 -->
+    				<div class="city animated fadeInLeft">
+    				<div class="pull-left" style="width:20%;text-align:center;" >
+    				<br>
+							<img src=<%out.print( "sources/pics/Avatar.png");%> height="100" width="100"  class="img-rounded"/>	
+							
+							
 					</div>	
-					<div class="city animated fadeInRight" style="width:77%;background-color:#e8e8e8;">
-						分享了：
+					<div class="pull-right" style="width:77%;">
+						<% out.print(list.get(i).get("5")); %>	分享了：
 						<a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
 							<% out.print(list.get(i).get("1") ); %>
 						</a>
@@ -131,7 +134,7 @@
 							<% if (list.get(i).get("7").length() < 140) {%>
 								<% out.print(list.get(i).get("7")); %>
 							<%} else {%>
-								<% out.print(list.get(i).get("7").substring(0, 140)+"......"); %>
+								<% out.print(list.get(i).get("7").substring(0, 120)+"......"); %>
 								<%} %>
 							<%} else {%>
 							<% out.print("他很懒哦，啥都没说呢！"); %>
@@ -141,13 +144,14 @@
 						<span class="glyphicon  glyphicon-time "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>
                    				
 					</div>
+					</div>	
    					<% } %>
    					<% } catch(Exception e) { %>
    					<% out.println("ERROR"); %>
    					<% } %>
    					</div>
 					
-            	</div>		
+            	</div>			
 				<div class="col-md-4 column">
 					<br>
 					
@@ -266,11 +270,8 @@
 		</div>
 	</div>
 
-	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 90px; bottom: 160px;">
+	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 30px; bottom: 80px;">
 		<img src= "sources/pics/up.png" />
-	</div>
-	<div id="back-up" onclick="goToWhere(1)" style="position: fixed; cursor: pointer; right: 90px; bottom: 50px;">
-		<img src= "sources/pics/down.png" />
 	</div>
 	
 </body>

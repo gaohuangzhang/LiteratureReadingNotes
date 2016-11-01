@@ -103,6 +103,13 @@
 			<result name="FALSE">/temporary.jsp</result>
 			</action>
 	</package>
+	<!--文章阅读：标记阅读状态-->
+	<package name="ajaxreadstatus" extends="json-default">
+			<action name="markReadStatus"
+				class="com.teamghz.action.ReadArticle" method="readStatus">
+				<result type="json"></result>
+			</action>
+		</package>
 	<!--设置-->
 	<package name="Setting" extends="struts-default">	
 		<action name="setting1" class="com.teamghz.action.Setting" method="setting1">

@@ -65,7 +65,7 @@
 	</script>
 
 </head>
-<body style="background:#e8e8e8;">
+<body>
 	<!-- 得到当前用户信息 -->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
@@ -180,11 +180,11 @@
 								<input class="inputs" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
 							</div>
 							<!-- 鼠标放在上边显示动态效果 -->
-							<div class=" vertical highlight_list2" onMouseMove="this.className='white'" onmouseout="this.className='city'">						
+							<div class=" vertical highlight_list2">						
 								<% for (int i = read_little - 1; i >= 0; i--) { %>
-								<div class="city  animated fadeInRight" >
+								<div class="city  animated fadeInRight"   onMouseMove="this.className='white'" onmouseout="this.className='city'">
 									<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
-										<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
+										<a href=readArticle?url=<% out.print(readlittle.get(i).get("2"));%>&articlename=<% out.print(readlittle.get(i).get("1"));%>&id=<% out.print(readlittle.get(i).get("3"));%>>
 											<%out.print(readlittle.get(i).get("1")); %>
 										</a>
 									</span>
@@ -193,7 +193,7 @@
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
 									<br>
 									<!-- 分享链接 -->
-									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
+									<a href=toShare?articlename=<% out.print(readlittle.get(i).get("1"));%>&id=<% out.print(readlittle.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>
 								<% } %>	
 								<!-- 无内容 -->
@@ -211,16 +211,17 @@
 							</div>
 								<div class=" vertical highlight_list3">
 								<% for (int i = read_all - 1; i >= 0; i--) { %>
+								
 								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'">
 									<span class="glyphicon glyphicon-paperclip" >  
-	  									<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>
+	  									<a href=readArticle?url=<% out.print(readall.get(i).get("2"));%>&articlename=<% out.print(readall.get(i).get("1"));%>&id=<% out.print(readall.get(i).get("3"));%>>
 	    									<%out.print(readall.get(i).get("1")); %>
 	    								</a>
 	    							</span>
 	  								<br><br>
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
 									<br>
-									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
+									<a href=toShare?articlename=<% out.print(readall.get(i).get("1"));%>&id=<% out.print(readall.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>
 								<% } %>
 								</div>
@@ -237,16 +238,17 @@
 							</div>	
 								<div class="vertical highlight_list4">						
 								<% for (int i = all_files - 1; i >= 0; i--) { %>
+								
 								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'" >	
 									<span class="glyphicon glyphicon-paperclip" style="color: rgb(81, 119, 197);">  
-										<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>>		
+										<a href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(all.get(i).get("3"));%>>		
 											<%out.print(all.get(i).get("1")); %>
 										</a>
 									</span>						
 									<br><br>
 									<span class="glyphicon glyphicon-tags" style="color: rgb(81, 119, 197);"> </span>
 									<br>
-									<a href=toShare?articlename=<% out.print(notread.get(i).get("1"));%>&id=<% out.print(notread.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
+									<a href=toShare?articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(all.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right" style="color: rgb(81, 119, 197);"> </span></a>
 								</div>
 								<% } %>
 								</div>
@@ -301,12 +303,10 @@
 	<footer>
 		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
 	</footer>
-	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 90px; bottom: 160px;">
+	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 30px; bottom: 80px;">
 		<img src= "sources/pics/up.png" />
 	</div>
-	<div id="back-up" onclick="goToWhere(1)" style="position: fixed; cursor: pointer; right: 90px; bottom: 50px;">
-		<img src= "sources/pics/down.png" />
-	</div>
+	
 	 <!-- JS -->
 
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
