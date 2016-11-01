@@ -6,13 +6,10 @@ import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FileUpLoadAction extends ActionSupport {
@@ -74,7 +71,14 @@ public class FileUpLoadAction extends ActionSupport {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		String usermail = (String) session.getAttribute("usermail");
-		File f = new File(Configure.LOCATION + usermail + Configure.SEPARATOR);
+		File f = null;
+		if (Configure.ONTOMCAT) {
+			f = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR);
+			System.out.println("where: " + root + Configure.LOCATION + usermail + Configure.SEPARATOR);
+		} else {
+			f = new File(Configure.LOCATION + usermail + Configure.SEPARATOR);
+			System.out.println("where: " + Configure.LOCATION + usermail + Configure.SEPARATOR);
+		}
 		try {
 			if (!f.exists() && !f.isDirectory()) {
 				System.out.println("没有文件夹");
@@ -83,8 +87,13 @@ public class FileUpLoadAction extends ActionSupport {
 			} else {
 				System.out.println("文件存在");
 			}
-			//fileFileName = URLEncoder.encode(fileFileName);
-			File fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+			fileFileName = fileFileName.replaceAll(" ", "");
+			File fs = null;
+			if (Configure.ONTOMCAT) {
+				fs = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR, fileFileName);
+			} else {
+				fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+			}
 			while (true) {
 				if (!fs.exists()) {
 					try {
@@ -96,7 +105,11 @@ public class FileUpLoadAction extends ActionSupport {
 					break;
 				} else {
 					fileFileName = "1" + fileFileName;
-					fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+					if (Configure.ONTOMCAT) {
+						fs = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR, fileFileName);
+					} else {
+						fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+					}
 				}
 			}
 			String url = Configure.ARTICLE_URL_START  + Configure.MYSQL_SEPARATOR + usermail

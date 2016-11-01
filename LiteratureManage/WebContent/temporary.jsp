@@ -10,30 +10,30 @@
 <script src="sources/js/bootstrap.min.js"></script>
 <script src="sources/js/modernizr.custom.js" type="text/javascript"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style>
-	.city {
-	margin:0 auto;
-	height: 300px;
- 	width: 500px;
-	
-	padding: 50px;			
-} 
-</style>
-<script type="text/javascript"> 
-	var t=3;
-	setInterval("refer()",1000);  
-	function refer(){  
-    if(t==0){ 
-        location="personalcenter.jsp";
-    } 
-    document.getElementById('show').innerHTML=""+t+"秒后跳转到个人中心";
-    t--; 
-    if (t < 0) {
-    	t = 3;
-    }
-} 
-</script> 
+<title>提示信息</title>
+	<style>
+		.city {
+		margin:0 auto;
+		height: 300px;
+	 	width: 500px;
+		
+		padding: 50px;			
+	} 
+	</style>
+	<script type="text/javascript"> 
+		var t=3;
+		setInterval("refer()",1000);  
+		function refer(){  
+	    if(t==0){ 
+	        location="personalcenter.jsp";
+	    } 
+	    document.getElementById('show').innerHTML=""+t+"秒后跳转到个人中心";
+	    t--; 
+	    if (t < 0) {
+	    	t = 3;
+	    }
+	} 
+	</script> 
 </head>
 	<body style="background:#e8e8e8;">
 	<div class="city" style="text-align:center;">
@@ -41,12 +41,13 @@
 		<% String a = (String)request.getAttribute("flag"); %>
 		<% if (a == "TRUE"){%>					
 		<div class="alert alert-success animated wobble" >
-		<a href="#" class="close" data-dismiss="alert" >
+			<a href="#" class="close" data-dismiss="alert" >
 			&times;
 			 </a>
 			 <span id="show"></span> 
-			 <h3><strong>成功！</strong>您已经成功传入新的文件。</h3>
-			 <a href="personalcenter.jsp">点击这里返回个人中心</a>
+			 <h3><strong>成功！</strong></h3>
+			 <a href="personalcenter.jsp">点击这里返回个人中心</a><br>
+			 <a href="mainpage.jsp">点击这里返回个人主页</a><br>
 		</div>
 		<%} else {%>
 			<div class="alert animated wobble" style="background-color:#d8d8d8;">
@@ -54,8 +55,9 @@
 					 &times;
 				 </a>
 				 <span id="show"></span> 
-				<h3> <strong>失败！</strong>上传失败。</h3>
-				  <a href="personalcenter.jsp">点击这里返回个人中心</a>
+				 <h3> <strong>失败！</strong></h3>
+				  <a href="personalcenter.jsp">点击这里返回个人中心</a><br>
+				  <a href="mainpage.jsp">点击这里返回个人主页</a><br>
 			</div>
 		<%} %>
 </div>

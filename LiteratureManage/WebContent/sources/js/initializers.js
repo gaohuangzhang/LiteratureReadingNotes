@@ -15,6 +15,9 @@ $(document).ready(function() {
     $('#search-highlight4').hideseek({
         highlight: true
     });
+    $('#search-highlight5').hideseek({
+        highlight: true
+    });
 
     $('#search-nodata').hideseek({
         nodata: 'No results found'
