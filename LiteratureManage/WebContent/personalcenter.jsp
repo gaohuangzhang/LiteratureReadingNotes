@@ -1,12 +1,13 @@
-<%@ taglib uri="/struts-tags" prefix="s"%>
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<script type="text/javascript" src="sources/js/jquery-2.0.2.min.js"></script>
-<script type="text/javascript" src="sources/js/jquery.hideseek.min.js"></script>
-<script type="text/javascript" src="sources/js/initializers.js"></script>
-<link href="sources/css/bootstrap.min.css" rel="stylesheet">
+<%@ taglib uri="/struts-tags" prefix="s"%> <%@ page language="java" 
+import="java.util.*" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 
+Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> <html> <head> 
+<script type="text/javascript" 
+src="sources/js/jquery-2.0.2.min.js"></script> <script 
+type="text/javascript" 
+src="sources/js/jquery.hideseek.min.js"></script> <script 
+type="text/javascript" src="sources/js/initializers.js"></script> <link 
+href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script src="sources/js/modernizr.custom.js" type="text/javascript"></script>
@@ -35,10 +36,9 @@
 	</script>
 	<style>
 		.city {
-			
 			margin: 5px;
 			padding: 10px;		
-			height:180px;	
+			height:150px;	
 			background-color: #f9f9f9;
 		} 
 		.city1 {
@@ -49,12 +49,10 @@
 			width: 99%;
 		} 
 		.city2 {
-	margin:0 auto;
-	height: 300px;
- 	width: 500px;
-	
-	padding: 50px;			
-} 
+			margin:0 auto;
+			height: 300px;
+			width: 500px;
+			padding: 50px;			
 		.white {
 			float: left;
 			margin: 2px;
@@ -112,24 +110,23 @@
 					<s:action name="printShareInfo" executeResult="true" />
   				<hr style="border-top:1px groove #f1f1f1;" />
   				
-  				<div class=" vertical highlight_list1">
+  				<div class=" vertical highlight_list1" >
   					<% try { %>
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
     				<% for (int i = list.size() - 1; i >= 0; --i) { %>		
     				<!-- 头像 -->
     				<div class="city animated fadeInLeft">
     				<div class="pull-left" style="width:20%;text-align:center;" >
-    				<br>
+    				
 							<img src=<%out.print( "sources/pics/Avatar.png");%> height="100" width="100"  class="img-rounded"/>	
-							
-							
+							<h6><% out.print(list.get(i).get("5")); %></h6>	
 					</div>	
 					<div class="pull-right" style="width:77%;">
-						<% out.print(list.get(i).get("5")); %>	分享了：
+						<h5>
 						<a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
 							<% out.print(list.get(i).get("1") ); %>
-						</a>
-						<hr>
+						</a></h5>
+						
 							<%if (list.get(i).get("7") != null) {%>
 							<% if (list.get(i).get("7").length() < 140) {%>
 								<% out.print(list.get(i).get("7")); %>
@@ -141,8 +138,7 @@
 							<%} %>
 										
 						<br><br>
-						<span class="glyphicon  glyphicon-time "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>
-                   				
+						<span class="glyphicon  glyphicon-time pull-right "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>	
 					</div>
 					</div>	
    					<% } %>
@@ -164,7 +160,7 @@
                    			</div >
                    			<!-- 上传文件 -->
     							<a id="upload" href="#upload-modal" data-toggle="modal">
-        				    		<button type="button" class="btn btn-success" >上传新的文件</button>
+        				    		<button type="button" class="btn btn-success" >上传文件/URL</button>
         				    	</a>
         					</div>
     					</div>
@@ -248,11 +244,17 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-open"></span>上传文件</h4>
+				<ul class="nav nav-tabs nav-pills">
+ 
+  <li class="active"><a data-toggle="tab" href="#savepdf"><span class="glyphicon glyphicon-open"> 上传pdf</span></a></li>
+  <li><a data-toggle="tab" href="#saveurl"><span class="glyphicon glyphicon-link"> 保存url</span></a></li>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+</ul>
+	
 				</div>
-				<div class="modal-body" style="width: 400px; margin-left: 90px;">
-				
+				<div class="modal-body" style="width: 400px;height: 200px; margin-left: 90px;">
+				<div class="tab-content">
+    				<div id="savepdf" class="tab-pane fade in active">
 					<form action="fileUpLoad" id="upload_form"  method="post" enctype="multipart/form-data">
 						<div class="form-group">
                 			<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
@@ -261,18 +263,26 @@
         					<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
         				</div>
     				</form>
+    				<button type="submit" class="btn btn-success pull-right" form="upload_form" >上传</button>
+    				</div>
+    				<div id="saveurl" class="tab-pane ">
+    				<form action="urlUpLoad" id="urlupload_form">
+						<div class="form-group">
+                			<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
+    					</div>
+    					<div class="form-group">
+        					<input name="url" id='url'  class="form-control" value="http://" type="text" placeholder="请在这儿输入url" required style="padding-left: 30px; height: 42px;" />
+        				</div>
+    				</form>
+    				<button type="submit" class="btn btn-success pull-right" form="urlupload_form" >上传</button>
+    				</div>
 				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-success" form="upload_form" >上传</button>
-					
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 30px; bottom: 80px;">
 		<img src= "sources/pics/up.png" />
 	</div>
-	
 </body>
 </html>

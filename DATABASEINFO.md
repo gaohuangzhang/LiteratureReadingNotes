@@ -98,6 +98,8 @@ ALTER TABLE User ADD avatar VARCHAR(255);
 ALTER TABLE Share ADD feeling VARCHAR(1000);
 # 文章笔记长度扩充
 alter table Note modify column note varchar(10000);
+# 判断文章类型url/pdf
+ALTER TABLE Article ADD type VARCHAR(25);
 ```
 
 ### 检查创建结果
