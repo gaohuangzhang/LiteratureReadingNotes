@@ -85,7 +85,11 @@
 				<!-- 默认的拦截器，必须要写 -->  
 			<interceptor-ref name="defaultStack" /> 
 		</action>
-				
+	<!--上传url-->
+		<action name="urlUpLoad" class="com.teamghz.action.FileUpLoadAction" method="urlUpload">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+		</action>
 		<action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
 			<result name="success" type="stream">
 				<param name="contentDisposition">attachment;filename="通讯录2012年9月4日.xls"</param>
