@@ -129,6 +129,9 @@
         </script>
 </head>
 <body>
+<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    <img src="sources/pics/bg.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
 	<% String type = (String) session.getAttribute("type"); %>
@@ -163,7 +166,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid clearfix">
 			<div class="row-fluid clearfix">
-			<h1>阅读</h1>
+			
 			</div>
 			<div class="col-md-8 column">
 				<!-- 标签栏 -->
@@ -189,7 +192,7 @@
 							<a class="media" href="<% out.print(request.getParameter("url"));%>"></a>
 						<% } else { %>	
 						<iframe  frameborder="1"  src=<% out.print(request.getParameter("url"));%> 
-						style="width:100%; margin:0; padding:0;background-color=transparent" id="iframepage"  onload="changeFrameHeight()" >
+						style="width:100%; margin:0; padding:0;" id="iframepage"  onload="changeFrameHeight()" >
 						您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。</iframe>
 						<%} %>				
 						</div>

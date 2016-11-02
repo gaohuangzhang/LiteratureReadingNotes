@@ -33,7 +33,15 @@
 	width:500px;
 	margin: 8px;
 	}
-
+.W{
+		background-color: #ffffff;
+		}
+		.G {
+		background-color:#6BB50B;
+		}
+		a {
+		color:#000000;
+		}
 </style>
 <!-- 去往开始和结尾 -->
 <script type="text/javascript">
@@ -55,7 +63,10 @@
    	};
 </script>
 </head>
-<body style="background:#e8e8e8;">
+<body >
+<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    <img src="sources/pics/bg.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 
 <!-- 得到当前用户信息 -->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
@@ -69,37 +80,50 @@
 	<% out.print("<div class=\"container\" >");%>
 	<% } %>
 <!-- 导航栏 -->
-<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation ">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href=personalCenter?<%out.print("2333"); %>><span class="glyphicon glyphicon-cloud "></a>
-	</div>
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<form action="search" class="navbar-form navbar-left" role="search">
-			<div class="form-group">
-				<input class="form-control" type="text" placeholder="搜索内容"/>
-			</div>
-			<button type="submit" class="btn btn-default">开始搜索</button>
-		</form>
-		<ul class="nav navbar-nav navbar-right" style="padding-right:10px;">					
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" /><strong class="caret"></strong></a>
-				<ul class="dropdown-menu">
-					<li><a href=mainPage>我的主页</a></li>
-					<li><a href=fileManage>内容管理</a></li>
-					<li><a href=timeLine>时间线</a></li>
-					<li><a href=settings>设置</a></li>
-					<li class="divider"></li>
-					<li><a href=signOut>注销</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</nav>
+<div class="col-md-12 column">
+			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
+				<div class="navbar-header" style="padding-left:18%;">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#"></a>
+				</div>
+				
+				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
+					<ul  class="nav navbar-nav">
+						<li  onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a  href=personalCenter style="color:#ffffff;">个人中心</a>
+						</li >
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a href=mainPage  style="color:#ffffff;">我的主页</a>
+						</li>
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a href=fileManage style="color:#ffffff;">内容管理</a>
+						</li>
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a href=timeLine style="color:#ffffff;">最佳回忆</a>
+						</li>
+						<li class="active" onMouseMove="this.className='G animated  swing'" onmouseout="this.className='active'">
+						<a href=search style="color:#ffffff;">站内检索</a>
+						</li>
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right" style="padding-right:20%;">
+					
+						
+						<li class="dropdown" >
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
+							<ul class="dropdown-menu">
+								<li><a href=mainPage>我的主页</a></li>
+								<li><a href=fileManage>内容管理</a></li>
+								<li><a href=timeLine>时间线</a></li>
+								<li><a href=settings>设置</a></li>
+								<li class="divider"></li>
+								<li><a href=signOut>注销</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+		</div>
 
 	<div class="row clearfix">
 	<br><br><br>

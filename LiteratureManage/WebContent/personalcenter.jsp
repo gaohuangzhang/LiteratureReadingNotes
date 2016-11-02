@@ -1,7 +1,7 @@
-<%@ taglib uri="/struts-tags" prefix="s"%> <%@ page language="java" 
-import="java.util.*" contentType="text/html; charset=UTF-8" 
-pageEncoding="UTF-8"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 
-Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> <html> <head> 
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> <head> 
 <script type="text/javascript" 
 src="sources/js/jquery-2.0.2.min.js"></script> <script 
 type="text/javascript" 
@@ -35,34 +35,47 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
     	};
 	</script>
 	<style>
-		.city {
+	.city {
 			margin: 5px;
 			padding: 10px;		
 			height:150px;	
-			background-color: #f9f9f9;
+			background-color: #ffffff;
 		} 
 		.city1 {
 			float: left;
 			margin: 2px;
 			padding: 10px;			
-			background-color: #f6f6f6;
+			background-color: #f3f3f3;
 			width: 99%;
 		} 
 		.city2 {
 			margin:0 auto;
 			height: 300px;
 			width: 500px;
-			padding: 50px;			
+			padding: 50px;	
+		}		
 		.white {
 			float: left;
 			margin: 2px;
 			padding: 10px;			
-			background-color: #B3FFB3;
+			background-color: #6BB50B;
 			width: 99%;
 		} 
+		.W{
+		background-color: #ffffff;
+		}
+		.G {
+		background-color:#6BB50B;
+		}
+		a {
+		color: #000000;
+		}
 	</style>
 </head>
-<body >
+<body  >
+<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    <img src="sources/pics/bg.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
     <% String usermail = null; %>
     <% String username = null; %>
     <% try { %>
@@ -85,7 +98,56 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<% } else { %>
 	<% out.print("<div class=\"container\" >"); %>
 	<% } %>
+	
 	<div class="row clearfix">
+	
+	
+	<div class="col-md-12 column">
+			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
+				<div class="navbar-header" style="padding-left:18%;">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#"></a>
+				</div>
+				
+				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
+					<ul  class="nav navbar-nav">
+						<li class="active" onMouseMove="this.className='G animated  swing'" onmouseout="this.className='active'">
+							 <a  href=personalCenter style="color:#ffffff;">个人中心</a>
+						</li>
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a href=mainPage  style="color:#ffffff;">我的主页</a>
+						</li>
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a href=fileManage style="color:#ffffff;">内容管理</a>
+						</li>
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+							 <a href=timeLine style="color:#ffffff;">最佳回忆</a>
+						</li>
+						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+						<a href=search style="color:#ffffff;">站内检索</a>
+						</li>
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right" style="padding-right:20%;">
+					
+						
+						<li class="dropdown" >
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
+							<ul class="dropdown-menu">
+								<li><a href=mainPage>我的主页</a></li>
+								<li><a href=fileManage>内容管理</a></li>
+								<li><a href=timeLine>时间线</a></li>
+								<li><a href=settings>设置</a></li>
+								<li class="divider"></li>
+								<li><a href=signOut>注销</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+		</div>
+		
+		
 		<div class="col-md-12 column">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
@@ -94,7 +156,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 			</div>
 			<div class="row clearfix">
 						<div class="col-md-8 column">
-					<h1  class="animated  pulse" >分享</h1>
+					<h1  class="animated  pulse" >圈子动态</h1>
 					<br>
 					<div class="animated pulse" style="text-align:right;padding:5px;">
 					<div class="btn-group pull-left" >
@@ -115,13 +177,13 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
     				<% for (int i = list.size() - 1; i >= 0; --i) { %>		
     				<!-- 头像 -->
-    				<div class="city animated fadeInLeft">
+    				<div class="city animated fadeInLeft" style="margin: 10px;">
     				<div class="pull-left" style="width:20%;text-align:center;" >
     				
 							<img src=<%out.print( "sources/pics/Avatar.png");%> height="100" width="100"  class="img-rounded"/>	
 							<h6><% out.print(list.get(i).get("5")); %></h6>	
 					</div>	
-					<div class="pull-right" style="width:77%;">
+					<div class="pull-right" style="width:77%;padding: 10px;">
 						<h5>
 						<a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
 							<% out.print(list.get(i).get("1") ); %>
@@ -137,7 +199,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 							<% out.print("他很懒哦，啥都没说呢！"); %>
 							<%} %>
 										
-						<br><br>
+						<br>
 						<span class="glyphicon  glyphicon-time pull-right "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>	
 					</div>
 					</div>	
@@ -160,7 +222,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
                    			</div >
                    			<!-- 上传文件 -->
     							<a id="upload" href="#upload-modal" data-toggle="modal">
-        				    		<button type="button" class="btn btn-success" >上传文件/URL</button>
+        				    		<button type="button" class="btn" style="background:#036564;color:#ffffff;" >上传文件/URL</button>
         				    	</a>
         					</div>
     					</div>
@@ -173,7 +235,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 								
 						  	       for (int i = list1.size() - 1; i >= 0 ; --i) { %>
 								    <div class="city1 animated slideInUp" onMouseMove="this.className='white'" onmouseout="this.className='city1'">
-										<a href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("1"));%>&id=<% out.print(list1.get(i).get("3"));%>>
+										<a style="color:#000000;" href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("1"));%>&id=<% out.print(list1.get(i).get("3"));%>>
 											<span class="glyphicon glyphicon-paperclip"> <% out.print(list1.get(i).get("1")); %></span>			
 										</a>
 									</div>
@@ -197,41 +259,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 				</div>
 			</div>
 		</div>
-		<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href=personalCenter>阅读</a>
-			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<form action="search" class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input class="form-control" type="text" placeholder="搜索内容" />
-					</div>
-					<button type="submit" class="btn btn-default">开始搜索</button>
-				</form>
-				<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="sources/pics/Avatar.png" height="20" width="20" />
-							<strong class="caret"></strong>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href=mainPage>我的主页</a></li>
-							<li><a href=fileManage>内容管理</a></li>
-							<li><a href=timeLine>时间线</a></li>
-							<li><a href=settings>设置</a></li>
-							<li class="divider"></li>
-							<li><a href=signOut>注销</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav>
+		
 		<div class="row clearfix">
 			<div class="col-md-12 column"></div>
 		</div>
@@ -266,7 +294,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
     				<button type="submit" class="btn btn-success pull-right" form="upload_form" >上传</button>
     				</div>
     				<div id="saveurl" class="tab-pane ">
-    				<form action="urlUpLoad" id="urlupload_form">
+    				<form action="urlUpLoad" method="post"  id="urlupload_form">
 						<div class="form-group">
                 			<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
     					</div>
