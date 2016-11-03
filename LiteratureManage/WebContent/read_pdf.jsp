@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,22 +12,70 @@
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
+ 	<link href="sources/css/animate.css" rel="stylesheet" type="text/css">
+    <script src="sources/js/jquery.sidr.js"></script>
+    <link rel="stylesheet" href="sources/css/jquery.sidr.light.min.css">
+  	<style>
+		.city {
+			margin: 5px;
+			padding: 20px;
+			width:100%;		
+			background-color: #F9F9F9;
+		} 
+		.city1 {
+			float: left;
+			margin: 5px;
+			padding: 5px;
+			width:70%;
+			border: 1px;		
+
+		} 
+		.editor{
+			width:100%;
+			height: 100%;	
+		} 
+	</style>
 	<title>阅读PDF</title>
 	<!-- pdf阅读器 -->
 	<script type="text/javascript">
+		if (window.innerWidth)
+			winWidth = window.innerWidth;
+		else if ((document.body) && (document.body.clientWidth))
+			winWidth = document.body.clientWidth;
+		if (window.innerHeight)
+			winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+			winHeight = document.body.clientHeight;
+		if (winWidth > 1920) {
+			winWidth *= 0.635;
+			winHeight *= 0.8;
+		}
+		else if (winWidth === 1920) {
+			winWidth *= 0.635;
+			winHeight *= 0.8;
+		}
+		else {
+			winWidth *= 0.635;
+			winHeight *= 0.8;
+		}
 		$(function() {
 			$('a.media').media({
-				width : 1150,
-				height : 700
+				width : winWidth,
+				height : winHeight
 			});
 		});
 	</script>
 	<!-- 文本编辑器 -->
 	<script>
 		var editor;
+		
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="content"]', {
 			allowFileManager : true,
+			 allowImageUpload:true,
+			 uploadJson:'sources/kindeditor/jsp/upload_json.jsp',
+			 afterUpload: function(){this.sync();},
+			 afterBlur: function(){this.sync();}, 
 			items : [
 				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
 				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
@@ -38,103 +87,171 @@
 			K('input[name=clear]').click(function(e) {
 				editor.html('');
 			});
-		});
+		});	
 	</script>	
+	<script>
+		$(document).ready(function() {
+   			 $('#right-menu').sidr({
+		      name: 'sidr-right',
+		      side: 'right',
+		      source: ' #sidr'
+		    });
+		});
+	</script>
+	<!--<script >
+		window.onbeforeunload = function(event) {
+			alert(111);
+			return confirm("确定退出吗");
+		} 
+	</script>-->
+	<script type="text/javascript">
+		function clickButton()
+		{    
+			var url = 'markReadStatus.action';
+			var params = {
+					id:eval(document.getElementById('arid')).value
+			};
+			jQuery.post(url, params, callbackFun, 'json');
+		}
+		function callbackFun(data)
+		{
+		   alert(data.result);
+            }
+    </script>	
+    <script>
+        function changeFrameHeight(){
+            var ifm= document.getElementById("iframepage"); 
+            ifm.height=document.documentElement.clientHeight * 0.8;
+        }
+        window.onresize=function(){  
+             changeFrameHeight();  
+        } 
+        </script>
 </head>
 <body>
-	<!-- style="background:#C7EDCC" -->
-	<div class="container">
-		<div class="row clearfix">
-			<div class="row clearfix">
-				<!-- 防止遮盖 -->
-				<div class="col-md-12 column">
-					<p><br><br></p>
-				</div>
+	<% String usermail = (String) session.getAttribute("usermail"); %>
+	<% String username = (String) session.getAttribute("username"); %>
+	<% String type = (String) session.getAttribute("type"); %>
+
+	<!-- 侧边栏 -->
+	<div class=" animated flash	" style="padding:10px;float:right;">
+		<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif"/></a>
+	</div>
+	<div id="sidr" style="display: none;">
+	<h2>内容选项</h2>
+	<ul>
+		<button type="submit" class="btn btn-link" form="note">保存文章笔记并且退出</button>
+		<hr>
+	</ul>
+	<h2>快速入口</h2>
+	<!-- 侧边栏选项 -->
+	<ul>
+	    <!-- 获取分享的id和文章名 -->
+	    <%
+			String articlename = request.getParameter("articlename");
+			String id = request.getParameter("id");
+		%>
+	    <li><a href=toShare?articlename=<%out.print(articlename); %>&id=<%out.print(id); %>>分享这篇文章</a></li>
+	    <li><a href=mainPage>返回主页</a></li>
+	    <li><a href=personalCenter>返回个人中心</a></li>
+		<li><a href=fileManage>内容管理</a></li>
+		<li><a href=timeLine>时间线</a></li>
+		<li><a href=settings>设置</a></li>
+	</ul>
+	 
+	</div >
+	<div class="container-fluid">
+		<div class="row-fluid clearfix">
+			<div class="row-fluid clearfix">
+			<h1>阅读</h1>
 			</div>
-			<div class="col-md-12 column">
-				<!-- 文件名 -->
-				<h3 class="text-center">			
-					<% out.print(request.getParameter("articlename"));%>
-				</h3>
+			<div class="col-md-8 column">
 				<!-- 标签栏 -->
 				<div class="tabbable" id="tabs-960120">
-					<ul class="nav nav-tabs">
+					<ul class="nav nav-tabs ">
+						<li>
+							<a style="color:#000000;"><span class="glyphicon glyphicon-star-empty" > <b>标题：<% out.print(request.getParameter("articlename"));%></b></span></a>
+						</li>
 						<li class="active">
-							<a href="#panel-921674" data-toggle="tab">阅读</a>
+							<a href="#panel-1" data-toggle="tab"><span class="glyphicon glyphicon-book"> 阅读</span></a>
+						</li>
+						<li >
+							<a href="#panel-3" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"> 查看已有笔记</span></a>	
 						</li>
 						<li>
-							<a href="#panel-666652" data-toggle="tab">记录笔记</a>
+							<a type="button"  onclick="javascript:clickButton();" clientidmode="Static"><span class="glyphicon glyphicon-ok">  将内容标记为已精读</span></a>
 						</li>
 					</ul>
-					<div class="tab-content">
+					<div class="tab-content ">
 						<!-- 显示pdf -->
-						<div class="tab-pane fade in active" id="panel-921674">
-							<a class="media" href="<% out.print(request.getParameter("url"));%>"></a>						
+						<div class="tab-pane  fade in active" id="panel-1">
+						<%if (type == null || type.equals("PDF")) {%>
+							<a class="media" href="<% out.print(request.getParameter("url"));%>"></a>
+						<% } else { %>	
+						<iframe  frameborder="1"  src=<% out.print(request.getParameter("url"));%> 
+						style="width:100%; margin:0; padding:0;background-color=transparent" id="iframepage"  onload="changeFrameHeight()" >
+						您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。</iframe>
+						<%} %>				
 						</div>
-						<!-- 显示输入框和文本编辑器 -->
-						<div class="tab-pane fade" id="panel-666652">
-							<div class="panel panel-default">
-								<div class="panel-body">      			   
-									<form>
-										<!-- 标题栏 -->
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="输入评论标题" style="background-color:#C7EDCC;"/>
-										</div >
-										<!-- 文本区域 -->
-										<textarea name="content" style="width:100%;height:500px;visibility:hidden;">KindEditor</textarea>
-										<br>
-										<!-- 右下角按钮 -->
-										<div class="btn-toolbar" role="toolbar" style="text-align:right;">
-											<input type="button" name="getHtml" value="取得HTML" />
-											<input type="button" name="clear" value="清空内容" />
-											<input type="reset" name="reset" value="Reset" />
-										</div>		
-									</form>
-    							</div>		
-							</div>
+						
+						<!-- 显示笔记 -->
+						<% ArrayList<Map<String, String>> note = (ArrayList<Map<String, String>>) session.getAttribute("note");%>
+						<div class="tab-pane " id="panel-3">
+						<%for (int i = note.size() -1; i >= 0; --i) { %>
+						
+						<div class="city animated fadeInUp">
+						<h2>
+						[<%out.print(note.get(i).get("4")); %>]
+						<%out.print(note.get(i).get("1")); %>
+						</h2>
+						<%out.print(note.get(i).get("3")); %>
+						<br></br>
+						<%out.print(note.get(i).get("2")); %>
+						</div>
+					   <%} %>	
+					   <%if (note.size() == 0) {%>
+					   <div class="city animated fadeInUp">
+					   还没有为这篇文章添加过任何笔记。
+					   </div>
+					   <%} %>
 						</div>
 					</div>	
 				</div>
 				<!-- 顶部栏 -->
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
-							<span class="icon-bar"></span><span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href=personalCenter>阅读</a>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<form action="search" class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<input class="form-control" type="text" placeholder="搜索内容" />
-							</div>
-							<button type="submit" class="btn btn-default">开始搜索</button>
-						</form>
-						<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="sources/pics/Avatar.png" height="20" width="20" />
-									<strong class="caret"></strong>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href=mainPage>我的主页</a></li>
-									<li><a href=fileManage>内容管理</a></li>
-									<li><a href=timeLine>时间线</a></li>
-									<li><a href=settings>设置</a></li>
-									<li class="divider"></li>
-									<li><a href=signOut>注销</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</nav>
 			</div>
+			<div class="col-md-4 column">
+			<h1><span class="glyphicon glyphicon-pencil" > 记录笔记</span></h1>
+			<hr>
+			<div class="panel panel-default" >
+				<div class="panel-body">      			   
+					<form action="saveAndLeave" id="note" method="post">
+						<!-- 标题栏 -->
+						<div class="form-group">
+							<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
+							<!-- 隐藏的文章id -->
+							<input type='text' name="id" id="arid" class="pull-left" readonly style="width:5%;display:none;"  value=<%out.print(request.getAttribute("id")); %>></input>	
+						</div >
+						<br><br>
+						<!-- 文本区域 -->
+						<textarea id="texta" name="content" style="width:100%;height:300%;visibility:hidden;"></textarea>
+						<br>
+						<!-- 右下角按钮 -->
+						<div class="btn-toolbar" role="toolbar" style="text-align:right;">
+							<input type="button" name="getHtml" value="HTML" />
+							<input type="button" name="clear" value="清空" />
+							<input type="reset" name="reset" value="撤销" />
+							<input type="submit" value="提交并退出"></input>
+						</div>		
+					</form>
+				</div>		
+			</div>
+			<hr>
 		</div>
-		<hr>
-		<footer>
-			<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-		</footer>
 	</div>
-</body>
+	<footer>
+		<hr>
+		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
+	</footer>
+</div> 
+</body> 
 </html>

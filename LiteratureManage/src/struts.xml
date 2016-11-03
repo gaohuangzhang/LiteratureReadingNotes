@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-<!--package SIGN:登录界面的所有动作（index.jsp)-->
+	<!--设定上传文件的大小限制：100M-->
+	<constant name="struts.multipart.maxSize" value="104857600"/>
+	<!--package SIGN:登录界面的所有动作（index.jsp)-->
 	<package name="SIGN"  extends="struts-default">
 	<!--signIn-->
 		<action name="signIn" class="com.teamghz.action.LoginAction" method="signIn">
@@ -22,7 +24,7 @@
 			<result name="SUCCESS">/about.jsp</result>
 		</action>
 	</package>
-<!--package Panel : 除了登录界面的所有导航栏的上的动作-->
+	<!--package Panel : 除了登录界面的所有导航栏的上的动作-->
 	<package name="Panel"  extends="struts-default">
 	<!--sign out-->
 		<action name="signOut" class="com.teamghz.action.PanelAction" method="signOut">
@@ -49,52 +51,99 @@
 			<result>/setting1.jsp</result>
 
 		</action>
+	<!--去搜索-->
+		<action name="search">
+			<result>/search.jsp</result>
+
+		</action>
 	</package>
-<!--package PersonalCenter：所有个人中心的动作 -->
+	<!--package PersonalCenter：所有个人中心的动作 -->
 	<package name="PersonalCenter" extends="struts-default">
 		<action name="printShareInfo" class="com.teamghz.action.PersonalCenterAction" method="getShareInfo">
 		</action>
 		<action name="getArticle" class="com.teamghz.action.PersonalCenterAction" method="getPersonalArticle">
 		</action>
 	</package>
-<!--个人主页动作-->
+	<!--个人主页动作-->
 	<package name="MainPage" extends="struts-default">
 		<action name="getAllKindOfArticles" class="com.teamghz.action.MainPageAction" method="findAllKindOfArticles">
 		</action>
-		
 	</package>
-<!--文件上传和下载-->
-<package name="FileLoad" extends="struts-default">	
-<action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
-        <result name="SUCCESS">/message.jsp</result>
-        </action>
-        	
-<action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
-            <result name="success" type="stream">
-                <param name="contentDisposition">attachment;filename="通讯录2012年9月4日.xls"</param>
-                <param name="inputName">downloadFile</param>
-            </result>
-        </action>
-  </package>
-  <!--文章阅读-->
-  <package name="FileRead" extends="struts-default">	
-<action name="readArticle" class="com.teamghz.action.ReadArticle" method="readPDF">
-        <result name="SUCCESS">/read_pdf.jsp</result>
-        </action>
-  </package>
- <!--设置-->
-  <package name="Setting" extends="struts-default">	
-<action name="setting1" class="com.teamghz.action.Setting" method="setting1">
-        <result name="SUCCESS">/setting1.jsp</result>
-        <result name="PASSWORDERROE">/setting1.jsp</result>
-        <result name="INSERTERROR">/setting1.jsp</result>
-        <result name="FAILED">/setting1.jsp</result>
-        </action>
-<action name="setting2" class="com.teamghz.action.Setting" method="setting2">
-        <result name="SUCCESS">/setting2.jsp</result>
-        <result name="PASSWORDERROE">/setting2.jsp</result>
-        <result name="INSERTERROR">/setting2.jsp</result>
-        <result name="FAILED">/setting2.jsp</result>
-        </action>
-  </package>
+	<!--文件上传和下载-->
+	<package name="FileLoad" extends="struts-default">	
+		<action name="fileUpLoad" class="com.teamghz.action.FileUpLoadAction" method="execute">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+			<interceptor-ref name="fileUpload">  
+				<!-- file type-->
+				<param name="allowedTypes">  
+					image/bmp,image/png,image/gif,image/jpeg,image/jpg,application/pdf 
+				</param>
+				<!-- file max size -->
+				<param name="maximumSize">104857600</param>
+				</interceptor-ref>  
+				<!-- 默认的拦截器，必须要写 -->  
+			<interceptor-ref name="defaultStack" /> 
+		</action>
+	<!--上传url-->
+		<action name="urlUpLoad" class="com.teamghz.action.FileUpLoadAction" method="urlUpload">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+		</action>
+		<action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
+			<result name="success" type="stream">
+				<param name="contentDisposition">attachment;filename="通讯录2012年9月4日.xls"</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+		</action>
+	</package>
+	<!--文章阅读-->
+	<package name="FileRead" extends="struts-default">	
+		<action name="readArticle" class="com.teamghz.action.ReadArticle" method="readPDF">
+			<result name="SUCCESS">/read_pdf.jsp</result>
+			</action>
+			<action name="saveAndLeave" class="com.teamghz.action.ReadArticle" method="saveAndLeave">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+			</action>
+	</package>
+	<!--文章阅读：标记阅读状态-->
+	<package name="ajaxreadstatus" extends="json-default">
+			<action name="markReadStatus"
+				class="com.teamghz.action.ReadArticle" method="readStatus">
+				<result type="json"></result>
+			</action>
+		</package>
+	<!--设置-->
+	<package name="Setting" extends="struts-default">	
+		<action name="setting1" class="com.teamghz.action.Setting" method="setting1">
+			<result name="SUCCESS">/setting1.jsp</result>
+			<result name="PASSWORDERROE">/setting1.jsp</result>
+			<result name="INSERTERROR">/setting1.jsp</result>
+			<result name="FAILED">/setting1.jsp</result>
+		</action>
+		<action name="setting2" class="com.teamghz.action.Setting" method="setting2">
+			<result name="SUCCESS">/setting2.jsp</result>
+			<result name="PASSWORDERROE">/setting2.jsp</result>
+			<result name="INSERTERROR">/setting2.jsp</result>
+			<result name="FAILED">/setting2.jsp</result>
+		</action>
+	</package>
+	<!--分享-->
+		<package name="Share" extends="struts-default">
+			<action name="toShare">
+				<result>/share.jsp</result>
+			</action>
+			<action name="share" class="com.teamghz.action.ShareAction" method="shareArticle">
+				<result name="SUCCESS">/temporary.jsp</result>
+				<result name="FALSE">/temporary.jsp</result>
+			</action>
+		</package>
+	<!--不刷新页面提交表单的例子-->
+	<package name="ajax" extends="json-default">
+			<action name="ajaxRequest"
+				class="com.teamghz.action.AjaxExampleAction">
+				<result type="json"></result>
+			</action>
+		</package>
 </struts> 

@@ -22,22 +22,22 @@ public class MainPageAction {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		String usermail = (String) session.getAttribute("usermail");
-		String sql_base = "select Article.articlename, Article.url from Article, User where Article.userid=User.userid and User.mail=";
+		String sql_base = "select Article.articlename, Article.url, Article.articleid from Article, User where Article.userid=User.userid and User.mail=";
 		String sql_notread = sql_base + "\"" + usermail + "\""+ " and Article.status=\"NOT_READ\""; 
 		String sql_readlittle = sql_base + "\"" + usermail + "\""+ " and Article.status=\"COARSE_READ\""; 
 		String sql_readall = sql_base+ "\"" + usermail + "\"" + " and Article.status=\"INTENSIVE_READ\"";                   
 		String sql_all = sql_base + "\"" + usermail + "\"";	
 		MysqlConnecter mc = new  MysqlConnecter();
 		ArrayList<Map<String, String>> notread = mc.select(sql_notread);
-		System.out.println(sql_notread);
+		System.out.println(notread.size());
 		session.setAttribute("notread", notread);
 		
 		ArrayList<Map<String, String>> readlittle = mc.select(sql_readlittle);
-		System.out.println(sql_readlittle);
+		System.out.println(readlittle.size());
 		session.setAttribute("readlittle", readlittle);
 		
 		ArrayList<Map<String, String>> readall = mc.select(sql_readall);
-		System.out.println(sql_readall);
+		System.out.println(readall.size());
 		session.setAttribute("readall", readall);
 		
 		ArrayList<Map<String, String>> all = mc.select(sql_all);
