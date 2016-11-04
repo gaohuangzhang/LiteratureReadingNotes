@@ -38,16 +38,18 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 	.city {
 			margin: 5px;
 			padding: 10px;		
-			height:150px;	
-			background-color: #ffffff;
+			height:150px;
+			width=100%;	
+			background-color: #f9f9f9;
 		} 
 		.city1 {
-			float: left;
+			
 			margin: 2px;
-			padding: 10px;			
+			padding: 12px;			
 			background-color: #f3f3f3;
 			width: 99%;
 		} 
+	
 		.city2 {
 			margin:0 auto;
 			height: 300px;
@@ -55,9 +57,9 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 			padding: 50px;	
 		}		
 		.white {
-			float: left;
+			
 			margin: 2px;
-			padding: 10px;			
+			padding: 12px;			
 			background-color: #6BB50B;
 			width: 99%;
 		} 
@@ -73,9 +75,10 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 	</style>
 </head>
 <body  >
+<!-- background pic 
 <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
-    </div>
+    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>-->
     <% String usermail = null; %>
     <% String username = null; %>
     <% try { %>
@@ -103,9 +106,9 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 	
 	
 	<div class="col-md-12 column">
-			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
-				<div class="navbar-header" style="padding-left:18%;">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#"></a>
+			<nav class="navbar navbar-default  navbar-content-center navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
+				<div class="navbar-header" >
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
@@ -127,15 +130,13 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 						</li>
 					</ul>
 					
-					<ul class="nav navbar-nav navbar-right" style="padding-right:20%;">
+					<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
 					
 						
 						<li class="dropdown" >
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
 							<ul class="dropdown-menu">
-								<li><a href=mainPage>我的主页</a></li>
-								<li><a href=fileManage>内容管理</a></li>
-								<li><a href=timeLine>时间线</a></li>
+								
 								<li><a href=settings>设置</a></li>
 								<li class="divider"></li>
 								<li><a href=signOut>注销</a></li>
@@ -166,10 +167,11 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 						</button>			
 					</div>
 					<!-- 搜索分享 -->
-					<input class="inputs" id="search-highlight1"  name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
+					<input class="form-control pull-right" style="width: 40%;" id="search-highlight1"  name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
 				</div>			
 					<!-- 刷新页面执行打印分享信息动作 -->
 					<s:action name="printShareInfo" executeResult="true" />
+					<br>
   				<hr style="border-top:1px groove #f1f1f1;" />
   				
   				<div class=" vertical highlight_list1" >
@@ -177,17 +179,19 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 					<% ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) session.getAttribute("sharelist");%>
     				<% for (int i = list.size() - 1; i >= 0; --i) { %>		
     				<!-- 头像 -->
-    				<div class="city animated fadeInLeft" style="margin: 10px;">
+    				<div class="city animated fadeInLeft" style="overflow:hidden">
     				<div class="pull-left" style="width:20%;text-align:center;" >
     				
 							<img src=<%out.print( "sources/pics/Avatar.png");%> height="100" width="100"  class="img-rounded"/>	
 							<h6><% out.print(list.get(i).get("5")); %></h6>	
 					</div>	
-					<div class="pull-right" style="width:77%;padding: 10px;">
-						<h5>
-						<a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
+					<div class="pull-right" style="width:79%;padding: 10px;">
+						
+						<span class="glyphicon  glyphicon-time pull-left "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>
+						<br>
+						<h5><a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
 							<% out.print(list.get(i).get("1") ); %>
-						</a></h5>
+						</a>	</h5>
 						
 							<%if (list.get(i).get("7") != null) {%>
 							<% if (list.get(i).get("7").length() < 140) {%>
@@ -199,8 +203,8 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 							<% out.print("他很懒哦，啥都没说呢！"); %>
 							<%} %>
 										
-						<br>
-						<span class="glyphicon  glyphicon-time pull-right "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>	
+					
+						
 					</div>
 					</div>	
    					<% } %>
@@ -210,26 +214,28 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
    					</div>
 					
             	</div>			
-				<div class="col-md-4 column">
+				<div class="col-md-4 column pull-right"  >
 					<br>
-					
-					<div class="panel" style="background:#f9f9f9;">
+					 
+					<div class="panel" style="background:#f9f9f9;" >
     					<div class="panel-heading">
-    						<div style="text-align:right;">
-    						<!-- 搜索书籍 -->
-    						<div class="input-group pull-left" >
-                   				<input class="inputs" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
-                   			</div >
+    						
+    						
                    			<!-- 上传文件 -->
-    							<a id="upload" href="#upload-modal" data-toggle="modal">
+    							<a id="upload" class="pull-right" href="#upload-modal" data-toggle="modal">
         				    		<button type="button" class="btn" style="background:#036564;color:#ffffff;" >上传文件/URL</button>
         				    	</a>
-        					</div>
+        					<br><br>
     					</div>
+    					<!-- 搜索书籍 -->
+    						<div class=" animated slideInUp" style="width:90%;margin: 0px auto;">
+                   				<input class="form-control" id="search-highlight2"  name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
+                   			</div>
+                
     					<div class="panel-body">
 								<!-- 刷新页面执行查找书籍 -->
 					    		<s:action name="getArticle" executeResult="true" />
-					    		<div class="vertical highlight_list2" style="max-height:565px;overflow:hidden;">
+					    		<div class="vertical highlight_list2" style="max-height:465px;overflow:hidden;">
 					    		<% try { %>
 								<% ArrayList<Map<String, String>> list1 = (ArrayList<Map<String, String>>) session.getAttribute("personalbooklist");
 								
@@ -255,6 +261,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 							</div>
 						</div>
 					</div>
+					
 					<br>
 				</div>
 			</div>

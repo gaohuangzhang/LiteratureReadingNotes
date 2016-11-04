@@ -8,7 +8,6 @@
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="sources/kindeditor/themes/default/default.css" rel="stylesheet">
 	<script src="sources/js/jquery-3.1.1.min.js"></script>
-	<script src="sources/js/jquery.media.js"></script>
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
@@ -36,35 +35,7 @@
 		} 
 	</style>
 	<title>阅读PDF</title>
-	<!-- pdf阅读器 -->
-	<script type="text/javascript">
-		if (window.innerWidth)
-			winWidth = window.innerWidth;
-		else if ((document.body) && (document.body.clientWidth))
-			winWidth = document.body.clientWidth;
-		if (window.innerHeight)
-			winHeight = window.innerHeight;
-		else if ((document.body) && (document.body.clientHeight))
-			winHeight = document.body.clientHeight;
-		if (winWidth > 1920) {
-			winWidth *= 0.635;
-			winHeight *= 0.8;
-		}
-		else if (winWidth === 1920) {
-			winWidth *= 0.635;
-			winHeight *= 0.8;
-		}
-		else {
-			winWidth *= 0.635;
-			winHeight *= 0.8;
-		}
-		$(function() {
-			$('a.media').media({
-				width : winWidth,
-				height : winHeight
-			});
-		});
-	</script>
+	
 	<!-- 文本编辑器 -->
 	<script>
 		var editor;
@@ -122,6 +93,7 @@
         function changeFrameHeight(){
             var ifm= document.getElementById("iframepage"); 
             ifm.height=document.documentElement.clientHeight * 0.8;
+            
         }
         window.onresize=function(){  
              changeFrameHeight();  
@@ -129,9 +101,10 @@
         </script>
 </head>
 <body>
+<!-- background pic 
 <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
-    </div>
+    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>-->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
 	<% String type = (String) session.getAttribute("type"); %>
@@ -189,7 +162,7 @@
 						<!-- 显示pdf -->
 						<div class="tab-pane  fade in active" id="panel-1">
 						<%if (type == null || type.equals("PDF")) {%>
-							<a class="media" href="<% out.print(request.getParameter("url"));%>"></a>
+							 <embed id="pdf"  width="100%" height="700px" src="<% out.print(request.getParameter("url"));%>"> </embed>
 						<% } else { %>	
 						<iframe  frameborder="1"  src=<% out.print(request.getParameter("url"));%> 
 						style="width:100%; margin:0; padding:0;" id="iframepage"  onload="changeFrameHeight()" >
