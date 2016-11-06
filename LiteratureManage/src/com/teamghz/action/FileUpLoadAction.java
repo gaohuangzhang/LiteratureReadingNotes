@@ -6,13 +6,10 @@ import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FileUpLoadAction extends ActionSupport {
@@ -22,7 +19,14 @@ public class FileUpLoadAction extends ActionSupport {
 	private String articlename;
 	private String fileContentType;
 	private String flag;
+	private String url;
 	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public String getArticlename() {
 		return articlename;
 	}
@@ -74,7 +78,14 @@ public class FileUpLoadAction extends ActionSupport {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		String usermail = (String) session.getAttribute("usermail");
-		File f = new File(Configure.LOCATION + usermail + Configure.SEPARATOR);
+		File f = null;
+		if (Configure.ONTOMCAT) {
+			f = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR);
+			System.out.println("where: " + root + Configure.LOCATION + usermail + Configure.SEPARATOR);
+		} else {
+			f = new File(Configure.LOCATION + usermail + Configure.SEPARATOR);
+			System.out.println("where: " + Configure.LOCATION + usermail + Configure.SEPARATOR);
+		}
 		try {
 			if (!f.exists() && !f.isDirectory()) {
 				System.out.println("没有文件夹");
@@ -83,8 +94,13 @@ public class FileUpLoadAction extends ActionSupport {
 			} else {
 				System.out.println("文件存在");
 			}
-			//fileFileName = URLEncoder.encode(fileFileName);
-			File fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+			fileFileName = fileFileName.replaceAll(" ", "");
+			File fs = null;
+			if (Configure.ONTOMCAT) {
+				fs = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR, fileFileName);
+			} else {
+				fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+			}
 			while (true) {
 				if (!fs.exists()) {
 					try {
@@ -96,7 +112,11 @@ public class FileUpLoadAction extends ActionSupport {
 					break;
 				} else {
 					fileFileName = "1" + fileFileName;
-					fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+					if (Configure.ONTOMCAT) {
+						fs = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR, fileFileName);
+					} else {
+						fs = new File(Configure.LOCATION + usermail + Configure.SEPARATOR, fileFileName);
+					}
 				}
 			}
 			String url = Configure.ARTICLE_URL_START  + Configure.MYSQL_SEPARATOR + usermail
@@ -105,8 +125,8 @@ public class FileUpLoadAction extends ActionSupport {
 			System.out.println(url);
 			ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + usermail + "\"");
 			String userid = result.get(0).get("1");
-			String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment) values("
-					+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\")";
+			String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment, type) values("
+					+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\", \"PDF\")";
 			System.out.println(sql_article);
 			mc.update(sql_article);
 			ArrayList<Map<String, String>> result1 = mc.select("select articleid from Article where url=\"" + url + "\"");
@@ -130,4 +150,19 @@ public class FileUpLoadAction extends ActionSupport {
 			return "FALSE";
 		}
 	}
+	public String urlUpload()  {
+		ServletRequest request = ServletActionContext.getRequest();
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		String usermail = (String) session.getAttribute("usermail");
+		MysqlConnecter mc = new MysqlConnecter();
+		ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + usermail + "\"");
+		String userid = result.get(0).get("1");	
+		String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment, type) values("
+				+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\", \"URL\")";
+		mc.update(sql_article);
+		flag = "TRUE";
+		return "SUCCESS";
+	}
+	
 }

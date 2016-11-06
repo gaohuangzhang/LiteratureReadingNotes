@@ -29,15 +29,15 @@ public class MainPageAction {
 		String sql_all = sql_base + "\"" + usermail + "\"";	
 		MysqlConnecter mc = new  MysqlConnecter();
 		ArrayList<Map<String, String>> notread = mc.select(sql_notread);
-		System.out.println(sql_notread);
+		System.out.println(notread.size());
 		session.setAttribute("notread", notread);
 		
 		ArrayList<Map<String, String>> readlittle = mc.select(sql_readlittle);
-		System.out.println(sql_readlittle);
+		System.out.println(readlittle.size());
 		session.setAttribute("readlittle", readlittle);
 		
 		ArrayList<Map<String, String>> readall = mc.select(sql_readall);
-		System.out.println(sql_readall);
+		System.out.println(readall.size());
 		session.setAttribute("readall", readall);
 		
 		ArrayList<Map<String, String>> all = mc.select(sql_all);
