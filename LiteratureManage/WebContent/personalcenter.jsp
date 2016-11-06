@@ -138,6 +138,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 							<ul class="dropdown-menu">
 								
 								<li><a href=settings>设置</a></li>
+								<li><a href=about>关于</a></li>
 								<li class="divider"></li>
 								<li><a href=signOut>注销</a></li>
 							</ul>
@@ -161,9 +162,9 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 					<br>
 					<div class="animated pulse" style="text-align:right;padding:5px;">
 					<div class="btn-group pull-left" >
-						<!-- 分享标题下的用户名和邮箱 -->
-						<button data-toggle="dropdown" class="btn  dropdown-toggle"> 
-							<span class="glyphicon glyphicon-user "> <% out.print(username); %></span> &nbsp;	
+						<!-- 分享标题下的用户名 -->
+						<button data-toggle="dropdown" class="btn  dropdown-toggle" style="background-color:#036564"> 
+							<span class="glyphicon glyphicon-user " style="color:#ffffff"> <% out.print(username); %></span> &nbsp;	
 						</button>			
 					</div>
 					<!-- 搜索分享 -->
@@ -181,9 +182,9 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
     				<!-- 头像 -->
     				<div class="city animated fadeInLeft" style="overflow:hidden">
     				<div class="pull-left" style="width:20%;text-align:center;" >
-    				
+    							<a href=seePeopleInfo?userid=<% out.println(list.get(i).get("8")); %>>
 							<img src=<%out.print( "sources/pics/Avatar.png");%> height="100" width="100"  class="img-rounded"/>	
-							<h6><% out.print(list.get(i).get("5")); %></h6>	
+							<h6><% out.print(list.get(i).get("5")); %></h6>	</a>
 					</div>	
 					<div class="pull-right" style="width:79%;padding: 10px;">
 						

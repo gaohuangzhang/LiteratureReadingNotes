@@ -10,8 +10,14 @@
 <!-- 实现动画必须引入的包 -->
 <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>分享文章</title>
+<title>用户信息</title>
 <style>
+.city1 {
+		margin: 5px;
+		padding: 20px;
+		width:100%;		
+		background-color: #F9F9F9;
+	} 
 .W{
 		background-color: #ffffff;
 		}
@@ -92,43 +98,47 @@
 				
 			</nav>
 		</div>
-		
+		<%
+				String name = (String)request.getAttribute("username");
+				String mail = (String)request.getAttribute("mail");
+				String avatar = (String)request.getAttribute("avatar");
+				String jointime = (String)request.getAttribute("jointime");
+				String all = (String)request.getAttribute("all");
+				String readlittle = (String)request.getAttribute("readlittle");
+				String readall = (String)request.getAttribute("readall");
+		%>
 		<div class="col-md-12 column">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<p><br><br><br><br></p>
+					
 				</div>
 				<div class="col-md-3 column; animated pulse"  style='text-align:center'>
 					<!-- 显示头像 -->
-					<img src="sources/pics/Avatar.png" height="240" width="240" class="img-rounded"/>
-					<p class="text-center">
-						<hr>
-						<span class="glyphicon glyphicon-user "></span>
-						<!-- 显示用户名和邮箱 -->
-						<%
-					    	out.print(username);
-						%>
-						<br><br>
-						<span class="glyphicon glyphicon-send "></span>
-						<% 
-							out.print(usermail);
-						%>
-					</p>
+					<img src=<%out.print(avatar); %> height="240" width="240" class="img-rounded"/>
+					
 				</div>
 				<div class="col-md-9 column">	
-				<%
-				String articlename = request.getParameter("articlename");
-				String id = request.getParameter("id");
-				%>				
-					<h1>内容分享</h1>
+					
+					<h1>用户信息</h1>
 					<hr>
-					<form action="share">
-						<input name="id"  style="display:none;" value=<%out.print(id);%> />
-						<h3>为<%out.print(articlename); %>添一句感想</h3>
-						<textarea name="feeling" rows="5" required="required" style="width:100%;" class="animated fadeInRight"></textarea>
-						<br><br>
-						<input type="submit" value="分享" class="btn pull-right animated fadeInRight"/>
-					</form>
+					
+					
+					<div class="city1  animated fadeInRight">
+					<h3>个人信息</h3><hr>
+					昵称：<%out.println(name); %><hr>
+					邮箱：<a href="mailto:<% out.print(mail); %>">
+					<%out.println(mail); %></a><hr>
+					加入时间： <%out.println(jointime);%>
+					</div>
+				
+					
+					<div class="city1  animated fadeInRight">
+					<h3>阅读情况</h3><hr>
+					所有：<%out.println(all); %><hr>
+					粗读：<%out.println(readlittle); %><hr>
+					精读：<%out.println(readall); %><br>
+	</div>
 				</div>
 			</div>
 		</div>
