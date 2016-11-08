@@ -131,6 +131,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
 							<ul class="dropdown-menu">
 								<li><a href=settings>设置</a></li>
+								<li><a href=about>关于</a></li>
 								<li class="divider"></li>
 								<li><a href=signOut>注销</a></li>
 							</ul>
@@ -155,17 +156,15 @@
 					<img src="sources/pics/Avatar.png" height="240" width="240" class="img-rounded"/>
 					<p class="text-center">
 						<hr>
-						<span class="glyphicon glyphicon-user "></span>
+						<span class="glyphicon glyphicon-user ">
 						<!-- 显示用户名和邮箱 -->
-						<%
-					    	out.print(username);
-						%>
+						<% out.print(username); %></span>
 						<br><br>
-						<span class="glyphicon glyphicon-send "></span>
-						<% 
-							out.print(usermail);
-						%>
+						<a href="mailto:<% out.print(usermail); %>">
+						<span class="glyphicon glyphicon-send "> <% out.print(usermail); %></span>
+						</a>
 					</p>
+					<hr>
 				</div>
 				<!-- 所有的书籍信息页面 -->
 				<div class="col-md-9 column">	

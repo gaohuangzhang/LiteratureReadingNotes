@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -25,23 +25,25 @@
 		padding: 20px;
 		width: 48.5%;
 		height: 100px;
-		
 		background-color: #F9f9f9;
 	}
+	.city1 {
+		margin: 5px;
+		padding: 20px;
+		width:100%;		
+		background-color: #F9F9F9;
+	} 
 	.inputs {
-	float: right;
-	width:500px;
-	margin: 8px;
+		float: right;
+		width:500px;
+		margin: 8px;
 	}
-.W{
+	.W{
 		background-color: #ffffff;
-		}
-		.G {
+	}
+	.G {
 		background-color:#6BB50B;
-		}
-		a {
-		color:#000000;
-		}
+	}
 </style>
 <!-- 去往开始和结尾 -->
 <script type="text/javascript">
@@ -80,161 +82,150 @@
 	<% } else { %>
 	<% out.print("<div class=\"container\" >");%>
 	<% } %>
-<!-- 导航栏 -->
-<div class="col-md-12 column">
-			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
-				<div class="navbar-header" >
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
-					<ul  class="nav navbar-nav">
-						<li  onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a  href=personalCenter style="color:#ffffff;">个人中心</a>
-						</li >
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=mainPage  style="color:#ffffff;">我的主页</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=fileManage style="color:#ffffff;">内容管理</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=timeLine style="color:#ffffff;">最佳回忆</a>
-						</li>
-						<li class="active" onMouseMove="this.className='G animated  swing'" onmouseout="this.className='active'">
-						<a href=search style="color:#ffffff;">站内检索</a>
-						</li>
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
-					
-						
-						<li class="dropdown" >
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
-							<ul class="dropdown-menu">
-								<li><a href=settings>设置</a></li>
-								<li class="divider"></li>
-								<li><a href=signOut>注销</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-			</nav>
-		</div>
-
-	<div class="row clearfix">
-	<br><br><br>
-		<div class="col-md-12 column">
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-				
-				
-<h1>站内检索</h1><br>
-
-		
-			
-<div class="tabbable" id="tabs-436201">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						 <a href="#panel-1" data-toggle="tab">应用</a>
+	<!-- 导航栏 -->
+	<div class="col-md-12 column">
+		<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
+			<div class="navbar-header" >
+				 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
+			</div>
+			<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
+				<ul  class="nav navbar-nav">
+					<li  onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+						 <a  href=personalCenter style="color:#ffffff;">个人中心</a>
+					</li >
+					<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+						 <a href=mainPage  style="color:#ffffff;">我的主页</a>
 					</li>
-					<li>
-						 <a href="#panel-2" data-toggle="tab">用户</a>
+					<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+						 <a href=fileManage style="color:#ffffff;">内容管理</a>
 					</li>
-					<li>
-						 <a href="#panel-3" data-toggle="tab">文章</a>
+					<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+						 <a href=timeLine style="color:#ffffff;">最佳回忆</a>
 					</li>
-					<li>
-						 <a href="#panel-4" data-toggle="tab">标签</a>
-					</li>
-					<li>
-						 <a href="#panel-5" data-toggle="tab">笔记</a>
+					<li class="active" onMouseMove="this.className='G animated  swing'" onmouseout="this.className='active'">
+					<a href=search style="color:#ffffff;">站内检索</a>
 					</li>
 				</ul>
-				<br>
-				<div class="tab-content">
-					<div class="tab-pane active" id="panel-1">
-					<form class="form-horizontal animated  pulse" role="form" >
-				<div class="form-group" >
-				<input class="form-control pull-right  " id="inputEmail31" type="submit" style="width:10%;"/>
-						<input class="form-control pull-right " id="inputEmail3" type="text" style="width:60%;	"/>
-			
-						
-				</div>
-			</form>
-		<hr>
-						<p>
-							I'm in Section 1.
-						</p>
-					</div>
-					<div class="tab-pane" id="panel-2">
-					<form class="form-horizontal animated  pulse" role="form" >
-				<div class="form-group" >
-				<input class="form-control pull-right "  id="inputEmail31" type="submit" style="width:10%;"/>
-						<input class="form-control pull-right" id="inputEmail3" type="text" style="width:60%;	"/>
-			
-						
-				</div>
-			</form>
-		<hr>
-						<p>
-							Howdy, I'm in Section 2.
-						</p>
-					</div>
-					<div class="tab-pane" id="panel-3">
-					<form class="form-horizontal animated  pulse" role="form" >
-				<div class="form-group" >
-				<input class="form-control pull-right " id="inputEmail31" type="submit" style="width:10%;"/>
-						<input class="form-control pull-right" id="inputEmail3" type="text" style="width:60%;	"/>
-			
-						
-				</div>
-			</form>
-		<hr>
-						<p>
-							Howdy, I'm in Section 3.
-						</p>
-					</div>
-					<div class="tab-pane" id="panel-4">
-					<form class="form-horizontal animated  pulse" role="form">
-				<div class="form-group" >
-				<input class="form-control pull-right" id="inputEmail31" type="submit" style="width:10%;"/>
-						<input class="form-control pull-right " id="inputEmail3" type="text" style="width:60%;	"/>
-			
-						
-				</div>
-			</form>
-		<hr>
-						<p>
-							Howdy, I'm in Section 4.
-						</p>
-					</div>
-					<div class="tab-pane" id="panel-5">
-					<form class="form-horizontal animated  pulse" role="form" >
-				<div class="form-group" >
-				<input class="form-control pull-right t" id="inputEmail31" type="submit" style="width:10%;"/>
-						<input class="form-control pull-right " id="inputEmail3" type="text" style="width:60%;	"/>
-			
-						
-				</div>
-			</form>
-		<hr>
-						<p>
-							Howdy, I'm in Section 5.
-						</p>
-					</div>
-				</div>
+				<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
+					<li class="dropdown" >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
+						<ul class="dropdown-menu">
+							<li><a href=settings>设置</a></li>
+							<li><a href=about>关于</a></li>
+							<li class="divider"></li>
+							<li><a href=signOut>注销</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
-				
-				
-				
-				</div>
-			</div>
+		</nav>
 		</div>
-	</div>
 
-</div>          
-       
+		<div class="row clearfix">
+			<br><br><br>
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<h1>站内检索</h1><br>
+							<div class="tabbable" id="tabs-436201">
+								<ul class="nav nav-tabs">
+									<li class="active">
+										 <a href="#panel-1" data-toggle="tab">用户</a>
+									</li>
+									<li>
+										 <a href="#panel-2" data-toggle="tab">文章</a>
+									</li>
+									<li>
+										 <a href="#panel-3" data-toggle="tab">笔记</a>
+									</li>
+									<li>
+										 <a href="#panel-4" data-toggle="tab">类别</a>
+									</li>
+								</ul>
+								<br>
+								<div class="tab-content">
+									<!-- get all informations -->
+									<s:action name="getInfo" executeResult="true" />
+										<div class="tab-pane active" id="panel-1">
+					
+													<input class="form-control pull-right" style="width:60%" id="search-highlight1"  placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off"/>
+										<br><br>
+										
+											<div class=" vertical highlight_list1 ">
+												<% ArrayList<Map<String, String>> users = (ArrayList<Map<String, String>>) session.getAttribute("users");%>
+												<% for (int i = 0; i != users.size(); ++i) { %>
+												
+												<div class="city1  animated fadeInRight">
+												<a href=seePeopleInfo?userid=<% out.println(users.get(i).get("1")); %>>
+												<% out.println(users.get(i).get("2")); %> </a>
+												</div>
+												
+												<%} %>
+											</div>
+										</div>
+										<div class="tab-pane" id="panel-2">
+											
+													<input class="form-control pull-right" style="width:60%" id="search-highlight2" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off"/>
+											
+											<br><br>
+											<div class=" vertical highlight_list2">
+												<% ArrayList<Map<String, String>> articles = (ArrayList<Map<String, String>>) session.getAttribute("articles");%>
+												<% for (int i = 0; i != articles.size(); ++i) { %>												
+												<div class="city1  animated fadeInRight">
+												<a href=readArticle?url=<% out.print(articles.get(i).get("3"));%>&articlename=<% out.print(articles.get(i).get("2"));%>&id=<% out.print(articles.get(i).get("1"));%>>											
+												<% out.println(articles.get(i).get("2")); %> </a>	
+																					
+												</div>
+												<%} %>			
+											</div>
+										</div>
+									<div class="tab-pane" id="panel-3">
+										
+												<input class="form-control pull-right" style="width:60%" id="search-highlight3" name="search-highlight3" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list3" autocomplete="off"/>
+		
+										<br><br>
+									
+									<div class=" vertical highlight_list3">
+										<% ArrayList<Map<String, String>> notes = (ArrayList<Map<String, String>>) session.getAttribute("notes");%>
+											<% for (int i = 0; i != notes.size(); ++i) { %>
+											
+											<div class="city1  animated fadeInRight">
+											在<% out.println(notes.get(i).get("6")); %>  你在文章
+											<a href=readArticle?url=<% out.print(notes.get(i).get("3"));%>&articlename=<% out.print(notes.get(i).get("2"));%>&id=<% out.print(notes.get(i).get("1"));%>>
+											
+											<% out.println(notes.get(i).get("2")); %> </a>上记录了笔记
+											<hr>
+										
+											
+										<% out.println(notes.get(i).get("5")); %>  
+											<br>
+											
+											
+											<% out.println(notes.get(i).get("7")); %>  
+											</div>
+										
+											<%} %>
+											</div>
+									</div>
+									<div class="tab-pane" id="panel-4">
+										<form class="form-horizontal animated  pulse" role="form">
+											<div class="form-group" >
+												<input class="form-control pull-right" id="inputEmail31" type="submit" style="width:10%;"/>
+												<input class="form-control pull-right " id="inputEmail3" type="text" style="width:60%;	"/>
+	
+											</div>
+										</form>
+										<hr>
+										<p>
+											Howdy, I'm in Section 4.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>              
 </body>
 </html>
