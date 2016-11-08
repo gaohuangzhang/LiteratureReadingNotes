@@ -1,3 +1,7 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +10,9 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
+	<% ArrayList<Map<String, String>> actionResult = (ArrayList<Map<String, String>>)session.getAttribute("timeline"); 
+	   //SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:SS.S");
+	%>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
@@ -50,74 +57,41 @@
           		<h1>时间轴</h1>
         	</div>
         	<ul class="timeline animated">
+        		<% if (actionResult.size() == 0) { %>
+        		<li>
+        			<div class="timeline-time">
+        				<strong></strong>
+        			</div>
+        			<div class="timeline-icon"></div>
+        			<div class="timeline-content">
+        				<h2><% out.print("这里什么都没有哦～"); %></h2>
+        			</div>
+        		</li>
+        		<% }
+        		   else {
+        			   for (int i = actionResult.size() - 1; i >= 0; i--) { 
+        		%>
           		<li>
             		<div class="timeline-time">
-              			<strong>11.9</strong>下午 4:53
+              			<strong>
+              				<%  
+              					int lastIndex_1 = actionResult.get(i).get("2").indexOf(' ');
+              					out.print(actionResult.get(i).get("2").substring(0, lastIndex_1)); 
+              				%>
+              			</strong>
+              			<% 
+              				int lastIndex_2 = actionResult.get(i).get("2").indexOf('.');
+              				out.print(actionResult.get(i).get("2").substring(lastIndex_1 + 1, lastIndex_2));
+              			%>
             		</div>
             		<div class="timeline-icon"></div>
             		<div class="timeline-content">
-              			<h2>上传了233.pdf</h2>
+              			<h2><% out.print(actionResult.get(i).get("1")); %></h2>
               			<button class="btn btn-info" href="#">详细信息 >></button>
             		</div>
           		</li>
-          		<li>
-            		<div class="timeline-time">
-              			<strong>11.9</strong>下午 6:14
-            		</div>
-            		<div class="timeline-icon">
-              			<div class="bg-warning">
-                			<i class="icon-quote-right"></i>
-              			</div>
-            		</div>
-            		<div class="timeline-content">
-        				<h2>与他人分享了233.pdf</h2>
-        				<button class="btn btn-info" href="#">详细信息 >></button>
-            		</div>
-          		</li>
-          		<li>
-            		<div class="timeline-time">
-              			<strong>11.9</strong>上午 9:00
-            		</div>
-            		<div class="timeline-icon">
-              			<div class="bg-info">
-                			<i class="icon-camera"></i>
-              			</div>
-            		</div>
-            		<div class="timeline-content">
-   						<h2>评论了用户dongchangzhang关于233.pdf的笔记</h2>
-   						<button class="btn btn-info" href="#">详细信息 >></button>
-            		</div>
-          		</li>
-          		<li>
-            		<div class="timeline-time">
-              			<strong>11.10</strong>上午 10:00
-            		</div>
-            		<div class="timeline-icon">
-              			<div class="bg-info">
-                			<i class="icon-camera"></i>
-              			</div>
-            		</div>
-            		<div class="timeline-content">
-   						<h2>评论了用户dongchangzhang关于233.pdf的笔记</h2>
-   						<p>2333333333333333333333333333333333333333333333333333333</p>
-   						<button class="btn btn-info" href="#">详细信息 >></button>
-            		</div>
-          		</li>
-          		<li>
-            		<div class="timeline-time">
-              			<strong>11.9</strong>上午 9:00
-            		</div>
-            		<div class="timeline-icon">
-              			<div class="bg-info">
-                			<i class="icon-camera"></i>
-              			</div>
-            		</div>
-            		<div class="timeline-content img">
-   						<h2>评论了用户dongchangzhang关于233.pdf的笔记</h2>
-   						<img src="sources/pics/1.jpg" height=100% width=100%>
-   						<button class="btn btn-info" href="#">详细信息 >></button>
-            		</div>
-          		</li>
+          			<% } %>
+          		<% } %>
         	</ul>
       	</div>
     </div>

@@ -90,14 +90,6 @@ public class LoginAction {
 	}
 	// Action : Sign Up
 	public String signUp() {
-		if (mail == null || passwd == null || passwd_confirm == null 
-				|| mail.equals("") || passwd.equals("") || passwd_confirm.equals("")) {
-			return "INSERTERROR";
-		}
-		// test password
-		if (!passwd.equals(passwd_confirm)) {
-			return "PASSWORDERROE";
-		}
 		// test email
 		String sql_email = "select * from User where mail=\"" + mail + "\"";
 		MysqlConnecter mc_email = new MysqlConnecter();

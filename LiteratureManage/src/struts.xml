@@ -12,7 +12,7 @@
 		</action>
 	<!--"src/com/teamghz"signUp-->
 		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
-			<result name="SUCCESS">/index.jsp</result>
+			<result name="SUCCESS">/personalcenter.jsp</result>
 			<result name="PASSWORDERROE">/index.jsp</result>
 			<result name="EMAILEXIST">/index.jsp</result>
 			<result name="INSERTERROR">/index.jsp</result>
@@ -41,8 +41,8 @@
 			<result>/filemanage.jsp</result>
 		</action>
 	<!--去时间线上-->
-		<action name="timeLine">
-			<result>/timeline.jsp</result>
+		<action name="timeLine" class="com.teamghz.action.TimeLine">
+			<result name="SUCCESS">/timeline.jsp</result>
 		</action>
 	<!--去设置-->
 		<action name="settings">

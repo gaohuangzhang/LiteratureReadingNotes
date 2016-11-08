@@ -16,16 +16,25 @@
 	<script type="text/javascript">
 		$().ready(function() {
 	        $("#signup_form").validate({
+	        	onsubmit: false,
             	success: "valid",
              	rules: {
-             		onsubmit: false,
                 	name: {
                     	required: true,
-                     	minlength: 3
+                     	minlength: 1
                  	},
                  	mail: {
                      	required: true,
-                     	email: true
+                     	email: true,
+                     	remote: {
+                     		url: "com.teamghz.action.LoginAction.signUp.action",
+                     		type: "post",
+                     		cache: false,
+                     		datatype: "json",
+                     		data: {
+                     			
+                     		}
+                     	}
                  	},
                  	passwd: {
                      	required: true,
@@ -39,14 +48,15 @@
              	},
 		        messages: {
                  	name: {
-				    	required: "必需字段",
-				        minlength: "不能少于3个字符"
+				    	required: "请输入用户名",
+				        minlength: "不能少于1个字符"
 			        },
                  	mail: {
-                     	required: "必需字段",
+                     	required: "请输入邮箱",
+                     	remote: "该邮箱已经存在"
                  	},
                  	passwd: {
-                     	required: "必需字段",
+                     	required: "请输入密码",
                      	minlength: "不能少于6个字符",
                      	maxlength: "不能大于20个字符"
                  	},
