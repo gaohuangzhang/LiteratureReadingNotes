@@ -21,6 +21,11 @@
 	                removeHoverDom: removeHoverDom,
 	                selectedMulti: false
 	            },
+	            check: {
+	        		enable: true,
+	        		chkStyle: "checkbox",
+	        		chkboxType: { "Y": "s", "N": "s" }
+	        	},
 	            edit: {
 	                enable: true,
 	                editNameSelectAll: true,
@@ -64,6 +69,12 @@
             pId: 2,
             name: "叶子节点 2-1"
         }];
+		var zNodes2 =[
+		 			{ id:1, pId:0, name:"zTree Home", url:"http://www.ztree.me/", target:"_blank"},
+		 			{ id:2, pId:0, name:"zTree in Google", url:"http://code.google.com/p/jquerytree/", target:"_blank"},
+		 			{ id:3, pId:0, name:"zTree in Iteye", url:"http://ztreeapi.iteye.com/", target:"_blank"},
+		 			{ id:4, pId:0, name:"Nothing...", url:"", target:"_blank", click:"alert('我是不会跳转的...');"}
+		 		];
         var log, className = "dark";
 
         function beforeDrag(treeId, treeNodes) {
@@ -176,7 +187,7 @@
 		$(document).ready(function(){
 			$("#selectAll").bind("click", selectAll);
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
-			$.fn.zTree.init($("#treeDemo2"), setting);
+			$.fn.zTree.init($("#treeDemo2"), setting, zNode2);
 			
 		});
 		//-->
