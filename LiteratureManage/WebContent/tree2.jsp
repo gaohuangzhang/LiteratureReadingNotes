@@ -187,7 +187,7 @@
 		$(document).ready(function(){
 			$("#selectAll").bind("click", selectAll);
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
-			$.fn.zTree.init($("#treeDemo2"), setting, zNode2);
+			$.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
 			
 		});
 		//-->
