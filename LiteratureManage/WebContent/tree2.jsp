@@ -40,6 +40,7 @@
 	            callback: {
 	                // 调用方法 后面是函数名 到下面找
 	                beforeDrag: beforeDrag,
+	                beforeDrop: beforeDrop,
 	                beforeEditName: beforeEditName,
 	                beforeRemove: beforeRemove,
 	                beforeRename: beforeRename,
@@ -48,7 +49,23 @@
 	                onRename: onRename
 	            }
 		};
-
+		var setting2 = {
+				edit: {
+					enable: true,
+					showRemoveBtn: false,
+					showRenameBtn: false
+				},
+				data: {
+					simpleData: {
+						enable: true
+					}
+				},
+				callback: {
+					beforeDrag: beforeDrag,
+					beforeDrop: beforeDrop,
+					beforeClick: beforeClick
+				}
+			};
 		var zNodes1 = [{
             id: 1,
             pId: 0,
@@ -58,7 +75,7 @@
             id: 11,
             pId: 1,
             name: "叶子节点 1-1",
-            href: "http://www.baidu.com"
+            url: "http://www.baidu.com"
         }, {
             id: 2,
             pId: 0,
@@ -119,7 +136,7 @@
         }
         // 点击时候 执行的动作 现在是打开链接
         function beforeClick(treeId, treeNode) {
-            window.open(treeNode.href);
+            window.open(treeNode.url);
             return true;
         }
 
@@ -187,7 +204,7 @@
 		$(document).ready(function(){
 			$("#selectAll").bind("click", selectAll);
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
-			$.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
+			$.fn.zTree.init($("#treeDemo2"), setting2, zNodes2);
 			
 		});
 		//-->
