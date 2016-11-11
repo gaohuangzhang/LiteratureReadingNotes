@@ -1,4 +1,4 @@
-# 创建数据库和相应的表
+﻿# 创建数据库和相应的表
 EDIT@20160929
 > 创建数据库
 
@@ -89,7 +89,22 @@ CREATE TABLE Note
   FOREIGN KEY (userid) REFERENCES User(userid),
   FOREIGN KEY (articleid) REFERENCES Article(articleid)
 );
-
+CREATE TABLE Tree
+(
+  id INT(11) NOT NULL AUTO_INCREMENT primary key,
+  nodename varchar(255),
+  pid INT(11),
+  userid        INT(11),
+  FOREIGN KEY (userid) REFERENCES User(userid)
+);
+#测试树(userid=2)
+insert into Tree(nodename,pid,userid) values('A',0,2);
+insert into Tree(nodename,pid,userid) values('B',1,2);
+insert into Tree(nodename,pid,userid) values('C',1,2);
+insert into Tree(nodename,pid,userid) values('D',2,2);
+insert into Tree(nodename,pid,userid) values('E',2,2);
+insert into Tree(nodename,pid,userid) values('F',3,2);
+insert into Tree(nodename,pid,userid) values('G',6,2);
 # 请增加执行
 USE DBGHZ;
 # 头像url
