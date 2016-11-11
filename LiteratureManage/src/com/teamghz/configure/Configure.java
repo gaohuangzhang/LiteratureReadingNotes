@@ -32,7 +32,7 @@ public class Configure {
 	 * when run on tomcat maybe you want to edit it
 	 * where you want to save on the server, 
 	 */
-	public final static String SLOCATION = "Files\\";\
+	public final static String SLOCATION = "Files\\";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";

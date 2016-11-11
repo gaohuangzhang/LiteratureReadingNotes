@@ -64,7 +64,7 @@
     				<div class="panel-body">
        					<ul class="nav nav-pills nav-stacked">
 							<li class="active"><a href="#panel-1" data-toggle="tab">修改笔记</a></li>
-							<li><a href="#panel-2" data-toggle="tab">构建分类树</a></li>
+							<li><a href="tree2.jsp" data-toggle="tab">构建分类树</a></li>
 							<li><a href="#panel-3" data-toggle="tab">分类 链接文档</a></li>
 							<li><a href="#panel-4" data-toggle="tab">类别修改</a></li>
 							<li><a href="#panel-5" data-toggle="tab">修改阅读状态</a></li>

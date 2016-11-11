@@ -146,4 +146,9 @@
 				<result type="json"></result>
 			</action>
 		</package>
+	<!--分类树动作-->
+	<package name="TreeManage" extends="struts-default">
+		<action name="Searchtree" class="com.teamghz.action.Treemanage" method="searchtree">
+		</action>
+	</package>
 </struts> 
