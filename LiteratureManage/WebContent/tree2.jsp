@@ -5,7 +5,7 @@
 
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - multiTree</TITLE>
+	<TITLE></TITLE>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="sources/css/demo.css" type="text/css">
     <link rel="stylesheet" href="sources/css/zTreeStyle/zTreeStyle.css" type="text/css">
