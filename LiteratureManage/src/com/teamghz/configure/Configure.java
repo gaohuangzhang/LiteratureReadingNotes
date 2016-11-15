@@ -8,7 +8,7 @@ public class Configure {
 	
 	public final static String USERNAME = "root";
 
-	public final static String PASSWORD = "password";
+	public final static String PASSWORD = "123456";
 
 	public final static String DBNAME   = "DBGHZ";
 	
@@ -27,17 +27,17 @@ public class Configure {
 	 * Windows: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
-	public final static String LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
+	public final static String LOCATION = "\\home\\me\\GitHub\\LiteratureReadingWebsite\\LiteratureManage\\WebContent\\Files\\";
 	/**
 	 * when run on tomcat maybe you want to edit it
 	 * where you want to save on the server, 
 	 */
-	public final static String SLOCATION = "Files/";
+	public final static String SLOCATION = "Files\\";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";
 	 */
-	public final static String  SEPARATOR = "/";/*windows add twice*/
+	public final static String  SEPARATOR = "\\";/*windows add twice*/
 	
 	/**
 	 * url begin with this
@@ -48,7 +48,7 @@ public class Configure {
 	 * Windows: "\\\\"
 	 * Linux: "/"
 	 */
-	public final static String MYSQL_SEPARATOR = "/";
+	public final static String MYSQL_SEPARATOR = "\\\\";
 	/**
 	 * read status
 	 * 
