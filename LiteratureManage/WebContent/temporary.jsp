@@ -35,7 +35,8 @@
 	} 
 	</script> 
 </head>
-	<body style="background:#e8e8e8;">
+	<body >
+
 	<div class="city" style="text-align:center;">
 	<!-- 返回成功信息 -->
 		<% String a = (String)request.getAttribute("flag"); %>

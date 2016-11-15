@@ -24,7 +24,7 @@ public class PersonalCenterAction {
 		String usermail = (String) session.getAttribute("usermail");
 		ArrayList<Map<String, String>> tmp = mc.select("select userid from User where mail=\"" + usermail +"\"");
 		String id = tmp.get(0).get("1");
-		String sql = "select Article.articlename, Article.url, Article.articleid, Article.comment, User.username, Share.time, Share.feeling from User, Article, Share  WHERE User.userid=Share.userid and Share.articleid=Article.articleid ORDER BY Share.id";
+		String sql = "select Article.articlename, Article.url, Article.articleid, Article.comment, User.username, Share.time, Share.feeling, User.userid from User, Article, Share  WHERE User.userid=Share.userid and Share.articleid=Article.articleid ORDER BY Share.id";
 		ArrayList<Map<String, String>> result = mc.select(sql);
 		session.setAttribute("sharelist", result);
 		} catch (Exception e) {
