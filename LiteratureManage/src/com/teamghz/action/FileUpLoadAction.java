@@ -19,7 +19,14 @@ public class FileUpLoadAction extends ActionSupport {
 	private String articlename;
 	private String fileContentType;
 	private String flag;
+	private String url;
 	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public String getArticlename() {
 		return articlename;
 	}
@@ -118,8 +125,8 @@ public class FileUpLoadAction extends ActionSupport {
 			System.out.println(url);
 			ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + usermail + "\"");
 			String userid = result.get(0).get("1");
-			String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment) values("
-					+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\")";
+			String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment, type) values("
+					+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\", \"PDF\")";
 			System.out.println(sql_article);
 			mc.update(sql_article);
 			ArrayList<Map<String, String>> result1 = mc.select("select articleid from Article where url=\"" + url + "\"");
@@ -143,4 +150,19 @@ public class FileUpLoadAction extends ActionSupport {
 			return "FALSE";
 		}
 	}
+	public String urlUpload()  {
+		ServletRequest request = ServletActionContext.getRequest();
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		String usermail = (String) session.getAttribute("usermail");
+		MysqlConnecter mc = new MysqlConnecter();
+		ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + usermail + "\"");
+		String userid = result.get(0).get("1");	
+		String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment, type) values("
+				+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\", \"URL\")";
+		mc.update(sql_article);
+		flag = "TRUE";
+		return "SUCCESS";
+	}
+	
 }

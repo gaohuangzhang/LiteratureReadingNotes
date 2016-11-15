@@ -80,9 +80,11 @@ public class ReadArticle {
 		MysqlConnecter mc = new  MysqlConnecter();
 		String sql = "select Note.notename, Note.note, Note.time, User.username from Note, User where Note.articleid=" + id + " and User.userid = Note.userid";
 		String sql_update = "update Article set status=\"COARSE_READ\" where articleid=" + id;
-		String sql_status = "select status from Article where articleid=" + id;
+		String sql_status = "select status, type from Article where articleid=" + id;
+		System.out.println(sql_status);
 		ArrayList<Map<String, String>> st = mc.select(sql_status);
 		String status = st.get(0).get("1");
+		String type = st.get(0).get("2");
 		if (!status.equals("INTENSIVE_READ") && !status.equals("COARSE_READ")) {
 			mc.update(sql_update);
 		}
@@ -92,6 +94,8 @@ public class ReadArticle {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		session.setAttribute("note", r);
+		session.setAttribute("type", type);
+		System.out.println(type);
 		System.out.println(url);
 		return "SUCCESS";
 	}
