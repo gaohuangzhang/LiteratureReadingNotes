@@ -8,6 +8,7 @@
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="sources/css/toastr.css" rel="stylesheet">
+	<link href="sources/css/animate.css" rel="stylesheet">
 	<script src="sources/js/messages_zh.js"></script>
 	<script src="sources/js/jquery-3.1.1.min.js"></script>
 	<script src="sources/js/toastr.js"></script>
@@ -27,13 +28,23 @@
                      	required: true,
                      	email: true,
                      	remote: {
-                     		url: "com.teamghz.action.LoginAction.signUp.action",
+                     		url: "EmailValidate.action",
                      		type: "post",
                      		cache: false,
-                     		datatype: "json",
                      		data: {
-                     			
-                     		}
+                     			mail: function() {
+                     				return $("#mail").val();
+                     			}
+                     		},
+                     		dataType: "json",
+                     		dataFilter: function(data, type) {  
+                                if (data == "true") {  
+                                    return true;  
+                                }
+                                else {  
+                                    return false;  
+                                }  
+                            }
                      	}
                  	},
                  	passwd: {
@@ -70,15 +81,6 @@
 		$('#signup_button').click(function () {
             toastr.success("注册成功");
         });
-		function signUp() {
-			var xmlhttp;
-			if (window.XMLHttpRequest) {
-				xmlhttp = new XMLHttpRequest();
-			}
-			else {
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-		}
 	</script>
 	<style>
 		.error {
@@ -87,6 +89,12 @@
         .valid {
             color: green;
         }
+        .W{
+			background-color: #ffffff;
+		}
+		.G {
+			background-color:#6BB50B;
+		}
 	</style>
 	<title>LiteratureManager Welcome</title>
 </head>
@@ -94,7 +102,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
 					<div class="navbar-header">
 					 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="home-navbar">
 					 		<span class="sr-only">Toggle navigation</span>
@@ -102,20 +110,18 @@
 					 		<span class="icon-bar"></span>
 					 		<span class="icon-bar"></span>
 					 	</button> 
-					 	<a class="navbar-brand" href="#" style="padding-left: 20px;">主页</a>
+					 	<a class="navbar-brand" href="#" style="padding-left: 20px; color: #ffffff;">主页</a>
 					</div>
 					<div class="collapse navbar-collapse" id="home-navbar">
-						<form action="search_issues" class="navbar-form navbar-left" role="search" id="search_form" method="post">
-							<div class="form-group">
-								<input name="issue" type="text" class="form-control" />
-							</div> 
-							<button type="submit" class="btn btn-default">搜索</button>
-						</form>
 						<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-							<li><a id="login" href="#login-modal" role="button" class="btn" data-toggle="modal">登录</a></li>
-							<li><a id="signup" href="#signup-modal" role="button" class="btn" data-toggle="modal">注册</a></li>
+							<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+								<a id="login" href="#login-modal" role="button" class="btn" data-toggle="modal" style="color:#ffffff;">登录</a>
+							</li>
+							<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
+								<a id="signup" href="#signup-modal" role="button" class="btn" data-toggle="modal" style="color:#ffffff;">注册</a>
+							</li>
 							<li class="dropdown">
-							 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">帮助<strong class="caret"></strong></a>
+							 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#ffffff;">帮助<strong class="caret"></strong></a>
 								<ul class="dropdown-menu">
 									<li><a href=about>关于</a></li>
 								</ul>

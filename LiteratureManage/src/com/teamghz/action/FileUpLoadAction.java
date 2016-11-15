@@ -23,7 +23,16 @@ public class FileUpLoadAction extends ActionSupport {
 	private String articlename;		// 文章名，自定义
 	private String fileContentType;		// 文件内容类型
 	private String flag;	// 文件上传状态，TRUE成功，FALSE失败
+	private String url;
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public String getArticlename() {	// 供后台调用自定义的文章名
 		return articlename;
 	}
@@ -76,17 +85,20 @@ public class FileUpLoadAction extends ActionSupport {
 		HttpSession session = req.getSession();		// 创建session
 		String usermail = (String) session.getAttribute("usermail");	// 获取session——用户邮箱
 		File f = null;
+		File t = null;
 		if (Configure.ONTOMCAT) {
 			f = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR);
+			t = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR + "Temp" + Configure.SEPARATOR);
 			System.out.println("where: " + root + Configure.LOCATION + usermail + Configure.SEPARATOR);
 		} else {
 			f = new File(Configure.LOCATION + usermail + Configure.SEPARATOR);
-			System.out.println("where: " + Configure.LOCATION + usermail + Configure.SEPARATOR);
+			t = new File(Configure.LOCATION + usermail + Configure.SEPARATOR + "Temp" + Configure.SEPARATOR);
 		}
 		try {
 			if (!f.exists() && !f.isDirectory()) {
 				System.out.println("没有文件夹");
 				f.mkdir();
+				t.mkdir();
 				System.out.println("创建成功");
 			} else {
 				System.out.println("文件存在");

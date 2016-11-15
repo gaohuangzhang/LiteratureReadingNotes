@@ -8,42 +8,61 @@
 <html>
 <head>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<style>	
+		.W{
+			background-color: #ffffff;
+		}
+		.G {
+			background-color:#6BB50B;
+		}
+	</style>
 </head>
 <body>
-	<% ArrayList<Map<String, String>> actionResult = (ArrayList<Map<String, String>>)session.getAttribute("timeline"); 
-	   //SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:SS.S");
-	%>
+	<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    	<img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
+	<% ArrayList<Map<String, String>> actionResult = (ArrayList<Map<String, String>>)session.getAttribute("timeline"); %>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<nav class="navbar navbar-default navbar-fixed-top scroll-hide" role="navigation">
+				<nav class="navbar navbar-default navbar-fixed-top scroll-hide" style="background:#036564;border:none" role="navigation">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
+							<span class="sr-only">GHZ</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href=personalCenter>阅读</a>
+						<a class="navbar-brand" href="#" style="padding-left: 20px; color: #ffffff;">读而思之</a>
 					</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<form action="search" class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<input class="form-control" type="text" placeholder="搜索内容"/>
-							</div>
-							<button type="submit" class="btn btn-default">开始搜索</button>
-						</form>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="font-size: 16px;">
 						<ul class="nav navbar-nav navbar-right" style="padding-right:10px;">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" /><strong class="caret"></strong></a>
 								<ul class="dropdown-menu">
-									<li><a href=mainPage>我的主页</a></li>
-									<li><a href=fileManage>内容管理</a></li>
-									<li><a href=timeLine>时间线</a></li>
 									<li><a href=settings>设置</a></li>
+									<li><a href=about>关于</a></li>
 									<li class="divider"></li>
 									<li><a href=signOut>注销</a></li>
 								</ul>
+							</li>
+						</ul>
+						
+						<ul class="nav navbar-nav">
+							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+							 	<a href=personalCenter style="color:#ffffff;">个人中心</a>
+							</li>
+							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+							 	<a href=mainPage style="color:#ffffff;">我的主页</a>
+							</li>
+							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+							 	<a href=fileManage style="color:#ffffff;">内容管理</a>
+							</li>
+							<li class="active" onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+							 	<a href=timeLine style="color:#ffffff;">最佳回忆</a>
+							</li>
+							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+								<a href=search style="color:#ffffff;">站内检索</a>
 							</li>
 						</ul>
 					</div>
@@ -98,6 +117,10 @@
     <link href="sources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   	<link href="sources/css/bootstrap.css" rel="stylesheet" type="text/css">
   	<link href="sources/css/custom.css" rel="stylesheet" type="text/css">
+	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="sources/css/animate.css" rel="stylesheet">
+	<script src="sources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="sources/js/modernizr.custom.js" type="text/javascript"></script>
     <script src="sources/js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="sources/js/jquery-ui.js" type="text/javascript"></script>
     <script src="sources/js/bootstrap.min.js" type="text/javascript"></script>
