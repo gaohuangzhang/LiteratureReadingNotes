@@ -70,15 +70,17 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 		background-color:#6BB50B;
 		}
 		a {
-		color: #000000;
+		color: #205B4D;
 		}
 	</style>
 </head>
 <body  >
-<!-- background pic 
+<!-- 
 <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
-    </div>-->
+    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0" width="100%" height="50%">   
+     <img src="sources/pics/bg4.jpg" style="left:0; position:fixed;top:50%" width="100%" height="50%">     
+    </div>
+     -->
     <% String usermail = null; %>
     <% String username = null; %>
     <% try { %>
@@ -160,11 +162,11 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 						<div class="col-md-8 column">
 					<h1  class="animated  pulse" >圈子动态</h1>
 					<br>
-					<div class="animated pulse" style="text-align:right;padding:5px;">
+					<div style="text-align:right;padding:5px;">
 					<div class="btn-group pull-left" >
 						<!-- 分享标题下的用户名 -->
-						<button data-toggle="dropdown" class="btn  dropdown-toggle" style="background-color:#036564"> 
-							<span class="glyphicon glyphicon-user " style="color:#ffffff"> <% out.print(username); %></span> &nbsp;	
+						<button data-toggle="dropdown" class="btn  dropdown-toggle"> 
+							<span class="glyphicon glyphicon-user " > <% out.print(username); %></span> &nbsp;	
 						</button>			
 					</div>
 					<!-- 搜索分享 -->
@@ -190,9 +192,9 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 						
 						<span class="glyphicon  glyphicon-time pull-left "> <span style="font-weight:bold;"><% out.print(list.get(i).get("6")); %></span></span>
 						<br>
-						<h5><a href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
+						<h5><a "href=readArticle?url=<% out.print(list.get(i).get("2"));%>&articlename=<% out.print(list.get(i).get("1"));%>&id=<% out.print(list.get(i).get("3"));%>>
 							<% out.print(list.get(i).get("1") ); %>
-						</a>	</h5>
+						</a></h5>
 						
 							<%if (list.get(i).get("7") != null) {%>
 							<% if (list.get(i).get("7").length() < 140) {%>
@@ -242,7 +244,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 								
 						  	       for (int i = list1.size() - 1; i >= 0 ; --i) { %>
 								    <div class="city1 animated slideInUp" onMouseMove="this.className='white'" onmouseout="this.className='city1'">
-										<a style="color:#000000;" href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("1"));%>&id=<% out.print(list1.get(i).get("3"));%>>
+										<a  href=readArticle?url=<% out.print(list1.get(i).get("2"));%>&articlename=<% out.print(list1.get(i).get("1"));%>&id=<% out.print(list1.get(i).get("3"));%>>
 											<span class="glyphicon glyphicon-paperclip"> <% out.print(list1.get(i).get("1")); %></span>			
 										</a>
 									</div>
@@ -280,10 +282,10 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-				<ul class="nav nav-tabs nav-pills">
+				<ul class="nav nav-tabs ">
  
-  <li class="active"><a data-toggle="tab" href="#savepdf"><span class="glyphicon glyphicon-open"> 上传pdf</span></a></li>
-  <li><a data-toggle="tab" href="#saveurl"><span class="glyphicon glyphicon-link"> 保存url</span></a></li>
+  <li class="active" ><a data-toggle="tab" href="#savepdf"><span class="glyphicon glyphicon-open" > 上传pdf</span></a></li>
+  <li ><a data-toggle="tab" href="#saveurl"><span class="glyphicon glyphicon-link" > 保存url</span></a></li>
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 </ul>
 	
@@ -299,7 +301,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
         					<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
         				</div>
     				</form>
-    				<button type="submit" class="btn btn-success pull-right" form="upload_form" >上传</button>
+    				<button type="submit" class="btn  pull-right" style="background:#036564;color:#ffffff;" form="upload_form" >上传文件</button>
     				</div>
     				<div id="saveurl" class="tab-pane ">
     				<form action="urlUpLoad" method="post"  id="urlupload_form">
@@ -310,7 +312,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
         					<input name="url" id='url'  class="form-control" value="http://" type="text" placeholder="请在这儿输入url" required style="padding-left: 30px; height: 42px;" />
         				</div>
     				</form>
-    				<button type="submit" class="btn btn-success pull-right" form="urlupload_form" >上传</button>
+    				<button type="submit" class="btn pull-right" style="background:#036564;color:#ffffff;" form="urlupload_form" >上传URL</button>
     				</div>
 				</div>
 				</div>

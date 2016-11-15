@@ -156,15 +156,16 @@
 					<img src="sources/pics/Avatar.png" height="240" width="240" class="img-rounded"/>
 					<p class="text-center">
 						<hr>
+						<div  style="width:100%;">
 						<span class="glyphicon glyphicon-user ">
 						<!-- 显示用户名和邮箱 -->
 						<% out.print(username); %></span>
 						<br><br>
-						<a href="mailto:<% out.print(usermail); %>">
+						
 						<span class="glyphicon glyphicon-send "> <% out.print(usermail); %></span>
-						</a>
+						</div>
 					</p>
-					<hr>
+					
 				</div>
 				<!-- 所有的书籍信息页面 -->
 				<div class="col-md-9 column">	
@@ -326,27 +327,12 @@
 									 
 							<input class="form-control pull-right" style="width:60%;margin: 12px;" id="search-highlight5" name="search-highlight5" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list5" autocomplete="off">
 							
-								<div class="vertical highlight_list5">						
-								<% for (int i = all_files - 1; i >= 0; i--) { %>
+								<div class="vertical highlight_list5">	
+								<br><br>					
+								<h2>我的分类树</h2>
 								
-								<div class="city  animated fadeInRight" onMouseMove="this.className='white'" onmouseout="this.className='city'" >	
-									<span class="glyphicon glyphicon-paperclip" >  
-										<a style="color:#000000;" href=readArticle?url=<% out.print(all.get(i).get("2"));%>&articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(all.get(i).get("3"));%>>		
-											<%out.print(all.get(i).get("1")); %>
-										</a>
-									</span>						
-									<br><br>
-									<span class="glyphicon glyphicon-tags" > </span>
-									<br>
-									<a style="color:#000000;" href=toShare?articlename=<% out.print(all.get(i).get("1"));%>&id=<% out.print(all.get(i).get("3"));%>><span class="glyphicon glyphicon-share-alt pull-right"> </span></a>
 								</div>
-								<% } %>
-								</div>
-								<%if (all_files == 0) {%>
-								<div class="city animated fadeInRight ">
-								<h4>你还没有添加过内容呢，我等你哦！</h4>
-								</div>
-								<%} %>
+								
 							</div>
 						</div>
 					</div>
