@@ -15,6 +15,6 @@
 *  [项目介绍](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/introduce)
 *  [使用帮助](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/help)
 *  [经验总结](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/summary)
-*  [关于作者](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/author)
+*  [关于作者](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/authors)
 
 
