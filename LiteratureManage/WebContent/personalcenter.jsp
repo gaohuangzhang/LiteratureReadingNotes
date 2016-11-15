@@ -1,13 +1,12 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html> <head> 
-<script type="text/javascript" 
-src="sources/js/jquery-2.0.2.min.js"></script> <script 
-type="text/javascript" 
-src="sources/js/jquery.hideseek.min.js"></script> <script 
-type="text/javascript" src="sources/js/initializers.js"></script> <link 
-href="sources/css/bootstrap.min.css" rel="stylesheet">
+<html> 
+<head> 
+	<script type="text/javascript" src="sources/js/jquery-2.0.2.min.js"></script> 
+	<script type="text/javascript" src="sources/js/jquery.hideseek.min.js"></script> 
+	<script type="text/javascript" src="sources/js/initializers.js"></script> 
+	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script src="sources/js/modernizr.custom.js" type="text/javascript"></script>
@@ -35,7 +34,7 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
     	};
 	</script>
 	<style>
-	.city {
+		.city {
 			margin: 5px;
 			padding: 10px;		
 			height:150px;
@@ -43,7 +42,6 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 			background-color: #f9f9f9;
 		} 
 		.city1 {
-			
 			margin: 2px;
 			padding: 12px;			
 			background-color: #f3f3f3;
@@ -57,7 +55,6 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 			padding: 50px;	
 		}		
 		.white {
-			
 			margin: 2px;
 			padding: 12px;			
 			background-color: #6BB50B;
@@ -74,13 +71,12 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 		}
 	</style>
 </head>
-<body  >
-<!-- 
-<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0" width="100%" height="50%">   
-     <img src="sources/pics/bg4.jpg" style="left:0; position:fixed;top:50%" width="100%" height="50%">     
+<body>
+<!-- background pic -->
+	<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    	<img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
     </div>
-     -->
+
     <% String usermail = null; %>
     <% String username = null; %>
     <% try { %>
@@ -110,11 +106,17 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<div class="col-md-12 column">
 			<nav class="navbar navbar-default  navbar-content-center navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
 				<div class="navbar-header" >
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+					 	<span class="sr-only">GHZ</span>
+					 	<span class="icon-bar"></span>
+					 	<span class="icon-bar"></span>
+					 	<span class="icon-bar"></span>
+					 	</button> 
+					 <a class="navbar-brand" href="#">读而思之</a>
 				</div>
 				
-				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
-					<ul  class="nav navbar-nav">
+				<div class="collapse navbar-collapse" style="font-size: 16px;" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
 						<li class="active" onMouseMove="this.className='G animated  swing'" onmouseout="this.className='active'">
 							 <a  href=personalCenter style="color:#ffffff;">个人中心</a>
 						</li>
@@ -133,12 +135,9 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 					</ul>
 					
 					<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
-					
-						
 						<li class="dropdown" >
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
 							<ul class="dropdown-menu">
-								
 								<li><a href=settings>设置</a></li>
 								<li><a href=about>关于</a></li>
 								<li class="divider"></li>
@@ -147,7 +146,6 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 						</li>
 					</ul>
 				</div>
-				
 			</nav>
 		</div>
 		
@@ -291,11 +289,17 @@ href="sources/css/bootstrap.min.css" rel="stylesheet">
 	
 				</div>
 				<div class="modal-body" style="width: 400px;height: 200px; margin-left: 90px;">
-				<div class="tab-content">
-    				<div id="savepdf" class="tab-pane fade in active">
-					<form action="fileUpLoad" id="upload_form"  method="post" enctype="multipart/form-data">
-						<div class="form-group">
-                			<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
+					<div class="tab-content">
+    					<div id="savepdf" class="tab-pane fade in active">
+							<form action="fileUpLoad" id="upload_form"  method="post" enctype="multipart/form-data">
+								<div class="form-group">
+                					<input name="articlename" class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
+    							</div>
+    							<div class="form-group">
+        							<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
+        						</div>
+    						</form>
+    						<button type="submit" class="btn btn-success pull-right" form="upload_form" >上传</button>
     					</div>
     					<div class="form-group">
         					<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />

@@ -39,18 +39,17 @@
 	<!-- 文本编辑器 -->
 	<script>
 		var editor;
-		
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="content"]', {
-			allowFileManager : true,
-			 allowImageUpload:true,
-			 uploadJson:'sources/kindeditor/jsp/upload_json.jsp',
-			 afterUpload: function(){this.sync();},
-			 afterBlur: function(){this.sync();}, 
-			items : [
-				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+				allowFileManager : true,
+			 	allowImageUpload:true,
+			 	uploadJson:'sources/kindeditor/jsp/upload_json.jsp',
+			 	afterUpload: function(){this.sync();},
+			 	afterBlur: function(){this.sync();}, 
+				items : [
+					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+					'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 			});	
 			K('input[name=getHtml]').click(function(e) {
 				alert(editor.html());
@@ -63,9 +62,9 @@
 	<script>
 		$(document).ready(function() {
    			 $('#right-menu').sidr({
-		      name: 'sidr-right',
-		      side: 'right',
-		      source: ' #sidr'
+		      	name: 'sidr-right',
+		      	side: 'right',
+		      	source: ' #sidr'
 		    });
 		});
 	</script>
@@ -76,158 +75,190 @@
 		} 
 	</script>-->
 	<script type="text/javascript">
-		function clickButton()
-		{    
-			var url = 'markReadStatus.action';
-			var params = {
-					id:eval(document.getElementById('arid')).value
-			};
-			jQuery.post(url, params, callbackFun, 'json');
+		function intensiveRead() {    
+			$.ajax({
+				type: "POST",
+				url: "markReadStatus.action",
+				data: {"id": eval(document.getElementById('arid')).value},
+				dataType: "json",
+				success: function(data) {
+					alert(data.result);	
+				}
+			});
 		}
-		function callbackFun(data)
-		{
-		   alert(data.result);
-            }
-    </script>	
-    <script>
-        function changeFrameHeight(){
-            var ifm= document.getElementById("iframepage"); 
-            ifm.height=document.documentElement.clientHeight * 0.8;
-            
+    </script>
+    <script type="text/javascript">
+        function generate_pdf() {
+            $.ajax({
+                type: "POST",
+                url: "generatePDF.action",
+                data: {"articleID": eval(document.getElementById('arid')).value},
+                dataType: "json",
+                success: function(data) {
+                	document.getElementById('generate_pdf').setAttribute('src', data.pdfURL);
+                }
+            });
         }
-        window.onresize=function(){  
-             changeFrameHeight();  
+    </script>
+    <script>
+        function changeFrameHeight() {
+            var ifm = document.getElementById("iframepage"); 
+            ifm.height = document.documentElement.clientHeight * 0.8;
+        }
+        window.onresize = function() {  
+        	changeFrameHeight();  
         } 
-        </script>
+	</script>
 </head>
 <body>
-<!-- background pic 
-<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
-    </div>-->
+	<!-- background pic -->
+	<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    	<img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
 	<% String type = (String) session.getAttribute("type"); %>
 
 	<!-- 侧边栏 -->
-	<div class=" animated flash	" style="padding:10px;float:right;">
+	<div class="animated flash" style="padding:10px;float:right;">
 		<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif"/></a>
 	</div>
 	<div id="sidr" style="display: none;">
-	<h2>内容选项</h2>
-	<ul>
-		<button type="submit" class="btn btn-link" form="note">保存文章笔记并且退出</button>
-		<hr>
-	</ul>
-	<h2>快速入口</h2>
-	<!-- 侧边栏选项 -->
-	<ul>
-	    <!-- 获取分享的id和文章名 -->
-	    <%
-			String articlename = request.getParameter("articlename");
-			String id = request.getParameter("id");
-		%>
-	    <li><a href=toShare?articlename=<%out.print(articlename); %>&id=<%out.print(id); %>>分享这篇文章</a></li>
-	    <li><a href=mainPage>返回主页</a></li>
-	    <li><a href=personalCenter>返回个人中心</a></li>
-		<li><a href=fileManage>内容管理</a></li>
-		<li><a href=timeLine>时间线</a></li>
-		<li><a href=settings>设置</a></li>
-	</ul>
-	 
-	</div >
+		<h2>内容选项</h2>
+		<ul>
+			<button type="submit" class="btn btn-link" form="note">保存文章笔记并且退出</button>
+			<hr>
+		</ul>
+		<h2>快速入口</h2>
+		<!-- 侧边栏选项 -->
+		<ul>
+	    	<!-- 获取分享的id和文章名 -->
+	    	<%
+				String articlename = request.getParameter("articlename");
+				String id = request.getParameter("id");
+			%>
+	    	<li><a href=toShare?articlename=<%out.print(articlename); %>&id=<%out.print(id); %>>分享这篇文章</a></li>
+	    	<li><a href=mainPage>返回主页</a></li>
+	    	<li><a href=personalCenter>返回个人中心</a></li>
+			<li><a href=fileManage>内容管理</a></li>
+			<li><a href=timeLine>时间线</a></li>
+			<li><a href=settings>设置</a></li>
+		</ul>
+	</div>
 	<div class="container-fluid">
 		<div class="row-fluid clearfix">
-			<div class="row-fluid clearfix">
-			
-			</div>
+			<div class="row-fluid clearfix"></div>
 			<div class="col-md-8 column">
 				<!-- 标签栏 -->
 				<div class="tabbable" id="tabs-960120">
 					<ul class="nav nav-tabs ">
 						<li>
-							<a style="color:#000000;"><span class="glyphicon glyphicon-star-empty" > <b>标题：<% out.print(request.getParameter("articlename"));%></b></span></a>
+							<a style="color:#000000;">
+								<span class="glyphicon glyphicon-star-empty"> 
+									<b>标题：<% out.print(request.getParameter("articlename")); %></b>
+								</span>
+							</a>
 						</li>
 						<li class="active">
-							<a href="#panel-1" data-toggle="tab"><span class="glyphicon glyphicon-book"> 阅读</span></a>
-						</li>
-						<li >
-							<a href="#panel-3" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"> 查看已有笔记</span></a>	
+							<a href="#panel-1" data-toggle="tab">
+								<span class="glyphicon glyphicon-book"> 阅读</span>
+							</a>
 						</li>
 						<li>
-							<a type="button"  onclick="javascript:clickButton();" clientidmode="Static"><span class="glyphicon glyphicon-ok">  将内容标记为已精读</span></a>
+							<a href="#panel-2" data-toggle="tab">
+								<span class="glyphicon glyphicon-list-alt"> 查看已有笔记</span>
+							</a>	
+						</li>
+						<li>
+							<a href="#" type="button" onclick="intensiveRead();">
+								<span class="glyphicon glyphicon-ok"> 标记为精读</span>
+							</a>
+						</li>
+						<li>
+							<a href="#panel-3" data-toggle="tab" onclick="generate_pdf();">
+								<span class="glyphicon glyphicon-transfer"> 生成标准文档</span>
+							</a>
+						</li>
+						<li>
+							<a type="button" href="<% out.print(request.getParameter("url")); %>" download="<% out.print(request.getParameter("articlename")); %>" data-toggle="modal">
+								<span class="glyphicon glyphicon-download-alt"> 下载源文档</span>
+							</a>
 						</li>
 					</ul>
-					<div class="tab-content ">
+					<div class="tab-content">
 						<!-- 显示pdf -->
-						<div class="tab-pane  fade in active" id="panel-1">
-						<%if (type == null || type.equals("PDF")) {%>
-							 <embed id="pdf"  width="100%" height="700px" src="<% out.print(request.getParameter("url"));%>"> </embed>
-						<% } else { %>	
-						<iframe  frameborder="1"  src=<% out.print(request.getParameter("url"));%> 
-						style="width:100%; margin:0; padding:0;" id="iframepage"  onload="changeFrameHeight()" >
-						您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。</iframe>
-						<%} %>				
+						<div class="tab-pane fade in active" id="panel-1">
+						<% if (type == null || type.equals("PDF")) { %>
+							<embed id="pdf" width="100%" height="700px" src="<% out.print(request.getParameter("url")); %>"></embed>
+						<% }
+							else { 
+						%>	
+						    <iframe frameborder="1" src=<% out.print(request.getParameter("url")); %> 
+					                style="width:100%; margin:0; padding:0;" id="iframepage" onload="changeFrameHeight()">
+								您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。
+							</iframe>
+						<% } %>				
 						</div>
-						
 						<!-- 显示笔记 -->
-						<% ArrayList<Map<String, String>> note = (ArrayList<Map<String, String>>) session.getAttribute("note");%>
-						<div class="tab-pane " id="panel-3">
-						<%for (int i = note.size() -1; i >= 0; --i) { %>
-						
-						<div class="city animated fadeInUp">
-						<h2>
-						[<%out.print(note.get(i).get("4")); %>]
-						<%out.print(note.get(i).get("1")); %>
-						</h2>
-						<%out.print(note.get(i).get("3")); %>
-						<br></br>
-						<%out.print(note.get(i).get("2")); %>
+						<% ArrayList<Map<String, String>> note = (ArrayList<Map<String, String>>) session.getAttribute("note"); %>
+						<div class="tab-pane" id="panel-2">
+						<% for (int i = note.size() -1; i >= 0; --i) { %>
+					    	<div class="city animated fadeInUp">
+					        	<h2>
+									[<% out.print(note.get(i).get("4")); %>]
+						            <% out.print(note.get(i).get("1")); %>
+						        </h2>
+						        <% out.print(note.get(i).get("3")); %>
+						      	<br></br>
+					        	<% out.print(note.get(i).get("2")); %>
+					       </div>
+					    <% } %>	
+					   	<% if (note.size() == 0) { %>
+					       	<div class="city animated fadeInUp">
+					       		还没有为这篇文章添加过任何笔记。
+					       	</div>
+				    	<% } %>
 						</div>
-					   <%} %>	
-					   <%if (note.size() == 0) {%>
-					   <div class="city animated fadeInUp">
-					   还没有为这篇文章添加过任何笔记。
-					   </div>
-					   <%} %>
+						<div class="tab-pane fade in active" id="panel-3">
+							<embed id="generate_pdf" width="100%" height="700px"></embed>
 						</div>
 					</div>	
 				</div>
 				<!-- 顶部栏 -->
 			</div>
 			<div class="col-md-4 column">
-			<h1><span class="glyphicon glyphicon-pencil" > 记录笔记</span></h1>
-			<hr>
-			<div class="panel panel-default" >
-				<div class="panel-body">      			   
-					<form action="saveAndLeave" id="note" method="post">
-						<!-- 标题栏 -->
-						<div class="form-group">
-							<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
-							<!-- 隐藏的文章id -->
-							<input type='text' name="id" id="arid" class="pull-left" readonly style="width:5%;display:none;"  value=<%out.print(request.getAttribute("id")); %>></input>	
-						</div >
-						<br><br>
-						<!-- 文本区域 -->
-						<textarea id="texta" name="content" style="width:100%;height:300%;visibility:hidden;"></textarea>
-						<br>
-						<!-- 右下角按钮 -->
-						<div class="btn-toolbar" role="toolbar" style="text-align:right;">
-							<input type="button" name="getHtml" value="HTML" />
-							<input type="button" name="clear" value="清空" />
-							<input type="reset" name="reset" value="撤销" />
-							<input type="submit" value="提交并退出"></input>
-						</div>		
-					</form>
-				</div>		
+				<h1><span class="glyphicon glyphicon-pencil" > 记录笔记</span></h1>
+				<hr>
+				<div class="panel panel-default">
+					<div class="panel-body">      			   
+						<form action="saveAndLeave" id="note" method="post">
+							<!-- 标题栏 -->
+							<div class="form-group">
+								<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
+								<!-- 隐藏的文章id -->
+								<input type='text' name="id" id="arid" class="pull-left" readonly style="width:5%;display:none;"  value=<%out.print(request.getAttribute("id")); %> />	
+							</div>
+							<br><br>
+							<!-- 文本区域 -->
+							<textarea id="texta" name="content" style="width:100%;height:300%;visibility:hidden;"></textarea>
+							<br>
+							<!-- 右下角按钮 -->
+							<div class="btn-toolbar" role="toolbar" style="text-align:right;">
+								<input type="button" name="getHtml" value="HTML" />
+								<input type="button" name="clear" value="清空" />
+								<input type="reset" name="reset" value="撤销" />
+								<input type="submit" value="提交并退出"></input>
+							</div>		
+						</form>
+					</div>		
+				</div>
+				<hr>
 			</div>
-			<hr>
 		</div>
 	</div>
 	<footer>
 		<hr>
 		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-	</footer>
-</div> 
+	</footer> 
 </body> 
 </html>
