@@ -29,17 +29,32 @@ public class Treemanage {
 		String userid=result.get(0).get("1");
 		username = result.get(0).get("2");
 		session.setAttribute("username", username);
+		
+		
 		userid = "2";
+		
 		sql = "select * from Tree where userid=\"" + userid + "\"" ;
 		result =  mc.select(sql);
 		List<String> tree = new ArrayList<String>();
 		String tem ="";
 		int i;
 		for(i = 0;i < result.size();i++){
-			tem ="{id:"+result.get(i).get("1")+", pid:"+result.get(i).get("3")+", name:\""+result.get(i).get("2")+"\" , open:true}";
+			tem ="{id:"+result.get(i).get("1")+", pId:"+result.get(i).get("3")+", name:\""+result.get(i).get("2")+"\" , open:true}";
 			tree.add(tem);
 		}
 		ServletResponse response = null;
-		response.getWriter().print(JSONArray.fromObject(tree).toString());
+		
+		String s1 = "{id:1, pId:0, name:\"test1\" , open:true}";  
+        String s2 = "{id:2, pId:1, name:\"test2\" , open:true}";  
+        String s3 = "{id:3, pId:1, name:\"test3\" , open:true}";  
+        String s4 = "{id:4, pId:2, name:\"test4\" , open:true}";  
+        List<String> lstTree = new ArrayList<String>();  
+        lstTree.add(s1);  
+        lstTree.add(s2);  
+        lstTree.add(s3);  
+        lstTree.add(s4);
+        
+		response.setCharacterEncoding("UTF-8"); 
+		response.getWriter().print(JSONArray.fromObject(lstTree).toString());
 	}
 }
