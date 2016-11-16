@@ -1,5 +1,5 @@
-<%@ taglib uri="/struts-tags" prefix="s"%>
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
 <head>
@@ -7,7 +7,9 @@
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="sources/kindeditor/themes/default/default.css" rel="stylesheet">
+	<link href="sources/css/toastr.css" rel="stylesheet">
 	<script src="sources/js/jquery-3.1.1.min.js"></script>
+	<script src="sources/js/toastr.js"></script>
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
 	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
@@ -35,7 +37,6 @@
 		} 
 	</style>
 	<title>阅读PDF</title>
-	
 	<!-- 文本编辑器 -->
 	<script>
 		var editor;
@@ -68,12 +69,6 @@
 		    });
 		});
 	</script>
-	<!--<script >
-		window.onbeforeunload = function(event) {
-			alert(111);
-			return confirm("确定退出吗");
-		} 
-	</script>-->
 	<script type="text/javascript">
 		function intensiveRead() {    
 			$.ajax({
@@ -96,6 +91,7 @@
                 dataType: "json",
                 success: function(data) {
                 	document.getElementById('generate_pdf').setAttribute('src', data.pdfURL);
+                	toastr.success("生成成功");
                 }
             });
         }
@@ -118,10 +114,9 @@
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
 	<% String type = (String) session.getAttribute("type"); %>
-
 	<!-- 侧边栏 -->
-	<div class="animated flash" style="padding:10px;float:right;">
-		<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif"/></a>
+	<div class="animated flash" style="padding: 10px; float: right;">
+		<a id="right-menu" href="#sidr"><img src="sources/pics/menu.gif" /></a>
 	</div>
 	<div id="sidr" style="display: none;">
 		<h2>内容选项</h2>
@@ -137,7 +132,7 @@
 				String articlename = request.getParameter("articlename");
 				String id = request.getParameter("id");
 			%>
-	    	<li><a href=toShare?articlename=<%out.print(articlename); %>&id=<%out.print(id); %>>分享这篇文章</a></li>
+	    	<li><a href=toShare?articlename=<% out.print(articlename); %>&id=<% out.print(id); %>>分享这篇文章</a></li>
 	    	<li><a href=mainPage>返回主页</a></li>
 	    	<li><a href=personalCenter>返回个人中心</a></li>
 			<li><a href=fileManage>内容管理</a></li>
@@ -151,9 +146,9 @@
 			<div class="col-md-8 column">
 				<!-- 标签栏 -->
 				<div class="tabbable" id="tabs-960120">
-					<ul class="nav nav-tabs ">
+					<ul class="nav nav-tabs">
 						<li>
-							<a style="color:#000000;">
+							<a style="color: #000000;">
 								<span class="glyphicon glyphicon-star-empty"> 
 									<b>标题：<% out.print(request.getParameter("articlename")); %></b>
 								</span>
@@ -161,27 +156,27 @@
 						</li>
 						<li class="active">
 							<a href="#panel-1" data-toggle="tab">
-								<span class="glyphicon glyphicon-book"> 阅读</span>
+								<span class="glyphicon glyphicon-book">阅读</span>
 							</a>
 						</li>
 						<li>
 							<a href="#panel-2" data-toggle="tab">
-								<span class="glyphicon glyphicon-list-alt"> 查看已有笔记</span>
+								<span class="glyphicon glyphicon-list-alt">查看已有笔记</span>
 							</a>	
 						</li>
 						<li>
 							<a href="#" type="button" onclick="intensiveRead();">
-								<span class="glyphicon glyphicon-ok"> 标记为精读</span>
+								<span class="glyphicon glyphicon-ok">标记为精读</span>
 							</a>
 						</li>
 						<li>
 							<a href="#panel-3" data-toggle="tab" onclick="generate_pdf();">
-								<span class="glyphicon glyphicon-transfer"> 生成标准文档</span>
+								<span class="glyphicon glyphicon-transfer">生成标准文档</span>
 							</a>
 						</li>
 						<li>
-							<a type="button" href="<% out.print(request.getParameter("url")); %>" download="<% out.print(request.getParameter("articlename")); %>" data-toggle="modal">
-								<span class="glyphicon glyphicon-download-alt"> 下载源文档</span>
+							<a type="button" href=<% out.print(request.getParameter("url")); %> download=<% out.print(request.getParameter("articlename")); %> data-toggle="modal">
+								<span class="glyphicon glyphicon-download-alt">下载源文档</span>
 							</a>
 						</li>
 					</ul>
@@ -189,12 +184,9 @@
 						<!-- 显示pdf -->
 						<div class="tab-pane fade in active" id="panel-1">
 						<% if (type == null || type.equals("PDF")) { %>
-							<embed id="pdf" width="100%" height="700px" src="<% out.print(request.getParameter("url")); %>"></embed>
-						<% }
-							else { 
-						%>	
-						    <iframe frameborder="1" src=<% out.print(request.getParameter("url")); %> 
-					                style="width:100%; margin:0; padding:0;" id="iframepage" onload="changeFrameHeight()">
+							<embed id="pdf" width="100%" height="700px" src=<% out.print(request.getParameter("url")); %>></embed>
+						<% } else { %>	
+						    <iframe frameborder="1" src=<% out.print(request.getParameter("url")); %> style="width:100%; margin:0; padding:0;" id="iframepage" onload="changeFrameHeight()">
 								您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。
 							</iframe>
 						<% } %>				
@@ -209,7 +201,7 @@
 						            <% out.print(note.get(i).get("1")); %>
 						        </h2>
 						        <% out.print(note.get(i).get("3")); %>
-						      	<br></br>
+						      	<br><br>
 					        	<% out.print(note.get(i).get("2")); %>
 					       </div>
 					    <% } %>	
@@ -227,23 +219,23 @@
 				<!-- 顶部栏 -->
 			</div>
 			<div class="col-md-4 column">
-				<h1><span class="glyphicon glyphicon-pencil" > 记录笔记</span></h1>
+				<h1><span class="glyphicon glyphicon-pencil">记录笔记</span></h1>
 				<hr>
 				<div class="panel panel-default">
 					<div class="panel-body">      			   
 						<form action="saveAndLeave" id="note" method="post">
 							<!-- 标题栏 -->
 							<div class="form-group">
-								<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width:60%;"/>
+								<input type="text" name="notename" value="我的笔记" class="pull-right" placeholder="输入评论标题" style="width: 60%;" />
 								<!-- 隐藏的文章id -->
-								<input type='text' name="id" id="arid" class="pull-left" readonly style="width:5%;display:none;"  value=<%out.print(request.getAttribute("id")); %> />	
+								<input type='text' name="id" id="arid" class="pull-left" readonly style="width: 5%; display: none;"  value=<% out.print(request.getAttribute("id")); %> />	
 							</div>
 							<br><br>
 							<!-- 文本区域 -->
-							<textarea id="texta" name="content" style="width:100%;height:300%;visibility:hidden;"></textarea>
+							<textarea id="texta" name="content" style="width: 100%; height: 300%; visibility: hidden;"></textarea>
 							<br>
 							<!-- 右下角按钮 -->
-							<div class="btn-toolbar" role="toolbar" style="text-align:right;">
+							<div class="btn-toolbar" role="toolbar" style="text-align: right;">
 								<input type="button" name="getHtml" value="HTML" />
 								<input type="button" name="clear" value="清空" />
 								<input type="reset" name="reset" value="撤销" />
