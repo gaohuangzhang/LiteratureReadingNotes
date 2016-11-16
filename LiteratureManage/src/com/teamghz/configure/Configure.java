@@ -8,7 +8,7 @@ public class Configure {
 	
 	public final static String USERNAME = "root";
 
-	public final static String PASSWORD = "password";
+	public final static String PASSWORD = "123456";
 
 	public final static String DBNAME   = "DBGHZ";
 	
@@ -20,19 +20,22 @@ public class Configure {
 	 * true when run on tomcat
 	 * false when run on your computer
 	 */
-	public final static boolean ONTOMCAT = false;
+	public final static boolean ONTOMCAT = true;
 	/**
 	 * if run on your computer, edit this please
 	 * ---Where is the Files will be save---
 	 * Windows: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
-	public final static String LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
+	public final static String LOCATION = "C:\\Users\\Lenovo\\Documents\\GitHub\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\";
+
 	/**
 	 * when run on tomcat maybe you want to edit it
 	 * where you want to save on the server, 
 	 */
-	public final static String SLOCATION = "Files/";
+	public final static String SLOCATION = "Files";
+	
+	public final static String DOWNLOAD = "C:\\Users\\Lenovo\\Documents\\GitHub\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";

@@ -14,14 +14,18 @@
 		</action>
 	<!--"src/com/teamghz"signUp-->
 		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
-			<result name="SUCCESS">/personalcenter.jsp</result>
-			<result name="PASSWORDERROE">/index.jsp</result>
-			<result name="EMAILEXIST">/index.jsp</result>
+			<result name="SUCCESS">/index.jsp</result>
 			<result name="INSERTERROR">/index.jsp</result>
 		</action>
 	<!--about-->
 		<action name="about" class="com.teamghz.action.LoginAction" method="about">
 			<result name="SUCCESS">/about.jsp</result>
+		</action>
+	</package>
+	<package name="Validate" extends="json-default">
+		<action name="EmailValidate" class="com.teamghz.action.LoginAction" method="emailValidate">
+			<result name="EMAILEXIST" type="json"></result>
+			<result name="VALID" type="json"></result>
 		</action>
 	</package>
 	<!--package Panel : 除了登录界面的所有导航栏的上的动作-->
@@ -43,8 +47,8 @@
 			<result>/filemanage.jsp</result>
 		</action>
 	<!--去时间线上-->
-		<action name="timeLine">
-			<result>/timeline.jsp</result>
+		<action name="timeLine" class="com.teamghz.action.TimeLine">
+			<result name="SUCCESS">/timeline.jsp</result>
 		</action>
 	<!--去设置-->
 		<action name="settings">
@@ -85,16 +89,18 @@
 				<!-- 默认的拦截器，必须要写 -->  
 			<interceptor-ref name="defaultStack" /> 
 		</action>
-	<!--上传url-->
+		<!--上传url-->
 		<action name="urlUpLoad" class="com.teamghz.action.FileUpLoadAction" method="urlUpload">
 			<result name="SUCCESS">/temporary.jsp</result>
 			<result name="FALSE">/temporary.jsp</result>
 		</action>
-		<action name="fileDownload" class="com.teamghz.action.FileDownloadAction">
-			<result name="success" type="stream">
-				<param name="contentDisposition">attachment;filename="通讯录2012年9月4日.xls"</param>
-				<param name="inputName">downloadFile</param>
-			</result>
+		<!-- 下载文件 -->
+		
+	</package>
+	<!-- 生成文档 -->
+	<package name="PDFGenerate" extends="json-default">
+		<action name="generatePDF" class="com.teamghz.action.GeneratePDF">
+			<result name="SUCCESS" type="json"></result>
 		</action>
 	</package>
 	<!--文章阅读-->
@@ -109,11 +115,10 @@
 	</package>
 	<!--文章阅读：标记阅读状态-->
 	<package name="ajaxreadstatus" extends="json-default">
-			<action name="markReadStatus"
-				class="com.teamghz.action.ReadArticle" method="readStatus">
-				<result type="json"></result>
-			</action>
-		</package>
+		<action name="markReadStatus" class="com.teamghz.action.ReadArticle" method="readStatus">
+			<result name="SUCCESS" type="json"></result>
+		</action>
+	</package>
 	<!--设置-->
 	<package name="Setting" extends="struts-default">	
 		<action name="setting1" class="com.teamghz.action.Setting" method="setting1">
@@ -150,9 +155,14 @@
 		</package>
 	<!--不刷新页面提交表单的例子-->
 	<package name="ajax" extends="json-default">
-			<action name="ajaxRequest"
-				class="com.teamghz.action.AjaxExampleAction">
+			<action name="ajaxRequest" class="com.teamghz.action.AjaxExampleAction">
 				<result type="json"></result>
 			</action>
 		</package>
+	<!--分类树动作-->
+	<package name="TreeManage" extends="json-default">
+		<action name="searchAllBooks" class="com.teamghz.action.Treemanage" method="searchAllBooks">
+			<result type="json"></result>
+		</action>
+	</package>
 </struts> 
