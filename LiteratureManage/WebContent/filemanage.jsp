@@ -16,7 +16,6 @@
     <script type="text/javascript" src="sources/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="sources/js/jquery.ztree.exedit.js"></script>
     <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
 	<SCRIPT type="text/javascript">
 		//<!--
 		var setting1 = {
@@ -51,43 +50,8 @@
 	                beforeClick: beforeClick,
 	                onRemove: onRemove,
 	                onRename: onRename
-=======
-	<script type="text/javascript">
-		var setting = {
-			view: {
-	            addHoverDom: addHoverDom,
-	            removeHoverDom: removeHoverDom,
-	            selectedMulti: false
-	        },
-	        check: {
-	        	enable: true,
-	        	chkStyle: "checkbox",
-	        	chkboxType: {"Y": "s", "N": "s"}
-	        },
-	        edit: {
-	            enable: true,
-	            editNameSelectAll: true,
-	            showRemoveBtn: true,
-	            showRenameBtn: true
-	        },
-	        data: {
-	            simpleData: {
-	            	enable: true
->>>>>>> project1/master
 	            }
-	        },
-	        callback: {
-	            // 调用方法 后面是函数名 到下面找
-	            beforeDrag: beforeDrag,
-	            beforeDrop: beforeDrop,
-	            beforeEditName: beforeEditName,
-	            beforeRemove: beforeRemove,
-	            beforeRename: beforeRename,
-	            beforeClick: beforeClick,
-	            onRemove: onRemove,
-	            onRename: onRename
 	        }
-		};
 		var setting2 = {
 			edit: {
 				enable: true,
@@ -98,23 +62,8 @@
 				simpleData: {
 					enable: true
 				}
-<<<<<<< HEAD
-			};
-=======
-			},
-			callback: {
-				beforeDrag: beforeDrag,
-				beforeDrop: beforeDrop,
-				beforeClick: beforeClick
 			}
-		};
-		var zNodes1 = [{
-            id: 1,
-            pId: 0,
-            name: "这里创建新的分类",
-            open: true
-        }];
->>>>>>> project1/master
+		}
         var log, className = "dark";
         function beforeDrag(treeId, treeNodes) {
             return true;
@@ -372,7 +321,6 @@
     						</div>
     						<div class="panel-body">
     							<div class="content_wrap">
-<<<<<<< HEAD
     								
 										<div class="zTreeDemoBackground left">
 											<ul id="treeDemo1" class="ztree "></ul>
@@ -380,15 +328,6 @@
 										<div class="right">
 											<ul id="treeDemo2" class="ztree pull-right"></ul>
 										</div>
-=======
-    								<div><button onclick="myFunction()">点击这里</button></div>
-									<div class="zTreeDemoBackground left">
-										<ul id="treeDemo" class="ztree "></ul>
-									</div>
-									<div class="right">
-										<ul id="treeDemo2" class="ztree pull-right"></ul>
-									</div>
->>>>>>> project1/master
 								</div>
 								<div><button onclick="myFunction()">保存树</button></div>
 								<div><button onclick="count()">下载子树</button></div>
