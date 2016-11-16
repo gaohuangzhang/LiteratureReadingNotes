@@ -1,4 +1,4 @@
-# 创建数据库和相应的表
+﻿# 创建数据库和相应的表
 EDIT@20160929
 > 创建数据库
 
@@ -108,6 +108,8 @@ ALTER TABLE Share ADD feeling VARCHAR(1000);
 alter table Note modify column note varchar(10000);
 # 判断文章类型url/pdf
 ALTER TABLE Article ADD type VARCHAR(25);
+# 添加树URL
+alter table Tree add url VARCHAR(255);
 ```
 
 ### 检查创建结果

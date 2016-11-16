@@ -19,7 +19,7 @@
     <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 	<SCRIPT type="text/javascript">
 		//<!--
-		var setting = {
+		var setting1 = {
 				view: {
 	                addHoverDom: addHoverDom,
 	                removeHoverDom: removeHoverDom,
@@ -70,12 +70,6 @@
 					beforeClick: beforeClick
 				}
 			};
-		var zNodes1 = [{
-            id: 1,
-            pId: 0,
-            name: "这里创建新的分类",
-            open: true
-        }];
         var log, className = "dark";
         function beforeDrag(treeId, treeNodes) {
             return true;
@@ -180,23 +174,33 @@
 		//-->
 		// 点击我定义的那个按钮执行action
         function myFunction() {
-            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo1");
             var nodes = treeObj.transformToArray(treeObj.getNodes());
 
-            var msg = "name--id--pid\n";
+            var msg = "";
             treeObj.expandAll(true);
 
             alert(nodes.length)
             for (var i = 0; i < nodes.length; i++) {
-
-                msg += nodes[i].name + "--" + nodes[i].id + "--" + nodes[i].pId + "\n";
+				
+                msg += nodes[i].id + "-" + nodes[i].name + "-" + nodes[i].pId +"-"+nodes[i].url+ "\n";
+				
             }
             $("#msg").val();
             $("#msg").val(msg);
             alert(msg)
         }
+        function count() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo1");
+            checkCount = zTree.getCheckedNodes(true);
+
+            var classpurview = "";
+            for(var i=0;i<checkCount.length;i++) {
+                 classpurview += checkCount[i].id + "-" + checkCount[i].name + "-" + checkCount[i].pId +"-"+checkCount[i].url+ "\n";
+            }
+            alert(classpurview);
+        }
         $(document).ready(function() { 
-        	$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
         
         	$.ajax( {  
                 url : "searchAllBooks.action",  
@@ -206,14 +210,17 @@
             });  
         }); 
         function initZtree(json) {  
-            var data = (json.result);  
-            
-           var zNodes2 = eval("(" + data + ")");
-            zTreeObj = $.fn.zTree.init($('#treeDemo2'), setting2, zNodes2);  
+            var data2 = (json.result2);  
+            var data1 = (json.result1);  
+            var zNodes1 = eval("(" + data1 + ")");
+            $.fn.zTree.init($('#treeDemo1'), setting1, zNodes1);
+           var zNodes2 = eval("(" + data2 + ")");
+            $.fn.zTree.init($('#treeDemo2'), setting2, zNodes2);  
         }  
 	</SCRIPT>
 	<style type="text/css">
         .ztree li span.button.add {
+        	wideth:100px;
             margin-left: 2px;
             margin-right: -1px;
             background-position: -144px 0;
@@ -321,14 +328,16 @@
     						</div>
     						<div class="panel-body">
     							<div class="content_wrap">
-    								<div><button onclick="myFunction()">点击这里</button></div>
+    								
 										<div class="zTreeDemoBackground left">
-											<ul id="treeDemo" class="ztree "></ul>
+											<ul id="treeDemo1" class="ztree "></ul>
 										</div>
 										<div class="right">
 											<ul id="treeDemo2" class="ztree pull-right"></ul>
 										</div>
 								</div>
+								<div><button onclick="myFunction()">保存树</button></div>
+								<div><button onclick="count()">下载子树</button></div>
 							</div>
     					</div>
 					</div>
