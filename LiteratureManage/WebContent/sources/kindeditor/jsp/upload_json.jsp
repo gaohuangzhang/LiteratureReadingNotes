@@ -4,6 +4,7 @@
 <%@ page import="org.apache.commons.fileupload.*" %>
 <%@ page import="org.apache.commons.fileupload.disk.*" %>
 <%@ page import="org.apache.commons.fileupload.servlet.*" %>
+<%@ page import="org.json.simple.*" %>
 <%
 
 /**
@@ -16,6 +17,7 @@
 
 //文件保存目录路径
 String savePath = pageContext.getServletContext().getRealPath("/") + "attached/";
+System.out.println(savePath);
 
 //文件保存目录URL
 String saveUrl  = request.getContextPath() + "/attached/";
@@ -97,6 +99,8 @@ while (itr.hasNext()) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 		String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
 		try{
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			System.out.println(savePath + " | " + newFileName);
 			File uploadedFile = new File(savePath, newFileName);
 			item.write(uploadedFile);
 		}catch(Exception e){

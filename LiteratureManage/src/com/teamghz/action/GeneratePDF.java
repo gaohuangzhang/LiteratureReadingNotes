@@ -228,7 +228,7 @@ public class GeneratePDF extends ActionSupport {
 				PD4ML pd4ml = new PD4ML();
 				pd4ml.setPageInsets(new Insets(20, 10, 10, 10));
 				pd4ml.setHtmlWidth(950);
-				pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));
+				pd4ml.setPageSize(PD4Constants.A4);
 				pd4ml.useTTF("java:fonts", true);
 				pd4ml.setDefaultTTFs("KaiTi", "KaiTi", "KaiTi");
 				pd4ml.enableDebugInfo();
