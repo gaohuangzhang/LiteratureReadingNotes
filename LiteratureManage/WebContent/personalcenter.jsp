@@ -283,7 +283,7 @@
         									<input name="file" id='file' class="upload" type="file" required style="border: 1px solid #ccc; background: #fff; color: #000; padding: 5px 15px; width: 370px;" />
         								</div>
     								</form>
-    								<button type="submit" class="btn btn-success pull-right" form="upload_form">上传</button>
+    								<button type="submit" class="btn btn-success pull-right" form="upload_form">上传文件</button>
     							</div>
     				    		<div id="saveurl" class="tab-pane">
                             		<form action="urlUpLoad" method="post" id="urlupload_form">

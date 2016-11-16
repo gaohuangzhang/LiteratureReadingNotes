@@ -105,8 +105,8 @@
 	<title>LiteratureManager Welcome</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row clearfix">
+	<div class="container-fluid" ">
+		<div class="row-fluid clearfix">
 			<div class="col-md-12 column">
 				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: #036564; border: none" role="navigation">
 					<div class="navbar-header">
@@ -138,7 +138,7 @@
 			</div>
 		</div>
 	</div>
-	<div><br><br><br><br></div>
+	<div><br><br></div>
 	<div class="carousel slide" id="carousel-345074" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li class="active" data-slide-to="0" data-target="#carousel-345074"></li>
@@ -147,21 +147,21 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-				<img alt="" src="sources/pics/1.jpg"/>
+				<img alt="" src="sources/pics/1.jpg"/ style=" width:100%; height:50%; z-index:-1; left:0; top:0;">
 				<div class="carousel-caption">
 					<h4>阅读 & 评论</h4>
 					<p>就像其他同类网站做的那样，阅读文章，发表评论</p>
 				</div>
 			</div>
-			<div class="item">
-				<img alt="" src="sources/pics/2.jpg"/>
+			<div class="item" >
+				<img alt="" src="sources/pics/2.jpg"/ style="left:0;top:0;" width="100%" height="80%">
 				<div class="carousel-caption">
 					<h4>分享 & 下载</h4>
 					<p>与他人分享，下载你感兴趣或对你有帮助的</p>
 				</div>
 			</div>
 			<div class="item">
-				<img alt="" src="sources/pics/3.jpg"/>
+				<img alt="" src="sources/pics/3.jpg"/ style="left:0;top:0;" width="100%" height="80%">
 				<div class="carousel-caption">
 					<h4>创建你自己的树</h4>
 					<p>将意义非凡的痕迹记录在这儿</p>

@@ -155,14 +155,14 @@
 		</package>
 	<!--不刷新页面提交表单的例子-->
 	<package name="ajax" extends="json-default">
-			<action name="ajaxRequest"
-				class="com.teamghz.action.AjaxExampleAction">
+			<action name="ajaxRequest" class="com.teamghz.action.AjaxExampleAction">
 				<result type="json"></result>
 			</action>
 		</package>
 	<!--分类树动作-->
-	<package name="TreeManage" extends="struts-default">
-		<action name="Searchtree" class="com.teamghz.action.Treemanage" method="searchtree">
+	<package name="TreeManage" extends="json-default">
+		<action name="searchAllBooks" class="com.teamghz.action.Treemanage" method="searchAllBooks">
+			<result type="json"></result>
 		</action>
 	</package>
 </struts> 
