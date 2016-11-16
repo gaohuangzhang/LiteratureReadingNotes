@@ -90,15 +90,6 @@ public class LoginAction {
 	}
 	// Action : Sign Up
 	public String signUp() {
-		if (mail == null || passwd == null || passwd_confirm == null 
-				|| mail.equals("") || passwd.equals("") || passwd_confirm.equals("")) {
-			return "INSERTERROR";
-		}
-		// test password
-		if (!passwd.equals(passwd_confirm)) {
-			return "PASSWORDERROE";
-		}
-		// test email
 		String sql_email = "select * from User where mail=\"" + mail + "\"";
 		MysqlConnecter mc_email = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
@@ -121,6 +112,22 @@ public class LoginAction {
 			return "INSERTERROR";
 		}
 	}
+	
+	public String emailValidate() {
+		
+		ServletRequest request = ServletActionContext.getRequest();
+		String mail = request.getParameter("mail");
+		System.out.println("2333");
+		System.out.println(mail);
+		String sql_email = "select * from User where mail=\"" + mail + "\"";
+		MysqlConnecter mc_email = new MysqlConnecter();
+		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
+		if (result.size() != 0) {
+			return "EMAILEXIST";
+		}
+		return "VALID";
+	}
+	
 	// Action : About
 	public String about() {
 		
