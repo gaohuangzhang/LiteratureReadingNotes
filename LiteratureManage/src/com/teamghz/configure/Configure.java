@@ -42,7 +42,7 @@ public class Configure {
 	/**
 	 * url begin with this
 	 */
-	public final static String ARTICLE_URL_START = "Files";
+	public final static String ARTICLE_URL_START = "Files\\";
 	/**
 	 * for mysql url
 	 * Windows: "\\\\"
