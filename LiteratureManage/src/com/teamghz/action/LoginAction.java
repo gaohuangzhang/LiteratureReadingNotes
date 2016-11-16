@@ -27,6 +27,16 @@ public class LoginAction {
 	// password2
 	private String passwd_confirm;
 	
+	private boolean valid;
+	
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
 	// for name
 	public String getName() {
 		return name;
@@ -90,12 +100,6 @@ public class LoginAction {
 	}
 	// Action : Sign Up
 	public String signUp() {
-		String sql_email = "select * from User where mail=\"" + mail + "\"";
-		MysqlConnecter mc_email = new MysqlConnecter();
-		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
-		if (result.size() != 0) {
-			return "EMAILEXIST";
-		}
 		// insert
 		String sql = "insert into User(username, mail, password) "
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
@@ -114,17 +118,14 @@ public class LoginAction {
 	}
 	
 	public String emailValidate() {
-		
-		ServletRequest request = ServletActionContext.getRequest();
-		String mail = request.getParameter("mail");
-		System.out.println("2333");
-		System.out.println(mail);
 		String sql_email = "select * from User where mail=\"" + mail + "\"";
 		MysqlConnecter mc_email = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
 		if (result.size() != 0) {
+			this.setValid(false);
 			return "EMAILEXIST";
 		}
+		this.setValid(true);
 		return "VALID";
 	}
 	
