@@ -14,14 +14,18 @@
 		</action>
 	<!--"src/com/teamghz"signUp-->
 		<action name="signUp" class="com.teamghz.action.LoginAction" method="signUp">
-			<result name="SUCCESS">/personalcenter.jsp</result>
-			<result name="PASSWORDERROE">/index.jsp</result>
-			<result name="EMAILEXIST">/index.jsp</result>
+			<result name="SUCCESS">/index.jsp</result>
 			<result name="INSERTERROR">/index.jsp</result>
 		</action>
 	<!--about-->
 		<action name="about" class="com.teamghz.action.LoginAction" method="about">
 			<result name="SUCCESS">/about.jsp</result>
+		</action>
+	</package>
+	<package name="Validate" extends="json-default">
+		<action name="EmailValidate" class="com.teamghz.action.LoginAction" method="emailValidate">
+			<result name="EMAILEXIST" type="json"></result>
+			<result name="VALID" type="json"></result>
 		</action>
 	</package>
 	<!--package Panel : 除了登录界面的所有导航栏的上的动作-->

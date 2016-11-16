@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,9 +14,14 @@
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script src="sources/js/jquery.validate.js"></script>
 	<script type="text/javascript">
+		toastr.options = {    
+	        showDuration: "300",
+	        timeOut: "5000"
+	    };
+	</script>
+	<script type="text/javascript">
 		$().ready(function() {
 	        $("#signup_form").validate({
-	        	onsubmit: false,
             	success: "valid",
              	rules: {
                 	name: {
@@ -37,8 +41,12 @@
                      			}
                      		},
                      		dataType: "json",
-                     		dataFilter: function(data, type) {  
-                                if (data == "true") {  
+                     		dataFilter: function(data) { 
+                     			var json = eval("(" + data + ")");
+                                if (json.valid == true) {
+                                	$('#signup_button').click(function() {
+                            			toastr.success("注册成功");
+                                    });
                                     return true;  
                                 }
                                 else {  
@@ -78,9 +86,7 @@
 		        }
 	       	});
      	});
-		$('#signup_button').click(function () {
-            toastr.success("注册成功");
-        });
+		
 	</script>
 	<style>
 		.error {
@@ -102,7 +108,7 @@
 	<div class="container-fluid" ">
 		<div class="row-fluid clearfix">
 			<div class="col-md-12 column">
-				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
+				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: #036564; border: none" role="navigation">
 					<div class="navbar-header">
 					 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="home-navbar">
 					 		<span class="sr-only">Toggle navigation</span>
@@ -113,15 +119,15 @@
 					 	<a class="navbar-brand" href="#" style="padding-left: 20px; color: #ffffff;">主页</a>
 					</div>
 					<div class="collapse navbar-collapse" id="home-navbar">
-						<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-							<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-								<a id="login" href="#login-modal" role="button" class="btn" data-toggle="modal" style="color:#ffffff;">登录</a>
+						<ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
+							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+								<a id="login" href="#login-modal" role="button" class="btn" data-toggle="modal" style="color: #ffffff;">登录</a>
 							</li>
-							<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-								<a id="signup" href="#signup-modal" role="button" class="btn" data-toggle="modal" style="color:#ffffff;">注册</a>
+							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
+								<a id="signup" href="#signup-modal" role="button" class="btn" data-toggle="modal" style="color: #ffffff;">注册</a>
 							</li>
 							<li class="dropdown">
-							 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#ffffff;">帮助<strong class="caret"></strong></a>
+							 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff;">帮助<strong class="caret"></strong></a>
 								<ul class="dropdown-menu">
 									<li><a href=about>关于</a></li>
 								</ul>
