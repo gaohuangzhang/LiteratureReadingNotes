@@ -51,7 +51,7 @@
 	                onRemove: onRemove,
 	                onRename: onRename
 	            }
-	        }
+		}
 		var setting2 = {
 			edit: {
 				enable: true,
