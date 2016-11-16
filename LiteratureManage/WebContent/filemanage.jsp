@@ -18,7 +18,7 @@
     <script type="text/javascript" src="sources/js/jquery.ztree.exedit.js"></script>
     <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 	<SCRIPT type="text/javascript">
-		<!--
+		//<!--
 		var setting = {
 				view: {
 	                addHoverDom: addHoverDom,
@@ -33,8 +33,8 @@
 	            edit: {
 	                enable: true,
 	                editNameSelectAll: true,
-	                showRemoveBtn: showRemoveBtn,
-	                showRenameBtn: showRenameBtn
+	                showRemoveBtn: true,
+	                showRenameBtn: true
 	            },
 	            data: {
 	                simpleData: {
@@ -73,31 +73,10 @@
 		var zNodes1 = [{
             id: 1,
             pId: 0,
-            name: "父节点 1",
+            name: "这里创建新的分类",
             open: true
-        }, {
-            id: 11,
-            pId: 1,
-            name: "叶子节点 1-1",
-            url: "http://www.baidu.com"
-        }, {
-            id: 2,
-            pId: 0,
-            name: "父节点 2",
-            open: true
-        }, {
-            id: 21,
-            pId: 2,
-            name: "叶子节点 2-1"
         }];
-		var zNodes2 =[
-		 			{ id:1, pId:0, name:"zTree Home", url:"http://www.ztree.me/", target:"_blank"},
-		 			{ id:2, pId:0, name:"zTree in Google", url:"http://code.google.com/p/jquerytree/", target:"_blank"},
-		 			{ id:3, pId:0, name:"zTree in Iteye", url:"http://ztreeapi.iteye.com/", target:"_blank"},
-		 			{ id:4, pId:0, name:"Nothing...", url:"", target:"_blank", click:"alert('我是不会跳转的...');"}
-		 		];
         var log, className = "dark";
-
         function beforeDrag(treeId, treeNodes) {
             return true;
         }
@@ -143,19 +122,15 @@
             window.open(treeNode.url);
             return true;
         }
-
         function onRename(e, treeId, treeNode, isCancel) {
             showLog((isCancel ? "<span style='color:red'>" : "") + "[ " + getTime() + " onRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>" : ""));
         }
-
         function showRemoveBtn(treeId, treeNode) {
             return !treeNode.isFirstNode;
         }
-
         function showRenameBtn(treeId, treeNode) {
             return !treeNode.isLastNode;
         }
-
         function showLog(str) {
             if (!log) log = $("#log");
             log.append("<li class='" + className + "'>" + str + "</li>");
@@ -163,7 +138,6 @@
                 log.get(0).removeChild(log.children("li")[0]);
             }
         }
-
         function getTime() {
             var now = new Date(),
                 h = now.getHours(),
@@ -172,31 +146,23 @@
                 ms = now.getMilliseconds();
             return (h + ":" + m + ":" + s + " " + ms);
         }
-
         var newCount = 1;
-
-        function addHoverDom(treeId, treeNode) {
-            var sObj = $("#" + treeNode.tId + "_span");
-            if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
-            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId +
-                "' title='add node' onfocus='this.blur();'></span>";
-            sObj.after(addStr);
-            var btn = $("#addBtn_" + treeNode.tId);
-            if (btn) btn.bind("click", function() {
-                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                zTree.addNodes(treeNode, {
-                    id: (100 + newCount),
-                    pId: treeNode.id,
-                    name: "new node" + (newCount++)
-                });
-                return false;
-            });
-        };
-
+		function addHoverDom(treeId, treeNode) {
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+			var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+				+ "' title='add node' onfocus='this.blur();'></span>";
+			sObj.after(addStr);
+			var btn = $("#addBtn_"+treeNode.tId);
+			if (btn) btn.bind("click", function(){
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+				zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+				return false;
+			});
+		};
         function removeHoverDom(treeId, treeNode) {
             $("#addBtn_" + treeNode.tId).unbind().remove();
         };
-
         function selectAll() {
             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
             zTree.setting.edit.editNameSelectAll = $("#selectAll").attr("checked");
@@ -205,12 +171,12 @@
 			return targetNode ? targetNode.drop !== false : true;
 		}
 		
-		$(document).ready(function(){
-			$("#selectAll").bind("click", selectAll);
-			$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
-			$.fn.zTree.init($("#treeDemo2"), setting2, zNodes2);
+		//$(document).ready(function(){
+		//	$("#selectAll").bind("click", selectAll);
+		//	$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+		//	$.fn.zTree.init($("#treeDemo2"), setting2, zNodes2);
 			
-		});
+		//});
 		//-->
 		// 点击我定义的那个按钮执行action
         function myFunction() {
@@ -229,6 +195,22 @@
             $("#msg").val(msg);
             alert(msg)
         }
+        $(document).ready(function() { 
+        	$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+        
+        	$.ajax( {  
+                url : "searchAllBooks.action",  
+                type : "get",  
+                dataType : "json",  
+                success : initZtree  
+            });  
+        }); 
+        function initZtree(json) {  
+            var data = (json.result);  
+            
+           var zNodes2 = eval("(" + data + ")");
+            zTreeObj = $.fn.zTree.init($('#treeDemo2'), setting2, zNodes2);  
+        }  
 	</SCRIPT>
 	<style type="text/css">
         .ztree li span.button.add {
@@ -337,18 +319,17 @@
     						<div class="panel-heading">
         						<h3 class="panel-title">构建分类树</h3>
     						</div>
-    						<div class="panel-body"><div class="content_wrap">
-	<div>
-	<button onclick="myFunction()">点击这里</button>
-	</div>
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
-	</div>
-	<div class="right">
-		<ul id="treeDemo2" class="ztree"></ul>
-	</div>
-</div>
-</div>
+    						<div class="panel-body">
+    							<div class="content_wrap">
+    								<div><button onclick="myFunction()">点击这里</button></div>
+										<div class="zTreeDemoBackground left">
+											<ul id="treeDemo" class="ztree "></ul>
+										</div>
+										<div class="right">
+											<ul id="treeDemo2" class="ztree pull-right"></ul>
+										</div>
+								</div>
+							</div>
     					</div>
 					</div>
 					<div class="tab-pane fade" id="panel-3">

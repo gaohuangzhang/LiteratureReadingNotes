@@ -295,12 +295,6 @@
 								<div class="form-group">
                 					<input name="articlename" class="form-control" type="text" placeholder="请在这儿输入文件名" required style="padding-left: 30px; height: 42px;" />
     							</div>
-    							<div class="form-group">
-        							<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
-        						</div>
-    						</form>
-    						<button type="submit" class="btn btn-success pull-right" form="upload_form" >上传</button>
-    					</div>
     					<div class="form-group">
         					<input name="file" id='file' class="upload" type="file"  required style="border:1px solid #ccc;background:#fff;color:#000;padding:5px 15px;width:370px;" />
         				</div>
