@@ -164,5 +164,11 @@
 		<action name="searchAllBooks" class="com.teamghz.action.Treemanage" method="searchAllBooks">
 			<result type="json"></result>
 		</action>
+		<action name="updateMysql" class="com.teamghz.action.Treemanage" method="updateMysql">
+			<result type="json"></result>
+		</action>
+		<action name="generateDocu" class="com.teamghz.action.Treemanage" method="generateDocu">
+			<result type="json"></result>
+		</action>
 	</package>
 </struts> 
