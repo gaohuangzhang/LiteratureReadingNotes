@@ -1,11 +1,17 @@
 package com.teamghz.action;
 
-
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -24,6 +30,7 @@ public class ReadArticle {
 	private String notename;
 	private String content;
 	private String flag;
+	private String result;
 	public String getUrl() {
 		return url;
 	}
@@ -70,17 +77,27 @@ public class ReadArticle {
 		this.flag = flag;
 	}
 
+    // ajax返回结果
+    public String getResult() {
+        return result;
+    }
 	public String readPDF() {
-		System.out.println("HEHEH" + id + articlename);
 		MysqlConnecter mc = new  MysqlConnecter();
 		String sql = "select Note.notename, Note.note, Note.time, User.username from Note, User where Note.articleid=" + id + " and User.userid = Note.userid";
-		System.out.println(sql);
+		String sql_update = "update Article set status=\"COARSE_READ\" where articleid=" + id;
+		String sql_status = "select status, type from Article where articleid=" + id;
+		ArrayList<Map<String, String>> st = mc.select(sql_status);
+		String status = st.get(0).get("1");
+		String type = st.get(0).get("2");
+		if (!status.equals("INTENSIVE_READ") && !status.equals("COARSE_READ")) {
+			mc.update(sql_update);
+		}
 		ArrayList<Map<String, String>> r = mc.select(sql);
 		ServletRequest request = ServletActionContext.getRequest();
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		session.setAttribute("note", r);
-		System.out.println(url);
+		session.setAttribute("type", type);
 		return "SUCCESS";
 	}
 	public String saveAndLeave() {
@@ -89,7 +106,6 @@ public class ReadArticle {
 		HttpSession session = req.getSession();
 		String usermail = (String) session.getAttribute("usermail");
 		MysqlConnecter mc = new  MysqlConnecter();
-		
 		String sql_id = "select userid from User where mail=\"" + usermail +"\"";
 		System.out.println(sql_id);
 		ArrayList<Map<String, String>> r = mc.select(sql_id);
@@ -109,6 +125,19 @@ public class ReadArticle {
 			return "FALSE";
 		}
 	}
-
-	
+	public String readStatus() {
+		MysqlConnecter mc = new  MysqlConnecter();
+		String sql = "select status from Article where articleid=" + id;
+		ArrayList<Map<String, String>> r = mc.select(sql);
+		String status = r.get(0).get("1");
+		if (status.equals("INTENSIVE_READ")) {
+			this.result = "这篇文章已经标记过了，无需重复标记！";
+		}
+		else {
+			String sql_update = "update Article set status=\"INTENSIVE_READ\" where articleid=" + id;
+			mc.update(sql_update);
+			this.result = "已经成功标记这篇文章为精读过的状态！ ";
+		}
+		return "SUCCESS";
+	}
 }

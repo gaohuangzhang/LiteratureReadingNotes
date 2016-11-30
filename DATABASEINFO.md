@@ -1,4 +1,4 @@
-# 创建数据库和相应的表
+﻿# 创建数据库和相应的表
 EDIT@20160929
 > 创建数据库
 
@@ -89,6 +89,14 @@ CREATE TABLE Note
   FOREIGN KEY (userid) REFERENCES User(userid),
   FOREIGN KEY (articleid) REFERENCES Article(articleid)
 );
+CREATE TABLE Tree
+(
+  id INT(11) NOT NULL AUTO_INCREMENT primary key,
+  nodename varchar(255),
+  pid INT(11),
+  userid        INT(11),
+  FOREIGN KEY (userid) REFERENCES User(userid)
+);
 
 # 请增加执行
 USE DBGHZ;
@@ -96,6 +104,12 @@ USE DBGHZ;
 ALTER TABLE User ADD avatar VARCHAR(255);
 # 文章感受
 ALTER TABLE Share ADD feeling VARCHAR(1000);
+# 文章笔记长度扩充
+alter table Note modify column note varchar(10000);
+# 判断文章类型url/pdf
+ALTER TABLE Article ADD type VARCHAR(25);
+# 添加树URL
+alter table Tree add url VARCHAR(255);
 ```
 
 ### 检查创建结果
