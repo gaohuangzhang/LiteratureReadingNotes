@@ -27,6 +27,16 @@ public class LoginAction {
 	// password2
 	private String passwd_confirm;
 	
+	private boolean valid;
+	
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
 	// for name
 	public String getName() {
 		return name;
@@ -90,21 +100,6 @@ public class LoginAction {
 	}
 	// Action : Sign Up
 	public String signUp() {
-		if (mail == null || passwd == null || passwd_confirm == null 
-				|| mail.equals("") || passwd.equals("") || passwd_confirm.equals("")) {
-			return "INSERTERROR";
-		}
-		// test password
-		if (!passwd.equals(passwd_confirm)) {
-			return "PASSWORDERROE";
-		}
-		// test email
-		String sql_email = "select * from User where mail=\"" + mail + "\"";
-		MysqlConnecter mc_email = new MysqlConnecter();
-		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
-		if (result.size() != 0) {
-			return "EMAILEXIST";
-		}
 		// insert
 		String sql = "insert into User(username, mail, password) "
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
@@ -121,6 +116,19 @@ public class LoginAction {
 			return "INSERTERROR";
 		}
 	}
+	
+	public String emailValidate() {
+		String sql_email = "select * from User where mail=\"" + mail + "\"";
+		MysqlConnecter mc_email = new MysqlConnecter();
+		ArrayList<Map<String, String>> result =  mc_email.select(sql_email);
+		if (result.size() != 0) {
+			this.setValid(false);
+			return "EMAILEXIST";
+		}
+		this.setValid(true);
+		return "VALID";
+	}
+	
 	// Action : About
 	public String about() {
 		

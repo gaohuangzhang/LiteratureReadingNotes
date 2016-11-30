@@ -97,14 +97,7 @@ CREATE TABLE Tree
   userid        INT(11),
   FOREIGN KEY (userid) REFERENCES User(userid)
 );
-#测试树(userid=2)
-insert into Tree(nodename,pid,userid) values('A',0,2);
-insert into Tree(nodename,pid,userid) values('B',1,2);
-insert into Tree(nodename,pid,userid) values('C',1,2);
-insert into Tree(nodename,pid,userid) values('D',2,2);
-insert into Tree(nodename,pid,userid) values('E',2,2);
-insert into Tree(nodename,pid,userid) values('F',3,2);
-insert into Tree(nodename,pid,userid) values('G',6,2);
+
 # 请增加执行
 USE DBGHZ;
 # 头像url
@@ -115,6 +108,8 @@ ALTER TABLE Share ADD feeling VARCHAR(1000);
 alter table Note modify column note varchar(10000);
 # 判断文章类型url/pdf
 ALTER TABLE Article ADD type VARCHAR(25);
+# 添加树URL
+alter table Tree add url VARCHAR(255);
 ```
 
 ### 检查创建结果
