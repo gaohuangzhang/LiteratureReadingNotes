@@ -17,60 +17,22 @@
 	</style>
 </head>
 <body>
+<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    <img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 	<% int i = 2; %>
     <% try { %>
 	<% i = (int) session.getAttribute("i"); %>
 	<% } catch (Exception e) { %>
 	<% i=2; %>
 	<% } %>
+	<%@ include file="nav.jsp" %>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<p><br><br><br><br></p>
 			</div>
-			<div class="col-md-12 column">
-			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
-				<div class="navbar-header" >
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
-					<ul  class="nav navbar-nav">
-						<li  onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a  href=personalCenter style="color:#ffffff;font-size: 16px;">个人中心</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=mainPage  style="color:#ffffff;font-size: 16px;">我的主页</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=fileManage style="color:#ffffff;font-size: 16px;">内容管理</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=timeLine style="color:#ffffff;font-size: 16px;">最佳回忆</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-						<a href=search style="color:#ffffff;font-size: 16px;">站内检索</a>
-						</li>
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
-					
-						
-						<li class="dropdown" >
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
-							<ul class="dropdown-menu">
-								
-								<li><a href=settings>设置</a></li>
-								<li><a href=about>关于</a></li>
-								<li class="divider"></li>
-								<li><a href=signOut>注销</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-			</nav>
-		</div>
+			
 		</div>
 		<div class="row clearfix">
 			<div class="col-md-3 column">
@@ -88,7 +50,7 @@
 			</div>
 			<div class="col-md-9 column">
 				<h1>设置个人信息</h1>
-					<hr>
+					<br>
 				<form action="setting2" id="setting_form" method="post">
 					<div class="form-group">
 						<label>昵称</label>
@@ -108,10 +70,7 @@
 				</form>
 			</div>
 		</div>
-		<hr>
-		<footer>
-					<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-				</footer>
+	
 	</div>
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -153,6 +112,8 @@
 			});
 		});
 	</script>
+	 <br><br><br><br><br><br><br><br><br><br>
+	<%@ include file="bottom.jsp" %>
 </body>
 </html>
 
