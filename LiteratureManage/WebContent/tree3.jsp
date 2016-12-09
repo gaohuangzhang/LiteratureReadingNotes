@@ -200,13 +200,36 @@
 		function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 			return targetNode ? targetNode.drop !== false : true;
 		}
+		var zTreeObj;  
+		var setting0 = {  
+		    check : {  
+		        enable : true  
+		    },  
+		    data : {  
+		        simpleData : {  
+		            enable : true  
+		        }  
+		    }  
+		};  
+		  
 		
 		$(document).ready(function(){
+			$.ajax( {  
+		        url : "../systemManage/permTreeAction.action",  
+		        type : "get",  
+		        dataType : "json",  
+		        success : initZtree  
+		    });  
 			$("#selectAll").bind("click", selectAll);
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
 			$.fn.zTree.init($("#treeDemo2"), setting2, zNodes2);
 			
 		});
+		function initZtree(json) {  
+		    var data = (json.permString);  
+		    var zNodes = eval("(" + data + ")");  
+		    zTreeObj = $.fn.zTree.init($('#kpiTree'), setting0, zNodes);  
+		} 
 		//-->
 		// 点击我定义的那个按钮执行action
         function myFunction() {
@@ -248,6 +271,9 @@
 	<div class="right">
 		<ul id="treeDemo2" class="ztree"></ul>
 	</div>
+	<div>  
+                <ul id="kpiTree" class="ztree"></ul>  
+            </div>
 </div>
 </BODY>
 </HTML>

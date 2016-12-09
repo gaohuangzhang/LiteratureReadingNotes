@@ -1,3 +1,5 @@
 *.class
 LiteratureManage/build/*
 LiteratureManage/WebContent/Files/*
+LiteratureMange/.*
+LiteratureManage/src/com/teamghz/configure/Configure.java

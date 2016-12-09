@@ -109,7 +109,7 @@
 <body>
 	<!-- background pic -->
 	<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    	<img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    	<img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
     </div>
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
@@ -121,7 +121,9 @@
 	<div id="sidr" style="display: none;">
 		<h2>内容选项</h2>
 		<ul>
+		<li>
 			<button type="submit" class="btn btn-link" form="note">保存文章笔记并且退出</button>
+			</li>
 			<hr>
 		</ul>
 		<h2>快速入口</h2>
@@ -248,9 +250,6 @@
 			</div>
 		</div>
 	</div>
-	<footer>
-		<hr>
-		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-	</footer> 
+	
 </body> 
 </html>

@@ -33,18 +33,25 @@
         	}, 16);
     	};
 	</script>
+	<script>
+        $(document).ready(function(){
+            $('#person').addClass('active');
+
+        });
+
+    </script>
 	<style>
 		.city {
 			margin: 5px;
 			padding: 10px;		
-			height: 150px;
-			width: 100%;	
-			background-color: #f9f9f9;
+			background-color: rgba(255,255,255,	 0.60);
+			-webkit-box-shadow: 0 1px 6px rgba(200, 200, 200, 0.75);
+			box-shadow: 0 1px 6px rgba(200, 200, 200, 0.75);
 		} 
 		.city1 {
 			margin: 2px;
 			padding: 12px;			
-			background-color: #f3f3f3;
+			background-color: rgba(255,255,255,	 0.60);
 			width: 99%;
 		} 
 		.city2 {
@@ -62,18 +69,19 @@
 		.W {
 			background-color: #ffffff;
 		}
-		.G {
-			background-color: #6BB50B;
-		}
+		
 		a {
 			color: #205B4D;
+		}
+		body{
+		font-family: "Microsoft YaHei", "Arial", "Times Roman", "Courier", "Verdana", "Century Gothic";
 		}
 	</style>
 </head>
 <body>
 <!-- background pic -->
     <div style="position: absolute; width: 100%; height: 100%; z-index: -1; left: 0; top: 0;">      
-    	<img src="sources/pics/bg3.jpg" style="left: 0; position: fixed; top: 0;" width="100%" height="100%">      
+    	<img src="sources/pics/bg11.jpg" style="left: 0; position: fixed; top: 0;" width="100%" height="100%">      
     </div>
     <% String usermail = null; %>
     <% String username = null; %>
@@ -96,51 +104,7 @@
 	<% out.print("<div class=\"container\">"); %>
 	<% } %>
 	<div class="row clearfix">
-	   <div class="col-md-12 column">
-           <nav class="navbar navbar-default navbar-content-center navbar-inverse navbar-fixed-top" style="background: #036564; border: none" role="navigation">
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
-					 	<span class="sr-only">GHZ</span>
-					 	<span class="icon-bar"></span>
-					 	<span class="icon-bar"></span>
-					 	<span class="icon-bar"></span>
-					 	</button> 
-					 <a class="navbar-brand" href="#">读而思之</a>
-				</div>
-				<div class="collapse navbar-collapse" style="font-size: 16px;" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active" onMouseMove="this.className='G animated swing'" onmouseout="this.className='active'">
-				            <a href=personalCenter style="color: #ffffff;">个人中心</a>
-						</li>
-						<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-				            <a href=mainPage  style="color: #ffffff;">我的主页</a>
-						</li>
-						<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-				            <a href=fileManage style="color: #ffffff;">内容管理</a>
-						</li>
-						<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-				            <a href=timeLine style="color: #ffffff;">最佳回忆</a>
-						</li>
-						<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-				            <a href=search style="color: #ffffff;">站内检索</a>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            	<img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated pulse'" onmouseout="this.className=''"/>
-                        	</a>
-							<ul class="dropdown-menu">
-								<li><a href=settings>设置</a></li>
-								<li><a href=about>关于</a></li>
-								<li class="divider"></li>
-								<li><a href=signOut>注销</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</div>
+	   <%@ include file="nav.jsp" %>
 	</div>
 		<div class="col-md-12 column">
 			<div class="row clearfix">
@@ -155,17 +119,17 @@
 					<div style="text-align: right; padding: 5px;">
 				        <div class="btn-group pull-left">
 				        <!-- 分享标题下的用户名 -->
-				            <button data-toggle="dropdown" class="btn dropdown-toggle"> 
-                                <span class="glyphicon glyphicon-user"><% out.print(username); %></span> &nbsp;	
-                            </button>			
+				            
+                                <span class="glyphicon glyphicon-user"> <% out.print(username); %></span> &nbsp;	
+                            		
 					    </div>
 					<!-- 搜索分享 -->
-					   	<input class="form-control pull-right" style="width: 40%;" id="search-highlight1" name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off" />
+					   	<input class="form-control pull-right"  style="width: 40%;background-color: rgba(255,255,255, 0.60);" id="search-highlight1" name="search-highlight1" placeholder="在这里搜索分享内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list1" autocomplete="off" />
 				    </div>			
 					<!-- 刷新页面执行打印分享信息动作 -->
 					<s:action name="printShareInfo" executeResult="true" />
 					<br>
-                    <hr style="border-top: 1px groove #f1f1f1;" />
+                    <br>
   				
   		            <div class="vertical highlight_list1">
   					<% try { %>
@@ -181,7 +145,7 @@
 				            </div>	
 				            <div class="pull-right" style="width: 79%; padding: 10px;">
                                 <span class="glyphicon glyphicon-time pull-left"> 
-                                    <span style="font-weight: bold;"><% out.print(list.get(i).get("6")); %></span>
+                                   <% out.print(list.get(i).get("6")); %>
                                 </span>
 				                <br>
 				                <h5>
@@ -207,17 +171,17 @@
             	</div>			
 				<div class="col-md-4 column pull-right">
 					<br>
-					<div class="panel" style="background: #f9f9f9;" >
+					<div class="panel" style="background-color: rgba(255,255,255, 0.60);" >
     					<div class="panel-heading">
                    			<!-- 上传文件 -->
     				        <a id="upload" class="pull-right" href="#upload-modal" data-toggle="modal">
-        				        <button type="button" class="btn" style="background: #036564; color: #ffffff;">上传文件/URL</button>
+        				        <button type="button" class="btn" style="background: #84735F; color: #ffffff;">上传文件/URL</button>
         				    </a>
         					<br><br>
     					</div>
     					<!-- 搜索书籍 -->
     				    <div class="animated slideInUp" style="width: 90%; margin: 0px auto;">
-                   	        <input class="form-control" id="search-highlight2"  name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
+                   	        <input class="form-control" id="search-highlight2" style="background-color: rgba(255,255,255, 0.60);" name="search-highlight2" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list2" autocomplete="off">
                    	    </div>
     					<div class="panel-body">
 				            <!-- 刷新页面执行查找书籍 -->
@@ -247,13 +211,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row clearfix">
-				<div class="col-md-12 column"></div>
-				<hr style="height: 10px; border: none; border-top: 1px groove #000000;" />
-				<footer>
-	    			<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-				</footer>
-			</div>
+		<br><br><br><br>
 			<div class="modal fade" id="upload-modal" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -303,6 +261,7 @@
     		</div>
     	</div>
     </div>
+      <%@ include file="bottom.jsp" %>
 	<div id="back-up" onclick="goToWhere(0)" style="position: fixed; cursor: pointer; right: 30px; bottom: 80px;">
 		<img src="sources/pics/up.png" />
 	</div>
