@@ -53,7 +53,6 @@ public class Treemanage {
 		ArrayList<Map<String, String>> books = mc.select(sql);
 		for (Map<String, String> m : books) {
 			String re3 = m.get("3");
-			re3 = re3.replaceAll("\\\\", "\\\\\\\\");
 			tmp = "{id:" + m.get("1") + ", pId:0, " + "name: \"" + m.get("2") + "\", url:\"readArticle?url=" + re3
 					+ "&articlename=" + m.get("2") + "&id=" + m.get("1") + "\"}";
 
@@ -78,7 +77,7 @@ public class Treemanage {
 		lstTree.clear();
 		for (Map<String, String> m : books) {
 			tmp = "{id:" + m.get("1") + ", pId:" + m.get("3") + ",name: \"" + m.get("2") + "\",url:\""
-					+ m.get("5").replaceAll("\\\\", "\\\\\\\\") + "\"}";
+					+ m.get("5") + "\"}";
 			lstTree.add(tmp);
 			tmp = "";
 		}
@@ -104,7 +103,6 @@ public class Treemanage {
 		int res = mc.delete(sql);
 		for (int i = 0; i < list.length; i++) {
 			ele = list[i].split(" ");
-			ele[3] = ele[3].replaceAll("\\\\", "\\\\\\\\");
 			sql = "insert into Tree(id,nodename,pid,userid,url) values(" + ele[0] + ",'" + ele[1] + "'," + ele[2] + ","
 					+ userid + ",'" + ele[3] + "')";
 			res = mc.update(sql);
@@ -123,7 +121,7 @@ public class Treemanage {
 		Matcher num2;
 		String tmp;
 		for (int i = 0; i < list.length; i++) {
-			url[i] = list[i].split(" ")[3].replaceAll("\\\\", "\\\\\\\\");
+			url[i] = list[i].split(" ")[3];
 			num1 = searchid1.matcher(url[i]);
 			if (num1.find()) {
 				tmp = num1.group();
