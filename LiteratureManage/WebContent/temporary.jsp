@@ -36,6 +36,9 @@
 	</script> 
 </head>
 	<body >
+	<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    <img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 
 	<div class="city" style="text-align:center;">
 	<!-- 返回成功信息 -->

@@ -178,7 +178,6 @@
             var nodes = treeObj.transformToArray(treeObj.getNodes());
             var msg1 = "";
             treeObj.expandAll(true);
-
             for (var i = 0; i < nodes.length; i++) {
 				
                 msg1 += nodes[i].id + " " + nodes[i].name + " " + nodes[i].pId +" "+nodes[i].url+ "\n";
@@ -202,7 +201,6 @@
         function count() {
             var zTree = $.fn.zTree.getZTreeObj("treeDemo1");
             checkCount = zTree.getCheckedNodes(true);
-
             var msg2 = "";
             for(var i=0;i<checkCount.length;i++) {
                  msg2 += checkCount[i].id + " " + checkCount[i].name + " " + checkCount[i].pId +" "+checkCount[i].url+ "\n";
@@ -254,7 +252,6 @@
 .W {
 	background-color: #ffffff;
 }
-
 .G {
 	background-color: #6BB50B;
 }
@@ -369,7 +366,6 @@
 							</div>
 							<div class="panel-body">
 								<div class="content_wrap">
-
 									<div class="zTreeDemoBackground left">
 										<ul id="treeDemo1" class="ztree "></ul>
 									</div>
@@ -447,10 +443,3 @@
 	<script src="sources/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
