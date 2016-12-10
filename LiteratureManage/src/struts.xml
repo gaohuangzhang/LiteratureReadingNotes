@@ -134,8 +134,8 @@
 			<result name="FAILED">/setting1.jsp</result>
 		</action>
 		<action name="upload_avatar" class="com.teamghz.action.Avatar" method="uploadAvatar">
-			<result name="SUCCESS">/setting1.jsp</result>
-			<result name="FALSE">/setting1.jsp</result>
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
 			
 		</action>
 	</package>

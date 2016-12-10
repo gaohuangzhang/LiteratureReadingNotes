@@ -10,7 +10,33 @@
 <!-- 实现动画必须引入的包 -->
 <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
+		<link href="sources/kindeditor/themes/default/default.css" rel="stylesheet">
 <title>分享文章</title>
+<script>
+		var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="feeling"]', {
+				allowFileManager : true,
+			 	allowImageUpload:true,
+			 	uploadJson:'sources/kindeditor/jsp/upload_json.jsp',
+			 	afterUpload: function(){this.sync();},
+			 	afterBlur: function(){this.sync();}, 
+				items : [
+					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+					'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+			});	
+			K('input[name=getHtml]').click(function(e) {
+				alert(editor.html());
+			});
+			K('input[name=clear]').click(function(e) {
+				editor.html('');
+			});
+		});	
+	</script>	
 <style>
 .W{
 		background-color: #ffffff;
@@ -81,7 +107,7 @@
 					<form action="share">
 						<input name="id"  style="display:none;" value=<%out.print(id);%> />
 						<h3>为<%out.print(articlename); %>添一句感想</h3>
-						<textarea name="feeling" rows="5" required="required" style="width:100%;" class="animated fadeInRight"></textarea>
+						<textarea id="texta" name="feeling" style="width: 100%; height: 200%; visibility: hidden;"></textarea>
 						<br><br>
 						<input type="submit" value="分享" class="btn pull-right animated fadeInRight"/>
 					</form>

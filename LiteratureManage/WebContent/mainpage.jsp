@@ -13,6 +13,12 @@
 	<!-- 实现动画必须引入的包 -->
 	<link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="sources/css/demo.css" type="text/css">
+<link rel="stylesheet" href="sources/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="sources/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="sources/js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="sources/js/jquery.ztree.exedit.js"></script>
+	<script type="text/javascript" src="sources/js/ztree_config.js"></script>
 	<title>我的主页</title>
 	<!-- 分块的样式 -->
 	<style>
@@ -280,11 +286,15 @@
 							</div>
 							<div class="tab-pane fade" id="panel-238829">
 								<!-- 分类哦 -->		
-								<input class="form-control pull-right" style="width: 60%; margin: 12px;background-color: rgba(255,255,255,	 0.60);" id="search-highlight5" name="search-highlight5" placeholder="在这里搜索内容" data-nodata="没有发现结果" type="text" data-list=".highlight_list5" autocomplete="off" />
-								<div class="vertical highlight_list5">	
-									<br><br>					
-									<h2>我的分类树</h2>
-								</div>
+								
+							
+													
+									
+									<br><br>	
+									<div class="zTreeDemoBackground left">
+										<ul id="treeDemo1" class="ztree "></ul>
+									</div>
+								
 							</div>
 						</div>
 					</div>

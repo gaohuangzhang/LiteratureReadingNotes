@@ -119,6 +119,10 @@ public class LoginAction {
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", name);
 			session.setAttribute("i", 2);
+			ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + mail + "\"");
+			String userid = result.get(0).get("1");
+			String sql_log = "insert into Log(userid, action) values (" + userid + "," + "\"加入我们的网站，新的一天，新的开始 #_#\")";
+			mc.update(sql_log);
 			return "SUCCESS";
 		} else {
 			return "INSERTERROR";

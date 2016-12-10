@@ -24,13 +24,13 @@
 			padding: 20px;
 			width: 48.5%;
 			height: 100px;
-			background-color: #F9f9f9;
+			background-color: rgba(255,255,255, 0.60);
 		}
 		.city1 {
 			margin: 5px;
 			padding: 20px;
 			width: 100%;		
-			background-color: #F9F9F9;
+			background-color: rgba(255,255,255, 0.60);
 		} 
 		.inputs {
 			float: right;

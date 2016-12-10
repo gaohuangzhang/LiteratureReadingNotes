@@ -89,7 +89,7 @@
 				</div>
 				<div class="tab-pane fade" id="panel-2">
 						<!-- 显示头像 -->
-						<h1>修改头像</h1><br>	
+						<h1>当前头像</h1><br>	
 						<div style="float:left;width:30%;">
 						<img src="<%out.println(avatar); %>" style="" height="200" width="200" class="img-rounded" />
 						</div>

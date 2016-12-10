@@ -112,6 +112,8 @@ alter table Note modify column note varchar(10000);
 ALTER TABLE Article ADD type VARCHAR(25);
 # 添加树URL
 alter table Tree add url VARCHAR(255);
+# log 长度扩充
+alter table Log modify column action varchar(1000);
 ```
 
 ### 检查创建结果
