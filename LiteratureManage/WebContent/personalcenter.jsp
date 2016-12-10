@@ -85,9 +85,11 @@
     </div>
     <% String usermail = null; %>
     <% String username = null; %>
+    <% String avatar = null; %>
     <% try { %>
 	<% usermail = (String) session.getAttribute("usermail"); %>
 	<% username = (String) session.getAttribute("username"); %>
+	<% avatar = (String) session.getAttribute("avatar"); %>
 	<% } catch (Exception e) { %>
 	<% out.print("404 ERROR!"); %>
 	<% } %>
@@ -139,28 +141,29 @@
     				    <div class="city animated fadeInLeft" style="overflow: hidden;">
     				        <div class="pull-left" style="width: 20%; text-align: center;">
     							<a href=seePeopleInfo?userid=<% out.println(list.get(i).get("8")); %>>
-				                    <img src=<% out.print("sources/pics/Avatar.png"); %> height="100" width="100" class="img-rounded"/>	
+				                    <img src=<% out.println(list.get(i).get("9")); %> height="100" width="100" class="img-rounded"/>	
 				                    <h6><% out.print(list.get(i).get("5")); %></h6>	
                                 </a>
 				            </div>	
 				            <div class="pull-right" style="width: 79%; padding: 10px;">
-                                <span class="glyphicon glyphicon-time pull-left"> 
-                                   <% out.print(list.get(i).get("6")); %>
-                                </span>
-				                <br>
+                               
 				                <h5>
                                     <a href=readArticle?url=<% out.print(list.get(i).get("2")); %>&articlename=<% out.print(list.get(i).get("1")); %>&id=<% out.print(list.get(i).get("3")); %>><% out.print(list.get(i).get("1")); %></a>
                                 </h5>
 						
 				                <% if (list.get(i).get("7") != null) { %>
-				                <% if (list.get(i).get("7").length() < 140) { %>
+				               
 								<% out.print(list.get(i).get("7")); %>
-                                <% } else { %>
-								<% out.print(list.get(i).get("7").substring(0, 120) + "......"); %>
-								<% } %>
+                               
+							
                                 <% } else { %>
                                 <% out.print("他很懒哦，啥都没说呢！"); %>
                                 <% } %>
+                                <br><br>
+                                 <span class="glyphicon glyphicon-time pull-right"> 
+                                   <% out.print(list.get(i).get("6")); %>
+                                </span>
+				               
 				            </div>
 					   </div>	
    					<% } %>

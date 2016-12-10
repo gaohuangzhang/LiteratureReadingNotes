@@ -47,6 +47,10 @@
 </style>
 </head>
 <body>
+<%String avatar_nav = null; %>
+<%try { %>
+	<% avatar_nav = (String) session.getAttribute("avatar"); %>
+	<%} catch(Exception e) {}%>
     <div id='navbars' style="font-size: 16px;">
       <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: rgba(113, 93, 68, 0.85); border: none;" role="navigation">
 				<div class="navbar-header">
@@ -80,7 +84,7 @@
 					
 						
 						<li class="dropdown" >
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<%out.print(avatar_nav); %>" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
 							<ul class="dropdown-menu">
 								<li><a href=settings>设置</a></li>
 								<li><a href=about>关于</a></li>

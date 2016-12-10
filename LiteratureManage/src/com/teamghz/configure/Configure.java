@@ -28,12 +28,23 @@ public class Configure {
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
 	public final static String LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
+	/**
+	 * where to save the avatars
+	 * i put them in WebContent/Avatars
+	 */
+	public final static String AVATAR_LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Avatars/";
 
 	/**
 	 * when run on tomcat maybe you want to edit it
 	 * where you want to save on the server, 
 	 */
 	public final static String SLOCATION = "Files/";
+	/**
+	 * when run on tomcat 
+	 * avatars will be put in there 
+	 */
+	public final static String AVATAR_SLOCATION = "Avatars/";
+	
 	
 	public final static String DOWNLOAD = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/";
 	/**
@@ -46,6 +57,11 @@ public class Configure {
 	 * url begin with this
 	 */
 	public final static String ARTICLE_URL_START = "Files";
+	/**
+	 * url of avatar
+	 */
+	
+	public final static String AVATAR_URL_START = "Avatars";
 	/**
 	 * for mysql url
 	 * Windows: "\\\\"

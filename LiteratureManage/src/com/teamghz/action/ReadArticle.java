@@ -126,6 +126,10 @@ public class ReadArticle {
 		}
 	}
 	public String readStatus() {
+		ServletRequest request = ServletActionContext.getRequest();
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		String usermail = (String) session.getAttribute("usermail");
 		MysqlConnecter mc = new  MysqlConnecter();
 		String sql = "select status from Article where articleid=" + id;
 		ArrayList<Map<String, String>> r = mc.select(sql);
@@ -136,6 +140,11 @@ public class ReadArticle {
 		else {
 			String sql_update = "update Article set status=\"INTENSIVE_READ\" where articleid=" + id;
 			mc.update(sql_update);
+			ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + usermail + "\"");
+			String userid = result.get(0).get("1");
+			ArrayList<Map<String, String>> result1 = mc.select("select articlename from Article where articleid=\"" + id + "\"");
+			String sql_log = "insert into Log(userid, action) values (" + userid + "," + "\"精读了文章" + result1.get(0).get("1") + "\")";
+			mc.update(sql_log);
 			this.result = "已经成功标记这篇文章为精读过的状态！ ";
 		}
 		return "SUCCESS";

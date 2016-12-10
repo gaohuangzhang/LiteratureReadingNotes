@@ -304,29 +304,22 @@ body{
 				<div class="panel panel-success" style="background-color: rgba(255,255,255,	 0.60);">
 					<div class="panel-body">
 						<ul class="nav nav-stacked">
-							<li class="active"><a href="#panel-1" data-toggle="tab">修改笔记</a></li>
-							<li><a href="#panel-2" data-toggle="tab">建分类树</a></li>
-							<li><a href="#panel-5" data-toggle="tab">阅读状态</a></li>
-							<li><a href="#panel-6" data-toggle="tab">标准文档</a></li>
+						<li class="active"><a href="#panel-1" data-toggle="tab">建分类树</a></li>
+							<li ><a href="#panel-2" data-toggle="tab">上传文档</a></li>
+							
 							<li><a href="#panel-7" data-toggle="tab">删除文档</a></li>
-							<li><a href="#panel-8" data-toggle="tab">上传文档</a></li>
+							
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-10 column">
 				<div class="tab-content">
+				
+					
 					<div class="tab-pane fade in active" id="panel-1">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">修改笔记</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="panel-2">
-						<div class="panel panel-success">
-							<div class="panel-heading">
+						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
+							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
 								<h3 class="panel-title">构建分类树</h3>
 							</div>
 							<div class="panel-body">
@@ -339,62 +332,75 @@ body{
 									</div>
 								</div>
 								<div>
-									<button onclick="myFunction()">保存树</button>
+									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="myFunction()">保存树</button>
 								
 								
-									<button onclick="count()">下载子树</button>
+									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="count()">下载子树</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="panel-3">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">分类 链接文档</h3>
+					<div class="tab-pane fade " id="panel-2">
+						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
+							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
+								<h3 class="panel-title">上传文档</h3>
+								
 							</div>
-							<div class="panel-body"></div>
+							<div class="panel-body">
+							<ul class="nav nav-tabs">
+ 								<li class="active" >
+ 									<a data-toggle="tab" href="#savepdf">
+ 										<span class="glyphicon glyphicon-open">上传pdf</span>
+ 									</a>
+ 								</li>
+  								<li>
+  									<a data-toggle="tab" href="#saveurl">
+  										<span class="glyphicon glyphicon-link">保存url</span>
+  									</a>
+  								</li>
+  								</ul>
+  								<div class="tab-content">
+    							<div id="savepdf" class="tab-pane fade in active">
+									<form action="fileUpLoad" id="upload_form" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+										<br><br>
+                							<input name="articlename" class="form-control" type="text" placeholder="请在这儿输入文件名" required  style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+    									</div>
+    									<div class="form-group">
+        									<input name="file" id='file' class="upload" type="file" required style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+        								</div>
+    								</form>
+    								<button type="submit" class="btn  pull-right" style="width:20%;background-color: #84735F;color:#ffffff" form="upload_form">上传文件</button>
+    							</div>
+    				    		<div id="saveurl" class="tab-pane">
+                            		<form action="urlUpLoad" method="post" id="urlupload_form">
+                                		<div class="form-group">
+                                		<br><br>
+                				    		<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+                               	 		</div>
+    				            		<div class="form-group">
+        						    		<input name="url" id='url'  class="form-control" value="http://" type="text" placeholder="请在这儿输入url" required style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+        					    		</div>
+    					    		</form>
+    					    		<button type="submit" class="btn pull-right"style="width:20%;background-color: #84735F;color:#ffffff" form="urlupload_form">上传URL</button>
+    				    		</div>
+				    		</div>
+							
+							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="panel-4">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">类别修改</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="panel-5">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">修改阅读状态</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="panel-6">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">生成标准文档</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
+				
+					
+					
 					<div class="tab-pane fade" id="panel-7">
-						<div class="panel panel-success">
-							<div class="panel-heading">
+						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
+							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
 								<h3 class="panel-title">删除</h3>
 							</div>
 							<div class="panel-body"></div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="panel-8">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">上传文档</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

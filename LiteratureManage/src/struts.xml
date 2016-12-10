@@ -128,10 +128,15 @@
 			<result name="FAILED">/setting1.jsp</result>
 		</action>
 		<action name="setting2" class="com.teamghz.action.Setting" method="setting2">
-			<result name="SUCCESS">/setting2.jsp</result>
-			<result name="PASSWORDERROE">/setting2.jsp</result>
-			<result name="INSERTERROR">/setting2.jsp</result>
-			<result name="FAILED">/setting2.jsp</result>
+			<result name="SUCCESS">/setting1.jsp</result>
+			<result name="PASSWORDERROE">/setting1.jsp</result>
+			<result name="INSERTERROR">/setting1.jsp</result>
+			<result name="FAILED">/setting1.jsp</result>
+		</action>
+		<action name="upload_avatar" class="com.teamghz.action.Avatar" method="uploadAvatar">
+			<result name="SUCCESS">/temporary.jsp</result>
+			<result name="FALSE">/temporary.jsp</result>
+			
 		</action>
 	</package>
 	<!--分享-->

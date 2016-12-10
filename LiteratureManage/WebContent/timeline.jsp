@@ -59,6 +59,7 @@
 	<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
     	<img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
     </div>
+    <% String avatar = (String) session.getAttribute("avatar"); %>
 	<% ArrayList<Map<String, String>> actionResult = (ArrayList<Map<String, String>>)session.getAttribute("timeline"); %>
 	
 	<div class="container">
@@ -99,9 +100,9 @@
               			%>
             		</div>
             		<div class="timeline-icon"></div>
-            		<div class="timeline-content">
+            		<div class="timeline-content" style="background-color: rgba(255,255,255, 0.60);" >
               			<h2><% out.print(actionResult.get(i).get("1")); %></h2>
-              			<button class="btn btn-info" href="#">详细信息 >></button>
+              			
             		</div>
           		</li>
           			<% } %>
