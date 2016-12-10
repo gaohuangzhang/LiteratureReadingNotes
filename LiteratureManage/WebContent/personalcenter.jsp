@@ -85,9 +85,11 @@
     </div>
     <% String usermail = null; %>
     <% String username = null; %>
+    <% String avatar = null; %>
     <% try { %>
 	<% usermail = (String) session.getAttribute("usermail"); %>
 	<% username = (String) session.getAttribute("username"); %>
+	<% avatar = (String) session.getAttribute("avatar"); %>
 	<% } catch (Exception e) { %>
 	<% out.print("404 ERROR!"); %>
 	<% } %>
@@ -139,7 +141,7 @@
     				    <div class="city animated fadeInLeft" style="overflow: hidden;">
     				        <div class="pull-left" style="width: 20%; text-align: center;">
     							<a href=seePeopleInfo?userid=<% out.println(list.get(i).get("8")); %>>
-				                    <img src=<% out.print("sources/pics/Avatar.png"); %> height="100" width="100" class="img-rounded"/>	
+				                    <img src=<% out.println(list.get(i).get("9")); %> height="100" width="100" class="img-rounded"/>	
 				                    <h6><% out.print(list.get(i).get("5")); %></h6>	
                                 </a>
 				            </div>	

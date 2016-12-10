@@ -79,6 +79,7 @@ public class FileUpLoadAction extends ActionSupport {
 	public String execute() throws Exception {
 		String root = ServletActionContext.getServletContext().getRealPath("/");
 		System.out.println(root);
+		System.out.println("HERE" + file);
 		InputStream is = new FileInputStream(file);
 		ServletRequest request = ServletActionContext.getRequest();		// 获取Servlet请求对象
 		HttpServletRequest req = (HttpServletRequest) request;

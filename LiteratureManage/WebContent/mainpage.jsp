@@ -87,6 +87,7 @@
 	<!-- 得到当前用户信息 -->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
+	<% String avatar = (String) session.getAttribute("avatar"); %>
 	<!-- 没有登录或者掉线 设置页面隐藏-->
 	<% if (usermail == null) { %>
 	<div class="city1" style="text-align: center;">
@@ -112,7 +113,7 @@
 				</div>
 				<div class="col-md-3"  style="text-align: center;">
 					<!-- 显示头像 -->
-					<img src="sources/pics/Avatar.png" height="240" width="240" class="img-rounded" />
+					<img src="<%out.print(avatar); %>" height="240" width="240" class="img-rounded" />
 					<p class="text-center">
 						<br>
 						<div style="width:100%;">

@@ -81,7 +81,7 @@ public class LoginAction {
 		String sql = "select * from User where mail=\"" + mail + "\"" ;
 		MysqlConnecter mc = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc.select(sql);
-		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
+		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime 6.avatar
 		if (result.size() == 0) {
 			return "USERNOTEXIST";
 		} else if (!passwd.equals(result.get(0).get("4"))) {
@@ -92,6 +92,14 @@ public class LoginAction {
 			HttpSession session = req.getSession();
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", result.get(0).get("2"));
+			System.out.println(sql);
+			System.out.println(result.get(0).get("1"));
+			System.out.println(result.get(0).get("2"));
+			System.out.println(result.get(0).get("3"));
+			System.out.println(result.get(0).get("4"));
+			System.out.println(result.get(0).get("5"));
+			System.out.println(result.get(0).get("6"));
+			session.setAttribute("avatar", result.get(0).get("6"));
 			session.setAttribute("i", 2);
 			return "SUCCESS";
 		} else {

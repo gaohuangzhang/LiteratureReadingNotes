@@ -1,4 +1,4 @@
-﻿# 创建数据库和相应的表
+# 创建数据库和相应的表
 EDIT@20160929
 > 创建数据库
 
@@ -64,8 +64,8 @@ CREATE TABLE Log
   articleid     INT(11),
   time          TIMESTAMP,
   action        VARCHAR(20),
-  FOREIGN KEY (userid) REFERENCES User(userid),
-  FOREIGN KEY (articleid) REFERENCES Article(articleid)
+  FOREIGN KEY (userid) REFERENCES User(userid)
+ 
 );
 CREATE TABLE Share
 (
@@ -102,6 +102,8 @@ CREATE TABLE Tree
 USE DBGHZ;
 # 头像url
 ALTER TABLE User ADD avatar VARCHAR(255);
+# 默认url
+alter table User alter column  avatar set default "Avatars/0.png";
 # 文章感受
 ALTER TABLE Share ADD feeling VARCHAR(1000);
 # 文章笔记长度扩充
