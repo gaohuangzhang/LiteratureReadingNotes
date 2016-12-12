@@ -60,6 +60,7 @@
 			<result>/search.jsp</result>
 
 		</action>
+	
 	</package>
 	<!--package PersonalCenter：所有个人中心的动作 -->
 	<package name="PersonalCenter" extends="struts-default">
@@ -71,6 +72,10 @@
 	<!--个人主页动作-->
 	<package name="MainPage" extends="struts-default">
 		<action name="getAllKindOfArticles" class="com.teamghz.action.MainPageAction" method="findAllKindOfArticles">
+		</action>
+		<!--去删除-->
+		<action name="deleteArticle" class="com.teamghz.action.DeleteArticle" method="deleteArticle">
+		<result name="success">/temporary.jsp</result>
 		</action>
 	</package>
 	<!--文件上传和下载-->
