@@ -184,7 +184,11 @@
 												<%out.print(notread.get(i).get("1")); %>
 											</a>
 										</span>
-										<br><br>
+										<br>
+										<a href=deleteArticle?articleid=<% out.print(notread.get(i).get("3")); %>>
+											<%out.print("删除");%>
+										</a>
+										<br>
 										<!-- 显示分类标签 -->
 										<span class="glyphicon glyphicon-tags"></span>
 										<br>
@@ -214,7 +218,11 @@
 												<% out.print(readlittle.get(i).get("1")); %>
 											</a>
 										</span>
-										<br><br>
+										<br>
+										<a href=deleteArticle?articleid=<% out.print(readlittle.get(i).get("3")); %>>
+											<%out.print("删除");%>
+										</a>
+										<br>
 										<!-- 显示标签 -->
 										<span class="glyphicon glyphicon-tags"></span>
 										<br>
@@ -243,7 +251,11 @@
 	    										<% out.print(readall.get(i).get("1")); %>
 	    									</a>
 	    								</span>
-	  									<br><br>
+	    								<br>
+										<a href=deleteArticle?articleid=<% out.print(readall.get(i).get("3")); %>>
+											<%out.print("删除");%>
+										</a>
+	  									<br>
 										<span class="glyphicon glyphicon-tags"></span>
 										<br>
 										<a style="color: #000000;" href=toShare?articlename=<% out.print(readall.get(i).get("1")); %>&id=<% out.print(readall.get(i).get("3")); %>>
@@ -268,8 +280,12 @@
 											<a style="color: #000000;" href=readArticle?url=<% out.print(all.get(i).get("2")); %>&articlename=<% out.print(all.get(i).get("1")); %>&id=<% out.print(all.get(i).get("3"));%>>		
 												<% out.print(all.get(i).get("1")); %>
 											</a>
-										</span>						
-										<br><br>
+										</span>		
+										<br>	
+										<a href=deleteArticle?articleid=<% out.print(all.get(i).get("3")); %>>
+											<%out.print("删除");%>
+										</a>	
+										<br>
 										<span class="glyphicon glyphicon-tags"></span>
 										<br>
 										<a style="color: #000000;" href=toShare?articlename=<% out.print(all.get(i).get("1")); %>&id=<% out.print(all.get(i).get("3")); %>>

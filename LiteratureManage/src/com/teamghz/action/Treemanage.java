@@ -69,7 +69,7 @@ public class Treemanage {
 		sql = "select * from Tree where userid='" + userid + "'";
 		books = mc.select(sql);
 		if (books.size() == 0) {
-			sql = "insert into Tree(nodename,pid,userid,url) values('" + username + "',0," + userid + ",null)";
+			sql = "insert into Tree(id,nodename,pid,userid,url) values(1,'" + username + "',0," + userid + ",null)";
 			int re = mc.update(sql);
 			sql = "select * from Tree where userid='" + userid + "'";
 			books = mc.select(sql);

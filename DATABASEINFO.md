@@ -1,4 +1,4 @@
-# 创建数据库和相应的表
+﻿# 创建数据库和相应的表
 EDIT@20160929
 > 创建数据库
 
@@ -55,7 +55,7 @@ CREATE TABLE Article
   parentid      INT(11),
   childid       VARCHAR(500),
   comment       VARCHAR(2000),
-  FOREIGN KEY (userid) REFERENCES User(userid)
+  FOREIGN KEY (userid) REFERENCES User(userid) on delete cascade on update cascade
 );
 CREATE TABLE Log
 (
@@ -64,7 +64,7 @@ CREATE TABLE Log
   articleid     INT(11),
   time          TIMESTAMP,
   action        VARCHAR(20),
-  FOREIGN KEY (userid) REFERENCES User(userid)
+  FOREIGN KEY (userid) REFERENCES User(userid) on delete cascade on update cascade
  
 );
 CREATE TABLE Share
@@ -75,8 +75,8 @@ CREATE TABLE Share
   time          TIMESTAMP,
   good          INT(11),
   bad           INT(11),
-  FOREIGN KEY (userid) REFERENCES User(userid),
-  FOREIGN KEY (articleid) REFERENCES Article(articleid)
+  FOREIGN KEY (userid) REFERENCES User(userid) on delete cascade on update cascade,
+  FOREIGN KEY (articleid) REFERENCES Article(articleid) on delete cascade on update cascade
 );
 CREATE TABLE Note
 (
@@ -86,16 +86,16 @@ CREATE TABLE Note
   time          TIMESTAMP,
   notename   VARCHAR(255),
   note          VARCHAR(2000),
-  FOREIGN KEY (userid) REFERENCES User(userid),
-  FOREIGN KEY (articleid) REFERENCES Article(articleid)
+  FOREIGN KEY (userid) REFERENCES User(userid) on delete cascade on update cascade,
+  FOREIGN KEY (articleid) REFERENCES Article(articleid) on delete cascade on update cascade
 );
 CREATE TABLE Tree
 (
-  id INT(11) NOT NULL AUTO_INCREMENT primary key,
+  id INT(11) ,
   nodename varchar(255),
   pid INT(11),
   userid        INT(11),
-  FOREIGN KEY (userid) REFERENCES User(userid)
+  FOREIGN KEY (userid) REFERENCES User(userid) on delete cascade on update cascade
 );
 
 # 请增加执行
@@ -114,6 +114,8 @@ ALTER TABLE Article ADD type VARCHAR(25);
 alter table Tree add url VARCHAR(255);
 # log 长度扩充
 alter table Log modify column action varchar(1000);
+#外键修改
+重建表所有表,运行以上语句
 ```
 
 ### 检查创建结果

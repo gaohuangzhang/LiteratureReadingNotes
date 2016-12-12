@@ -307,7 +307,6 @@ body{
 						<li class="active"><a href="#panel-1" data-toggle="tab">建分类树</a></li>
 							<li ><a href="#panel-2" data-toggle="tab">上传文档</a></li>
 							
-							<li><a href="#panel-7" data-toggle="tab">删除文档</a></li>
 							
 						</ul>
 					</div>
@@ -392,14 +391,7 @@ body{
 				
 					
 					
-					<div class="tab-pane fade" id="panel-7">
-						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
-							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
-								<h3 class="panel-title">删除</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
+					
 					
 				</div>
 			</div>
