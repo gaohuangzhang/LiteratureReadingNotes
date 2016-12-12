@@ -20,7 +20,7 @@ public class Configure {
 	 * true when run on tomcat
 	 * false when run on your computer
 	 */
-	public final static boolean ONTOMCAT = true;
+	public final static boolean ONTOMCAT = false;
 	/**
 	 * if run on your computer, edit this please
 	 * ---Where is the Files will be save---
@@ -61,4 +61,20 @@ public class Configure {
 		COARSE_READ, // coarse read
 		INTENSIVE_READ, // intensive reading
 	}
+	
+	public static boolean isOnWindows() {
+		if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1)
+			return true;
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

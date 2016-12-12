@@ -24,11 +24,20 @@ public class LoginAction {
 	// password for user
 	private String passwd;
 	
-	// password2
-	private String passwd_confirm;
-	
+	// for validate
 	private boolean valid;
 	
+	// for sign up
+	private boolean correct;
+	
+	public boolean isCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
+
 	public boolean isValid() {
 		return valid;
 	}
@@ -63,14 +72,6 @@ public class LoginAction {
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public String getPasswd_confirm() {
-		return passwd_confirm;
-	}
-	// password again
-	public void setPasswd_confirm(String passwd_confirm) {
-		this.passwd_confirm = passwd_confirm;
 	}
 	
 	// Action : Sign In
@@ -111,8 +112,10 @@ public class LoginAction {
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", name);
 			session.setAttribute("i", 2);
+			correct = true;
 			return "SUCCESS";
 		} else {
+			correct = false;
 			return "INSERTERROR";
 		}
 	}

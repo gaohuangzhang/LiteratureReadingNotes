@@ -78,7 +78,6 @@ public class FileUpLoadAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		String root = ServletActionContext.getServletContext().getRealPath("/");
-		System.out.println(root);
 		InputStream is = new FileInputStream(file);
 		ServletRequest request = ServletActionContext.getRequest();		// 获取Servlet请求对象
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -86,6 +85,7 @@ public class FileUpLoadAction extends ActionSupport {
 		String usermail = (String) session.getAttribute("usermail");	// 获取session——用户邮箱
 		File f = null;
 		File t = null;
+		System.out.println(Configure.ONTOMCAT);
 		if (Configure.ONTOMCAT) {
 			f = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR);
 			t = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR + "Temp" + Configure.SEPARATOR);
