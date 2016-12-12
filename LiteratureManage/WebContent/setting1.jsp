@@ -17,110 +17,131 @@
 	</style>
 </head>
 <body>
+<% String avatar = (String) session.getAttribute("avatar"); %>
+<div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
+    <img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 	<% int i = 2; %>
     <% try { %>
 	<% i = (int) session.getAttribute("i"); %>
+	<% session.removeAttribute("i"); %>
 	<% } catch (Exception e) { %>
 	<% i=2; %>
 	<% } %>
+	<% int j = 2; %>
+    <% try { %>
+	<% j = (int) session.getAttribute("j"); %>
+	<% session.removeAttribute("j"); %>
+	<% } catch (Exception e) { %>
+	<% j = 2; %>
+	<% } %>
+	
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<p><br><br><br><br></p>
+				
 			</div>
-			<div class="col-md-12 column">
-			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
-				<div class="navbar-header" >
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
-					<ul  class="nav navbar-nav">
-						<li  onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a  href=personalCenter style="color:#ffffff;font-size: 16px;">个人中心</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=mainPage  style="color:#ffffff;font-size: 16px;">我的主页</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=fileManage style="color:#ffffff;font-size: 16px;">内容管理</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=timeLine style="color:#ffffff;font-size: 16px;">最佳回忆</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-						<a href=search style="color:#ffffff;font-size: 16px;">站内检索</a>
-						</li>
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
-					
-						
-						<li class="dropdown" >
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
-							<ul class="dropdown-menu">
-								
-								<li><a href=settings>设置</a></li>
-								<li><a href=about>关于</a></li>
-								<li class="divider"></li>
-								<li><a href=signOut>注销</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-			</nav>
-		</div>
+			 <%@ include file="nav.jsp" %>
 		</div>
 		<div class="row clearfix">
-			<div class="col-md-3 column">
-				<div class="panel panel-success">
-    			
-    				<div class="panel-body">
-       					<ul class="nav  nav-stacked">
-							<li class="active"><a href="setting1.jsp">修改密码</a></li>
-							<li><a href="setting2.jsp">个人信息</a></li>
+	
+			
+				<div class="col-md-2 column">
+				<div class="panel panel-success" style="background-color: rgba(255,255,255,	 0.60);">
+					<div class="panel-body">
+						<ul class="nav nav-stacked">
+							<li class="active"><a href="#panel-1" data-toggle="tab">修改密码</a></li>
+							<li><a href="#panel-2" data-toggle="tab">更换头像</a></li>
+							<li><a href="#panel-3" data-toggle="tab">修改信息</a></li>
+							
 							
 						</ul>
-    				</div>
+					</div>
 				</div>
-				
 			</div>
-			<div class="col-md-9 column">
+			
+			<div class="col-md-10 column">
+			<div class="tab-content">
+			<div class="tab-pane fade in active" id="panel-1">
 				<h1>修改我的密码</h1>
-				<hr>
-				<form action="setting1" id="setting_form" method="post">
+				<br>
+				<form action="setting1" id="setting_form1" method="post">
 					<div class="form-group">
-					 	<label>旧密码</label><input name="oldpasswd" type="password" class="form-control" id="oldpasswd" />
+					 	<label>旧密码</label><input name="oldpasswd" style="width:50%;background-color: rgba(255,255,255,	 0.60);" type="password" class="form-control" id="oldpasswd" />
 					 	<span class=""></span>
 					</div>
 					<div class="form-group">
 						<label>新密码</label>
-						<input name="passwd" type="password" class="form-control" id="passwd" />
+						<input name="passwd" type="password" style="width:50%;background-color: rgba(255,255,255,	 0.60);" class="form-control" id="passwd" />
 					 	<span class=""></span>
 					</div>
 					<div class="form-group">
 						<label>新密码确认</label>
-					 	<input class="form-control" name="passwd_confirm" type="password" id="passwd_confirm" />
+					 	<input class="form-control" style="width:50%;background-color: rgba(255,255,255,	 0.60);" name="passwd_confirm" type="password" id="passwd_confirm" />
 					 	<span class=""></span>
 					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn " form="setting_form">更改</button>
+					<div class="modal-footer" style="border:none">
+						<button type="submit"  id="submit1" style="width:30%;background-color: #84735F;color:#ffffff" class="btn " form="setting_form1">更改</button>
 					</div>
-					<% if(i==1) {
+					
+				</form>
+				</div>
+				<div class="tab-pane fade" id="panel-2">
+						<!-- 显示头像 -->
+						<h1>当前头像</h1><br>	
+						<div style="float:left;width:30%;">
+						<img src="<%out.println(avatar); %>" style="" height="200" width="200" class="img-rounded" />
+						</div>
+						<div style="float:left;width:70%;">
+						<form action="upload_avatar" id="setting_form3" method="post" enctype="multipart/form-data">
+						<div class="form-group">
+						<label>选择你喜欢的头像并上传</label>
+					 	<input  name="file" id='file' class="upload" type="file" accept=".jpeg,.svg,.gif,.jpg,.png" style="width:70%;background-color: rgba(255,255,255,	 0.60);"  />
+					 	
+					</div>
+					<div class="modal-footer"  style="border:none">
+						<button type="submit" id="submit3"  class="btn " style="width:50%;background-color: #84735F;color:#ffffff" form="setting_form3">上传头像</button>
+					</div>
+					</form>
+						</div>
+						
+					</div>
+					<div class="tab-pane fade" id="panel-3">
+					<h1>设置个人信息</h1>
+					<br>
+				<form action="setting2" id="setting_form2" method="post">
+					<div class="form-group">
+						<label>昵称</label>
+					 	<input name="name" type="text" style="width:50%;background-color: rgba(255,255,255,	 0.60);" class="form-control" id="name" />
+					 	<span class=""></span>
+					</div>
+					<div class="modal-footer"  style="border:none">
+						<button type="submit" id="submit2"  class="btn " style="width:30%;background-color: #84735F;color:#ffffff" form="setting_form2">更改</button>
+					</div>
+					
+				</form>
+						
+					</div>
+					
+				</div>
+				<% if(i==1) {
 					   		out.print("<div class=\"alert alert-success\"><button type=\"but" + "ton\" class=\"close\" data-dismiss=\"alert\">×</button>" + "<h4>提示!</h4> <strong>更改成功!</strong></div>");
 					   }
 					   else if(i==0) {
 						 	out.print("<div class=\"alert alert-error\"><button type=\"but" + "ton\" class=\"close\" data-dismiss=\"alert\">×</button>" + "<h4>提示!</h4> <strong>更改失败，密码错误!</strong></div>");
 					   }
 					%>
-				</form>
+					<% if(j==1) {
+							out.print("<div class=\"alert alert-success\"><button type=\"but" + "ton\" class=\"close\" data-dismiss=\"alert\">×</button>" + "<h4>提示!</h4> <strong>更改成功!</strong></div>");
+				   	   }
+				   	   else if(i==0) {
+					   		out.print("<div class=\"alert alert-error\"><button type=\"but" + "ton\" class=\"close\" data-dismiss=\"alert\">×</button>" + "<h4>提示!</h4> <strong>更改失败，密码错误!</strong></div>");
+				   	   }
+				 	%>
 			</div>
 		</div>
-		<hr>
-		<footer>
-					<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-				</footer>
+		
 	</div>
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -165,9 +186,10 @@
 					}
 				});
 			//所有验证通过方可提交表单
-			$('.submit').click(function() {
+			$('#submit1').click(function() {
+				
 				if (passwdsetting && passwdConfirm) {
-					$('form').submit();
+					$('#setting_form1').submit();
 				}
 				else {
 					return false;
@@ -175,6 +197,34 @@
 			});
 		});
 	</script>
+	<script type="text/javascript">
+		$(function() {
+			var namesetting = false;
+			//验证用户名
+			$('input[name="name"]').focus(function() {
+				$(this).next().text('用户名应大于2个字符').addClass('state2');}).blur(function() {
+					if ($(this).val().length > 2 && $(this).val() != '') {
+						$(this).next().text('输入成功').removeClass().addClass('state4');
+						namesetting = true;
+					}
+					else {
+						$(this).next().text('用户名应大于2个字符').removeClass().addClass('state3');
+					}
+				});
+			//所有验证通过方可提交表单
+			$('#submit2').click(function() {
+				
+				if (namesetting) {
+					$('#setting_form2').submit();
+				}
+				else {
+					return false;
+				}
+			});
+		});
+	</script>
+	 <br><br><br><br><br><br><br><br><br><br>
+	<%@ include file="bottom.jsp" %>
 </body>
 </html>
 

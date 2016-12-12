@@ -11,13 +11,13 @@
 <script src="sources/js/jquery-3.1.1.min.js"></script>
 <script src="sources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="sources/css/demo.css" type="text/css">
-<link rel="stylesheet" href="sources/css/zTreeStyle/zTreeStyle.css"
-	type="text/css">
+<link rel="stylesheet" href="sources/css/zTreeStyle/zTreeStyle.css" type="text/css">
 <script type="text/javascript" src="sources/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="sources/js/jquery.ztree.core.js"></script>
 <script type="text/javascript" src="sources/js/jquery.ztree.excheck.js"></script>
 <script type="text/javascript" src="sources/js/jquery.ztree.exedit.js"></script>
 <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
+
 <SCRIPT type="text/javascript">
 		//<!--
 		var setting1 = {
@@ -178,7 +178,6 @@
             var nodes = treeObj.transformToArray(treeObj.getNodes());
             var msg1 = "";
             treeObj.expandAll(true);
-
             for (var i = 0; i < nodes.length; i++) {
 				
                 msg1 += nodes[i].id + " " + nodes[i].name + " " + nodes[i].pId +" "+nodes[i].url+ "\n";
@@ -202,7 +201,6 @@
         function count() {
             var zTree = $.fn.zTree.getZTreeObj("treeDemo1");
             checkCount = zTree.getCheckedNodes(true);
-
             var msg2 = "";
             for(var i=0;i<checkCount.length;i++) {
                  msg2 += checkCount[i].id + " " + checkCount[i].name + " " + checkCount[i].pId +" "+checkCount[i].url+ "\n";
@@ -240,6 +238,13 @@
             $.fn.zTree.init($('#treeDemo2'), setting2, zNodes2);  
         }  
 	</script>
+	<script>
+        $(document).ready(function(){
+            $('#things').addClass('active');
+
+        });
+
+    </script>
 <style type="text/css">
 .ztree li span.button.add {
 	wideth: 100px;
@@ -255,12 +260,15 @@
 	background-color: #ffffff;
 }
 
-.G {
-	background-color: #6BB50B;
-}
+body{
+		font-family: "Microsoft YaHei", "Arial", "Times Roman", "Courier", "Verdana", "Century Gothic";
+		}
 </style>
 </head>
 <body>
+ <div style="position: absolute; width: 100%; height: 100%; z-index: -1; left: 0; top: 0;">      
+    	<img src="sources/pics/bg11.jpg" style="left: 0; position: fixed; top: 0;" width="100%" height="100%">      
+    </div>
 	<%
 		int i = 2;
 	%>
@@ -289,87 +297,33 @@
 					<br>
 				</p>
 			</div>
-			<div class="col-md-12 column">
-				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
-					style="background: #036564; border: none;" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">GHZ</span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">读而思之</a>
-				</div>
-				<div class="collapse navbar-collapse" style="font-size: 16px;"bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li onMouseMove="this.className='G animated swing'"
-							onmouseout="this.className=''"><a href=personalCenter
-							style="color: #ffffff; font-size: 16px;">个人中心</a></li>
-						<li onMouseMove="this.className='G animated swing'"
-							onmouseout="this.className=''"><a href=mainPage
-							style="color: #ffffff; font-size: 16px;">我的主页</a></li>
-						<li class="active" onMouseMove="this.className='G animated swing'"
-							onmouseout="this.className='active'"><a href=fileManage
-							style="color: #ffffff; font-size: 16px;">内容管理</a></li>
-						<li onMouseMove="this.className='G animated swing'"
-							onmouseout="this.className=''"><a href=timeLine
-							style="color: #ffffff; font-size: 16px;">最佳回忆</a></li>
-						<li onMouseMove="this.className='G animated swing'"
-							onmouseout="this.className=''"><a href=search
-							style="color: #ffffff; font-size: 16px;">站内检索</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right"
-						style="padding-right: 15px;">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <img src="sources/pics/Avatar.png"
-								height="20" width="20"
-								onMouseMove="this.className='animated pulse'"
-								onmouseout="this.className=''" />
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href=settings>设置</a></li>
-								<li><a href=about>关于</a></li>
-								<li class="divider"></li>
-								<li><a href=signOut>注销</a></li>
-							</ul></li>
-					</ul>
-				</div>
-				</nav>
-			</div>
+			 <%@ include file="nav.jsp" %>
 		</div>
 		<div class="row clearfix">
 			<div class="col-md-2 column">
-				<div class="panel panel-success">
+				<div class="panel panel-success" style="background-color: rgba(255,255,255,	 0.60);">
 					<div class="panel-body">
 						<ul class="nav nav-stacked">
-							<li class="active"><a href="#panel-1" data-toggle="tab">修改笔记</a></li>
-							<li><a href="#panel-2" data-toggle="tab">建分类树</a></li>
-							<li><a href="#panel-5" data-toggle="tab">阅读状态</a></li>
-							<li><a href="#panel-6" data-toggle="tab">标准文档</a></li>
+						<li class="active"><a href="#panel-1" data-toggle="tab">建分类树</a></li>
+							<li ><a href="#panel-2" data-toggle="tab">上传文档</a></li>
+							
 							<li><a href="#panel-7" data-toggle="tab">删除文档</a></li>
-							<li><a href="#panel-8" data-toggle="tab">上传文档</a></li>
+							
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-10 column">
 				<div class="tab-content">
+				
+					
 					<div class="tab-pane fade in active" id="panel-1">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">修改笔记</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="panel-2">
-						<div class="panel panel-success">
-							<div class="panel-heading">
+						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
+							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
 								<h3 class="panel-title">构建分类树</h3>
 							</div>
 							<div class="panel-body">
 								<div class="content_wrap">
-
 									<div class="zTreeDemoBackground left">
 										<ul id="treeDemo1" class="ztree "></ul>
 									</div>
@@ -378,79 +332,81 @@
 									</div>
 								</div>
 								<div>
-									<button onclick="myFunction()">保存树</button>
+									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="myFunction()">保存树</button>
+								
+								
+									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="count()">下载子树</button>
 								</div>
-								<div>
-									<button onclick="count()">下载子树</button>
-								</div>
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="panel-3">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">分类 链接文档</h3>
+					<div class="tab-pane fade " id="panel-2">
+						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
+							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
+								<h3 class="panel-title">上传文档</h3>
+								
 							</div>
-							<div class="panel-body"></div>
+							<div class="panel-body">
+							<ul class="nav nav-tabs">
+ 								<li class="active" >
+ 									<a data-toggle="tab" href="#savepdf">
+ 										<span class="glyphicon glyphicon-open">上传pdf</span>
+ 									</a>
+ 								</li>
+  								<li>
+  									<a data-toggle="tab" href="#saveurl">
+  										<span class="glyphicon glyphicon-link">保存url</span>
+  									</a>
+  								</li>
+  								</ul>
+  								<div class="tab-content">
+    							<div id="savepdf" class="tab-pane fade in active">
+									<form action="fileUpLoad" id="upload_form" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+										<br><br>
+                							<input name="articlename" class="form-control" type="text" placeholder="请在这儿输入文件名" required  style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+    									</div>
+    									<div class="form-group">
+        									<input name="file" id='file' class="upload" type="file" required style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+        								</div>
+    								</form>
+    								<button type="submit" class="btn  pull-right" style="width:20%;background-color: #84735F;color:#ffffff" form="upload_form">上传文件</button>
+    							</div>
+    				    		<div id="saveurl" class="tab-pane">
+                            		<form action="urlUpLoad" method="post" id="urlupload_form">
+                                		<div class="form-group">
+                                		<br><br>
+                				    		<input name="articlename"  class="form-control" type="text" placeholder="请在这儿输入文件名" required style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+                               	 		</div>
+    				            		<div class="form-group">
+        						    		<input name="url" id='url'  class="form-control" value="http://" type="text" placeholder="请在这儿输入url" required style="background-color: rgba(255,255,255,0.60);border:none;  width: 60%;" />
+        					    		</div>
+    					    		</form>
+    					    		<button type="submit" class="btn pull-right"style="width:20%;background-color: #84735F;color:#ffffff" form="urlupload_form">上传URL</button>
+    				    		</div>
+				    		</div>
+							
+							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="panel-4">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">类别修改</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="panel-5">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">修改阅读状态</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="panel-6">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">生成标准文档</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
+				
+					
+					
 					<div class="tab-pane fade" id="panel-7">
-						<div class="panel panel-success">
-							<div class="panel-heading">
+						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
+							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
 								<h3 class="panel-title">删除</h3>
 							</div>
 							<div class="panel-body"></div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="panel-8">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">上传文档</h3>
-							</div>
-							<div class="panel-body"></div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
-		<hr>
-		<footer>
-		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-		</footer>
+		
 	</div>
-	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
-	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
-	<script src="sources/js/bootstrap.min.js"></script>
+	  <%@ include file="bottom.jsp" %>
+
 </body>
 </html>
-
-
-
-
-
-
-
