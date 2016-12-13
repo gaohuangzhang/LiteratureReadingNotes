@@ -23,7 +23,7 @@
         </style>
 
 
-        <div class="footer ">
+        <div class="footer">
             <div class="container" style="color: #A9A0A0">
                 <div class="row clearfix">
                     <div class="col-md-12 column">

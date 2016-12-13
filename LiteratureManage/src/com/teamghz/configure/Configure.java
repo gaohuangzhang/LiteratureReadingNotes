@@ -27,7 +27,9 @@ public class Configure {
 	 * Windows: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
+
 	public final static String LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
+
 	/**
 	 * where to save the avatars
 	 * i put them in WebContent/Avatars
@@ -47,6 +49,7 @@ public class Configure {
 	
 	
 	public final static String DOWNLOAD = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/";
+
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";
