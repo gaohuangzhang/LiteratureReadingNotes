@@ -24,11 +24,20 @@ public class LoginAction {
 	// password for user
 	private String passwd;
 	
-	// password2
-	private String passwd_confirm;
-	
+	// for validate
 	private boolean valid;
 	
+	// for sign up
+	private boolean correct;
+	
+	public boolean isCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
+
 	public boolean isValid() {
 		return valid;
 	}
@@ -63,14 +72,6 @@ public class LoginAction {
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public String getPasswd_confirm() {
-		return passwd_confirm;
-	}
-	// password again
-	public void setPasswd_confirm(String passwd_confirm) {
-		this.passwd_confirm = passwd_confirm;
 	}
 	
 	// Action : Sign In
@@ -123,8 +124,10 @@ public class LoginAction {
 			String userid = result.get(0).get("1");
 			String sql_log = "insert into Log(userid, action) values (" + userid + "," + "\"加入我们的网站，新的一天，新的开始 #_#\")";
 			mc.update(sql_log);
+			correct = true;
 			return "SUCCESS";
 		} else {
+			correct = false;
 			return "INSERTERROR";
 		}
 	}
@@ -143,7 +146,6 @@ public class LoginAction {
 	
 	// Action : About
 	public String about() {
-		
 		return "SUCCESS";
 	}
 

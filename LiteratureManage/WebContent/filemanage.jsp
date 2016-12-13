@@ -19,7 +19,6 @@
 <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 
 <SCRIPT type="text/javascript">
-		//<!--
 		var setting1 = {
 				view: {
 	                addHoverDom: addHoverDom,
@@ -164,15 +163,6 @@
 		function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 			return targetNode ? targetNode.drop !== false : true;
 		}
-		
-		//$(document).ready(function(){
-		//	$("#selectAll").bind("click", selectAll);
-		//	$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
-		//	$.fn.zTree.init($("#treeDemo2"), setting2, zNodes2);
-			
-		//});
-		//-->
-		// 点击我定义的那个按钮执行action
         function myFunction() {
             var treeObj = $.fn.zTree.getZTreeObj("treeDemo1");
             var nodes = treeObj.transformToArray(treeObj.getNodes());
@@ -210,12 +200,12 @@
             else{
             $.ajax( {
                 type : "post",
-                url : "generateDocu.action",
+                url : "downloadDocu.action",
                 data : {
                     "msg2" : msg2,
                 },
                 success : function() {
-                    alert("成功");
+                	document.getElementById('down').setAttribute('href', data.zipPath);
                 },
                 dataType : "json"
             })}
@@ -314,8 +304,6 @@ body{
 			</div>
 			<div class="col-md-10 column">
 				<div class="tab-content">
-				
-					
 					<div class="tab-pane fade in active" id="panel-1">
 						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
 							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
@@ -332,9 +320,8 @@ body{
 								</div>
 								<div>
 									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="myFunction()">保存树</button>
-								
-								
-									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="count()">下载子树</button>
+									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="count()">打包</button>
+									<a id="down" type="button" class="btn btn_primary" download>下载</a>
 								</div>
 							</div>
 						</div>
@@ -384,19 +371,12 @@ body{
     					    		<button type="submit" class="btn pull-right"style="width:20%;background-color: #84735F;color:#ffffff" form="urlupload_form">上传URL</button>
     				    		</div>
 				    		</div>
-							
 							</div>
 						</div>
 					</div>
-				
-					
-					
-					
-					
 				</div>
 			</div>
 		</div>
-		
 	</div>
 	  <%@ include file="bottom.jsp" %>
 
