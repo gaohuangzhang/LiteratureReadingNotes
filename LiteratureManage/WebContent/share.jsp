@@ -10,24 +10,48 @@
 <!-- 实现动画必须引入的包 -->
 <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script charset="utf-8" src="sources/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="sources/kindeditor/lang/zh_CN.js"></script>
+		<link href="sources/kindeditor/themes/default/default.css" rel="stylesheet">
 <title>分享文章</title>
+<script>
+		var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="feeling"]', {
+				allowFileManager : true,
+			 	allowImageUpload:true,
+			 	uploadJson:'sources/kindeditor/jsp/upload_json.jsp',
+			 	afterUpload: function(){this.sync();},
+			 	afterBlur: function(){this.sync();}, 
+				items : [
+					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+					'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+			});	
+			K('input[name=getHtml]').click(function(e) {
+				alert(editor.html());
+			});
+			K('input[name=clear]').click(function(e) {
+				editor.html('');
+			});
+		});	
+	</script>	
 <style>
 .W{
 		background-color: #ffffff;
 		}
-		.G {
-		background-color:#6BB50B;
-		}
+		
 		a {
 		color: #000000;
 		}</style>
 </head>
 <body >
+<% String avatar = (String) session.getAttribute("avatar"); %>
 
-<!-- background pic 
 <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
-    </div>-->
+    <img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 	<!-- 得到当前用户信息 -->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
 	<% String username = (String) session.getAttribute("username"); %>
@@ -49,49 +73,7 @@
 	<% } %>
 	<div class="row clearfix">	
 	
-	<div class="col-md-12 column">
-			<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background:#036564;border:none" role="navigation">
-				<div class="navbar-header" >
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">GHZ</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">读而思之</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
-					<ul  class="nav navbar-nav">
-						<li  onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a  href=personalCenter style="color:#ffffff;">个人中心</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=mainPage  style="color:#ffffff;">我的主页</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=fileManage style="color:#ffffff;">内容管理</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-							 <a href=timeLine style="color:#ffffff;">最佳回忆</a>
-						</li>
-						<li onMouseMove="this.className='G animated  swing'" onmouseout="this.className=''">
-						<a href=search style="color:#ffffff;">站内检索</a>
-						</li>
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
-					
-						
-						<li class="dropdown" >
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated  pulse'" onmouseout="this.className=''"/></a>
-							<ul class="dropdown-menu">
-								
-								<li><a href=settings>设置</a></li>
-								<li><a href=about>关于</a></li>
-								<li class="divider"></li>
-								<li><a href=signOut>注销</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-			</nav>
-		</div>
+	  <%@ include file="nav.jsp" %>
 		
 		<div class="col-md-12 column">
 			<div class="row clearfix">
@@ -100,7 +82,7 @@
 				</div>
 				<div class="col-md-3 column; animated pulse"  style='text-align:center'>
 					<!-- 显示头像 -->
-					<img src="sources/pics/Avatar.png" height="240" width="240" class="img-rounded"/>
+					<img src="<%out.print(avatar); %>" height="240" width="240" class="img-rounded"/>
 					<p class="text-center">
 						<hr>
 						<span class="glyphicon glyphicon-user "></span>
@@ -125,7 +107,7 @@
 					<form action="share">
 						<input name="id"  style="display:none;" value=<%out.print(id);%> />
 						<h3>为<%out.print(articlename); %>添一句感想</h3>
-						<textarea name="feeling" rows="5" required="required" style="width:100%;" class="animated fadeInRight"></textarea>
+						<textarea id="texta" name="feeling" style="width: 100%; height: 200%; visibility: hidden;"></textarea>
 						<br><br>
 						<input type="submit" value="分享" class="btn pull-right animated fadeInRight"/>
 					</form>
@@ -133,22 +115,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="row clearfix">
-		<div class="col-md-12 column"></div>
 	</div>
-	<hr style="height:10px;border:none;border-top:1px groove #000000;" />
-	<footer>
-		<p>&copy; TEAM 高文成 黄沛 张东昌 @2016</p>
-	</footer>
-	<div id="back-up" onclick="goToWhere(0)" style=" position: fixed; cursor: pointer; right: 90px; bottom: 160px;">
-		<img src= "sources/pics/up.png" />
-	</div>
-	<div id="back-up" onclick="goToWhere(1)" style="position: fixed; cursor: pointer; right: 90px; bottom: 50px;">
-		<img src= "sources/pics/down.png" />
-	</div>
+	
+	
 	 <!-- JS -->
 	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 	<script src="sources/js/bootstrap.min.js"></script>
+	<%@ include file="bottom.jsp" %>
 </body>
 </html>

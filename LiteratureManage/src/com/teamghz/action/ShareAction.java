@@ -58,7 +58,11 @@ public class ShareAction {
 		System.out.println(sql);
 		if (mc.update(sql) > 0) {
 			flag = "TRUE";
+			ArrayList<Map<String, String>> result1 = mc.select("select articlename from Article where articleid=\"" + id + "\"");
+			String sql_log = "insert into Log(userid, action) values (" + userid + "," + "\"分享了文章" + result1.get(0).get("1") +"你这样说：" + feeling+ "\")";
+			mc.update(sql_log);
 		    return "SUCCESS";
+		    
 		}
 		else {
 			flag = "FALSE";

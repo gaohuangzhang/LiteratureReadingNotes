@@ -24,11 +24,20 @@ public class LoginAction {
 	// password for user
 	private String passwd;
 	
-	// password2
-	private String passwd_confirm;
-	
+	// for validate
 	private boolean valid;
 	
+	// for sign up
+	private boolean correct;
+	
+	public boolean isCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
+
 	public boolean isValid() {
 		return valid;
 	}
@@ -64,14 +73,6 @@ public class LoginAction {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-
-	public String getPasswd_confirm() {
-		return passwd_confirm;
-	}
-	// password again
-	public void setPasswd_confirm(String passwd_confirm) {
-		this.passwd_confirm = passwd_confirm;
-	}
 	
 	// Action : Sign In
 	public String signIn() {
@@ -81,7 +82,7 @@ public class LoginAction {
 		String sql = "select * from User where mail=\"" + mail + "\"" ;
 		MysqlConnecter mc = new MysqlConnecter();
 		ArrayList<Map<String, String>> result =  mc.select(sql);
-		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
+		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime 6.avatar
 		if (result.size() == 0) {
 			return "USERNOTEXIST";
 		} else if (!passwd.equals(result.get(0).get("4"))) {
@@ -92,6 +93,14 @@ public class LoginAction {
 			HttpSession session = req.getSession();
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", result.get(0).get("2"));
+			System.out.println(sql);
+			System.out.println(result.get(0).get("1"));
+			System.out.println(result.get(0).get("2"));
+			System.out.println(result.get(0).get("3"));
+			System.out.println(result.get(0).get("4"));
+			System.out.println(result.get(0).get("5"));
+			System.out.println(result.get(0).get("6"));
+			session.setAttribute("avatar", result.get(0).get("6"));
 			session.setAttribute("i", 2);
 			return "SUCCESS";
 		} else {
@@ -100,6 +109,10 @@ public class LoginAction {
 	}
 	// Action : Sign Up
 	public String signUp() {
+		if (!valid) {
+			correct = false;
+			return "INSERTERROR";
+		}
 		// insert
 		String sql = "insert into User(username, mail, password) "
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
@@ -111,8 +124,14 @@ public class LoginAction {
 			session.setAttribute("usermail", mail);
 			session.setAttribute("username", name);
 			session.setAttribute("i", 2);
+			ArrayList<Map<String, String>> result = mc.select("select userid from User where mail=\"" + mail + "\"");
+			String userid = result.get(0).get("1");
+			String sql_log = "insert into Log(userid, action) values (" + userid + "," + "\"加入我们的网站，新的一天，新的开始 #_#\")";
+			mc.update(sql_log);
+			correct = true;
 			return "SUCCESS";
 		} else {
+			correct = false;
 			return "INSERTERROR";
 		}
 	}
@@ -131,7 +150,6 @@ public class LoginAction {
 	
 	// Action : About
 	public String about() {
-		
 		return "SUCCESS";
 	}
 

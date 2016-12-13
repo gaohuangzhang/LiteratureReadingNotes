@@ -94,7 +94,7 @@ private String name;
 		if (name == null 
 				|| name.equals("") ) {
 			i = 0;
-			session.setAttribute("i", i);
+			session.setAttribute("j", i);
 			return "INSERTERROR";
 		}
 		String usermail = (String) session.getAttribute("usermail");
@@ -102,10 +102,14 @@ private String name;
 		// 1 : userid, 2: username, 3 : mail, 4 password, 5, joinintime
 		String sql="update User set username=\""+name+"\" where mail=\""+usermail+"\"";
 		i=mc.update(sql);
-		session.setAttribute("i", i);
+		session.setAttribute("j", i);
 		if(i==1)
 			return "SUCCESS";
 		else
 			return "FAILED";
+	}
+	public String uploadAvatars() {
+		
+		return "SUCCESS";
 	}
 }

@@ -24,13 +24,13 @@
 			padding: 20px;
 			width: 48.5%;
 			height: 100px;
-			background-color: #F9f9f9;
+			background-color: rgba(255,255,255, 0.60);
 		}
 		.city1 {
 			margin: 5px;
 			padding: 20px;
 			width: 100%;		
-			background-color: #F9F9F9;
+			background-color: rgba(255,255,255, 0.60);
 		} 
 		.inputs {
 			float: right;
@@ -42,6 +42,9 @@
 		}
 		.G {
 			background-color: #6BB50B;
+		}
+		body{
+		font-family: "Microsoft YaHei", "Arial", "Times Roman", "Courier", "Verdana", "Century Gothic";
 		}
 	</style>
 	<!-- 去往开始和结尾 -->
@@ -63,12 +66,19 @@
 	       	}, 16);
 	   	};
 	</script>
+	<script>
+        $(document).ready(function(){
+            $('#search').addClass('active');
+
+        });
+
+    </script>
 </head>
 <body >
-<!-- background pic 
+
 <div style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">      
-    <img src="sources/pics/bg3.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
-    </div>-->
+    <img src="sources/pics/bg11.jpg" style="left:0; position:fixed;top:0;" width="100%" height="100%">      
+    </div>
 
 	<!-- 得到当前用户信息 -->
 	<% String usermail = (String) session.getAttribute("usermail"); %>
@@ -82,51 +92,7 @@
 	<% out.print("<div class=\"container\" >"); %>
 	<% } %>
 	<!-- 导航栏 -->
-	<div class="col-md-12 column">
-		<nav class="navbar navbar-default  navbar-inverse navbar-fixed-top" style="background: #036564; border: none;" role="navigation">
-			<div class="navbar-header" >
-				 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				 	<span class="sr-only">GHZ</span>
-				 	<span class="icon-bar"></span>
-				 	<span class="icon-bar"></span>
-				 	<span class="icon-bar"></span>
-				 </button> 
-				 <a class="navbar-brand" href="#">读而思之</a>
-			</div>
-			<div class="collapse navbar-collapse" style="font-size: 16px;" bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-						<a href=personalCenter style="color: #ffffff;">个人中心</a>
-					</li>
-					<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-						<a href=mainPage  style="color: #ffffff;">我的主页</a>
-					</li>
-					<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-						<a href=fileManage style="color: #ffffff;">内容管理</a>
-					</li>
-					<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-						<a href=timeLine style="color: #ffffff;">最佳回忆</a>
-					</li>
-					<li class="active" onMouseMove="this.className='G animated swing'" onmouseout="this.className='active'">
-						<a href=search style="color: #ffffff;">站内检索</a>
-					</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
-					<li class="dropdown" >
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="sources/pics/Avatar.png" height="20" width="20" onMouseMove="this.className='animated pulse'" onmouseout="this.className=''"/>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a href=settings>设置</a></li>
-							<li><a href=about>关于</a></li>
-							<li class="divider"></li>
-							<li><a href=signOut>注销</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	</div>
+	 <%@ include file="nav.jsp" %>
 	<div class="row clearfix">
 		<br><br><br>
 		<div class="col-md-12 column">
@@ -144,9 +110,7 @@
 								<li>
 									<a href="#panel-3" data-toggle="tab">笔记</a>
 								</li>
-								<li>
-									<a href="#panel-4" data-toggle="tab">类别</a>
-								</li>
+								
 							</ul>
 							<br>
 							<div class="tab-content">
@@ -199,18 +163,7 @@
 									<% } %>
 									</div>
 								</div>
-								<div class="tab-pane" id="panel-4">
-									<form class="form-horizontal animated pulse" role="form">
-										<div class="form-group" >
-											<input class="form-control pull-right" id="inputEmail31" type="submit" style="width: 10%;" />
-											<input class="form-control pull-right" id="inputEmail3" type="text" style="width: 60%;" />
-										</div>
-									</form>
-									<hr>
-									<p>
-										Howdy, I'm in Section 4.
-									</p>
-								</div>
+							
 							</div>
 						</div>
 					</div>
@@ -218,6 +171,6 @@
 			</div>
 		</div>
 	</div> 
-	</div>             
+	        
 </body>
 </html>
