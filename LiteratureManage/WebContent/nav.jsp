@@ -52,7 +52,7 @@
 	<% avatar_nav = (String) session.getAttribute("avatar"); %>
 	<%} catch(Exception e) {}%>
     <div id='navbars' style="font-size: 16px;">
-      <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: rgba(113, 93, 68, 0.85); border: none;" role="navigation">
+      <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: rgba(41, 54, 89, 0.85); border: none;" role="navigation">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
 					 	<span class="sr-only">GHZ</span>
