@@ -44,7 +44,7 @@
 	<!-- 返回成功信息 -->
 		<% String a = (String)request.getAttribute("flag"); %>
 		<% if (a == "TRUE"){%>					
-		<div class="alert alert-success animated wobble" >
+		<div class="alert  animated wobble"  style="background-color: rgba(255,255,255,	 0.60);">
 			<a href="#" class="close" data-dismiss="alert" >
 			&times;
 			 </a>
