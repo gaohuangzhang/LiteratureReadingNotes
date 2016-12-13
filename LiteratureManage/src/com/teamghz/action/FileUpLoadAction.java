@@ -87,6 +87,7 @@ public class FileUpLoadAction extends ActionSupport {
 		String usermail = (String) session.getAttribute("usermail");	// 获取session——用户邮箱
 		File f = null;
 		File t = null;
+		System.out.println(Configure.ONTOMCAT);
 		if (Configure.ONTOMCAT) {
 			f = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR);
 			t = new File(root + Configure.SLOCATION + usermail + Configure.SEPARATOR + "Temp" + Configure.SEPARATOR);

@@ -8,7 +8,7 @@ public class Configure {
 	
 	public final static String USERNAME = "root";
 
-	public final static String PASSWORD = "password";
+	public final static String PASSWORD = "toor";
 
 	public final static String DBNAME   = "DBGHZ";
 	
@@ -27,12 +27,12 @@ public class Configure {
 	 * Windows: "C:\\somewhere\\LiteratureReadingNotes\\LiteratureManage\\WebContent\\Files\\"
 	 * Linux or Mac: such as "/home/z/Github/LiteratureReadingNotes/LiteratureManage/WebContent/Files/"
 	 */
-	public final static String LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
+	public final static String LOCATION = "/home/hp/LiteratureReadingWebsite/LiteratureManage/WebContent/Files/";
 	/**
 	 * where to save the avatars
 	 * i put them in WebContent/Avatars
 	 */
-	public final static String AVATAR_LOCATION = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/Avatars/";
+	public final static String AVATAR_LOCATION = "/home/hp/LiteratureReadingWebsite/LiteratureManage/WebContent/Avatars/";
 
 	/**
 	 * when run on tomcat maybe you want to edit it
@@ -46,7 +46,7 @@ public class Configure {
 	public final static String AVATAR_SLOCATION = "Avatars/";
 	
 	
-	public final static String DOWNLOAD = "/home/me/GitHub/LiteratureReadingWebsite/LiteratureManage/WebContent/";
+	public final static String DOWNLOAD = "/home/hp/LiteratureReadingWebsite/LiteratureManage/WebContent/";
 	/**
 	 * Windows: should be "\\";
 	 * Linux or Mac: should be "/";
@@ -77,4 +77,20 @@ public class Configure {
 		COARSE_READ, // coarse read
 		INTENSIVE_READ, // intensive reading
 	}
+	
+	public static boolean isOnWindows() {
+		if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1)
+			return true;
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -14,15 +14,10 @@
 	<script src="sources/js/bootstrap.min.js"></script>
 	<script src="sources/js/jquery.validate.js"></script>
 	<script type="text/javascript">
-		toastr.options = {    
-	        showDuration: "300",
-	        timeOut: "5000"
-	    };
-	</script>
-	<script type="text/javascript">
 		$().ready(function() {
 	        $("#signup_form").validate({
             	success: "valid",
+            	onsubmit: "true",
              	rules: {
                 	name: {
                     	required: true,
@@ -44,9 +39,6 @@
                      		dataFilter: function(data) { 
                      			var json = eval("(" + data + ")");
                                 if (json.valid == true) {
-                                	$('#signup_button').click(function() {
-                            			toastr.success("注册成功");
-                                    });
                                     return true;  
                                 }
                                 else {  
@@ -86,7 +78,27 @@
 		        }
 	       	});
      	});
-		
+	</script>
+	<script type="text/javascript">
+		function submit() {
+			$.ajax({
+				type: "post",
+				url: "signup.action",
+				data: {
+					"name": eval(document.getElementById('name')).value,
+					"mail": eval(document.getElementById('mail')).value,
+					"passwd": eval(document.getElementById('passwd')).value
+				},
+				dataType: "json",
+				success: function(data) {
+					if (data.correct)
+						toastr.success("注册成功");
+					else
+						toastr.error("注册失败");
+					$('#signup-modal').modal('toggle');
+				}
+			});
+		}
 	</script>
 	<style>
 		.error {
@@ -105,7 +117,7 @@
 	<title>LiteratureManager Welcome</title>
 </head>
 <body>
-	<div class="container-fluid" ">
+	<div class="container-fluid">
 		<div class="row-fluid clearfix">
 			<div class="col-md-12 column">
 				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: #036564; border: none" role="navigation">
@@ -213,15 +225,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 页脚 -->
-	<hr>
-	<div class="container site-footer-container">
-		<div class="site-footer" role="contentinfo">
-			<ul class="site-footer-links">
-				<li>&copy;2016 LiteratureManager</li>
-			</ul>
-		</div>
-	</div>
+	<%@ include file="bottom.jsp" %>
 	<!-- 登录界面 -->
 	<div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
 		<div class="modal-dialog">
@@ -255,7 +259,7 @@
 					<h4 class="modal-title" id="myModalLabel">注册</h4>
 				</div>
 				<div class="modal-body" style="width: 400px; margin-left: 90px;">
-					<form action="signUp" id="signup_form" method="post">
+					<form id="signup_form" method="post">
 						<div class="form-group">
 							<input id="name" name="name" class="form-control" type="text" placeholder="请在这儿输入用户名" style="padding-left: 30px; height: 42px;" />
 						</div>
@@ -271,7 +275,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button id="signup_button" type="submit" class="btn btn-primary" form="signup_form">注册</button>
+					<button id="signup_button" class="btn btn-primary" onclick="submit();">注册</button>
 				</div>
 			</div>
 		</div>
