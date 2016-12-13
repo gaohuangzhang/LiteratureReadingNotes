@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="sources/css/bootstrap.min.css" rel="stylesheet">
 <link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="sources/css/toastr.css" rel="stylesheet">
 <script src="sources/js/jquery-3.1.1.min.js"></script>
 <script src="sources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="sources/css/demo.css" type="text/css">
@@ -17,7 +18,7 @@
 <script type="text/javascript" src="sources/js/jquery.ztree.excheck.js"></script>
 <script type="text/javascript" src="sources/js/jquery.ztree.exedit.js"></script>
 <link href="sources/css/animate.css" rel="stylesheet" type="text/css">
-
+<script src="sources/js/toastr.js"></script>
 <SCRIPT type="text/javascript">
 		var setting1 = {
 				view: {
@@ -204,8 +205,9 @@
                 data : {
                     "msg2" : msg2,
                 },
-                success : function() {
+                success : function(data) {
                 	document.getElementById('down').setAttribute('href', data.zipPath);
+                	toastr.success("打包成功");
                 },
                 dataType : "json"
             })}
@@ -231,7 +233,6 @@
 	<script>
         $(document).ready(function(){
             $('#things').addClass('active');
-
         });
 
     </script>
@@ -321,7 +322,7 @@ body{
 								<div>
 									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="myFunction()">保存树</button>
 									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="count()">打包</button>
-									<a id="down" type="button" class="btn btn_primary" download>下载</a>
+									<a id="down" class="btn btn_primary" download>下载</a>
 								</div>
 							</div>
 						</div>
@@ -330,7 +331,6 @@ body{
 						<div class="panel" style="background-color: rgba(255,255,255,0.60);border:none;">
 							<div class="panel-heading" style="background-color: #84735F;border:none;color:#ffffff">
 								<h3 class="panel-title">上传文档</h3>
-								
 							</div>
 							<div class="panel-body">
 							<ul class="nav nav-tabs">

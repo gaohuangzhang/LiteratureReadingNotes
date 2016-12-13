@@ -2,22 +2,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="sources/css/bootstrap.min.css" rel="stylesheet">
-	<link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="sources/css/animate2.css" rel="stylesheet">
+	<link href="sources/css/icomoon.css" rel="stylesheet"> 
+	<link href="sources/css/themify-icons.css" rel="stylesheet">
+	<link href="sources/css/bootstrap.css" rel="stylesheet">
+	<link href="sources/css/magnific-popup.css" rel="stylesheet">
+	<link href="sources/css/owl.carousel.min.css" rel="stylesheet">
+	<link href="sources/css/owl.theme.default.min.css" rel="stylesheet">
+	<link href="sources/css/style.css" rel="stylesheet">
 	<link href="sources/css/toastr.css" rel="stylesheet">
-	<link href="sources/css/animate.css" rel="stylesheet">
-	<script src="sources/js/messages_zh.js"></script>
+	<script src="sources/js/modernizr-2.6.2.min.js"></script>
+	<script src="sources/js/jquery.min.js"></script>
 	<script src="sources/js/jquery-3.1.1.min.js"></script>
-	<script src="sources/js/toastr.js"></script>
+	<script src="sources/js/jquery.easing.1.3.js"></script>
 	<script src="sources/js/bootstrap.min.js"></script>
+	<script src="sources/js/jquery.waypoints.min.js"></script>
+	<script src="sources/js/owl.carousel.min.js"></script>
+	<script src="sources/js/jquery.countTo.js"></script>
+	<script src="sources/js/jquery.magnific-popup.min.js"></script>
+	<script src="sources/js/magnific-popup-options.js"></script>
+	<script src="sources/js/main2.js"></script>
+	<script src="sources/js/messages_zh.js"></script>
+	<script src="sources/js/toastr.js"></script>
 	<script src="sources/js/jquery.validate.js"></script>
 	<script type="text/javascript">
+		var VALID;
 		$().ready(function() {
 	        $("#signup_form").validate({
             	success: "valid",
-            	onsubmit: "true",
              	rules: {
                 	name: {
                     	required: true,
@@ -39,6 +53,7 @@
                      		dataFilter: function(data) { 
                      			var json = eval("(" + data + ")");
                                 if (json.valid == true) {
+                                	VALID = true;
                                     return true;  
                                 }
                                 else {  
@@ -78,8 +93,6 @@
 		        }
 	       	});
      	});
-	</script>
-	<script type="text/javascript">
 		function submit() {
 			$.ajax({
 				type: "post",
@@ -87,7 +100,8 @@
 				data: {
 					"name": eval(document.getElementById('name')).value,
 					"mail": eval(document.getElementById('mail')).value,
-					"passwd": eval(document.getElementById('passwd')).value
+					"passwd": eval(document.getElementById('passwd')).value,
+					"valid": VALID
 				},
 				dataType: "json",
 				success: function(data) {
@@ -107,125 +121,120 @@
         .valid {
             color: green;
         }
-        .W{
-			background-color: #ffffff;
-		}
-		.G {
-			background-color:#6BB50B;
-		}
-	</style>
+        .footer {
+                color: #777;
+                padding: 19px 0;
+                background-color: rgba(113, 93, 68, 0.95);
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 200px;
+                font-family: "Microsoft YaHei", "Arial", "Times Roman", "Courier", "Verdana", "Century Gothic";
+        }
+    </style>
 	<title>LiteratureManager Welcome</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row-fluid clearfix">
-			<div class="col-md-12 column">
-				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: #036564; border: none" role="navigation">
-					<div class="navbar-header">
-					 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="home-navbar">
-					 		<span class="sr-only">Toggle navigation</span>
-					 		<span class="icon-bar"></span>
-					 		<span class="icon-bar"></span>
-					 		<span class="icon-bar"></span>
-					 	</button> 
-					 	<a class="navbar-brand" href="#" style="padding-left: 20px; color: #ffffff;">主页</a>
+	<div class="gtco-loader" style="display:none;"></div>
+	<div id="page">
+		<a href="#" class="js-gtco-nav-toggle gtco-nav-toggle gtco-nav-white"><i></i></a>
+		<div id="gtco-offcanvas">
+			<ul>
+				<li class="active"><a href="#">主页</a></li>
+				<li class="offcanvas-has-dropdown">关于
+					<ul class="dropdown">
+						<li><a href="about.jsp">帮助</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<nav class="gtco-nav" role="navigation">
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-sm-4 col-xs-12">
+						<div id="gtco-logo">
+							<a href="#">GHZ<em>.</em></a>
+						</div>
 					</div>
-					<div class="collapse navbar-collapse" id="home-navbar">
-						<ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
-							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-								<a id="login" href="#login-modal" role="button" class="btn" data-toggle="modal" style="color: #ffffff;">登录</a>
-							</li>
-							<li onMouseMove="this.className='G animated swing'" onmouseout="this.className=''">
-								<a id="signup" href="#signup-modal" role="button" class="btn" data-toggle="modal" style="color: #ffffff;">注册</a>
-							</li>
-							<li class="dropdown">
-							 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff;">帮助<strong class="caret"></strong></a>
-								<ul class="dropdown-menu">
-									<li><a href=about>关于</a></li>
+					<div class="col-xs-8 text-right menu-1">
+						<ul>
+							<li class="active"><a href="#">主页</a></li>
+							<li class="has-dropdown">
+								<a href="#">帮助</a>
+								<ul class="dropdown" style="display: none;">
+									<li><a href="about.jsp">关于</a></li>
 								</ul>
 							</li>
 						</ul>
 					</div>
-				</nav>
+				</div>
+			</div>
+		</nav>
+		<header id="gtco-header" class="gtco-cover" role="banner" style="background-image:url(sources/pics/bg11.jpg);">
+			<div class="overlay"></div>
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-0 text-left">
+						<div class="display-t">
+							<div class="display-tc">
+								<h1 class="animate-box fadeInUp animated-fast" data-animate-effect="fadeInUp">文献阅读笔记</h1>
+								<h2 class="animate-box fadeInUp animated-fast" data-animate-effect="fadeInUp">为用户创造更好的文献管理</h2>
+								<p class="animate-box fadeInUp animated-fast" data-animate-effect="fadeInUp">
+									<a id="login" href="#login-modal" data-toggle="modal" class="btn btn-white btn-lg btn-outline">登录</a>
+									<a id="signup" href="#signup-modal" data-toggle="modal" class="btn btn-white btn-lg btn-outline">注册</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id="gtco-features-3">
+			<div class="gtco-container">
+				<div class="gtco-flex">
+					<div class="feature feature-1 animate-box fadeInUp animated-fast" data-animate-effect="fadeInUp">
+						<div class="feature-inner">
+							<span class="icon"><i class="ti-search"></i></span>
+							<h3>阅读 & 评论</h3>
+							<p>就像其他同类网站做的那样，阅读文章，发表评论</p>
+							<p><a href="#" class="btn btn-white btn-outline">Learn More</a></p>
+						</div>
+					</div>
+					<div class="feature feature-2 animate-box fadeInUp animated-fast" data-animate-effect="fadeInUp">
+						<div class="feature-inner">
+							<span class="icon"><i class="ti-announcement"></i></span>
+							<h3>分享 & 下载</h3>
+							<p>与他人分享，下载你感兴趣或对你有帮助的</p>
+							<p><a href="#" class="btn btn-white btn-outline">Learn More</a></p>
+						</div>
+					</div>
+					<div class="feature feature-3 animate-box fadeInUp animated-fast" data-animate-effect="fadeInUp">
+						<div class="feature-inner">
+							<span class="icon"><i class="ti-timer"></i></span>
+							<h3>创建你自己的树</h3>
+							<p>将意义非凡的痕迹记录在这儿</p>
+							<p><a href="#" class="btn btn-white btn-outline">Learn More</a></p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<footer id="gtco-footer" role="contentinfo" class="footer">
+			<div class="gtco-container">
+				<div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <a href="https://github.com/gaohuangzhang">关注我们</a>
+                                <a href="mailto:dongchangzhang@gmail.com">联系我们</a>
+                                <br><hr style="height:1px;border:none;border-top:1px solid #555555;" /> (C) TEAM 高文成 黄沛 张东昌 @2016
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</footer>
 	</div>
-	<div><br><br></div>
-	<div class="carousel slide" id="carousel-345074" data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li class="active" data-slide-to="0" data-target="#carousel-345074"></li>
-			<li data-slide-to="1" data-target="#carousel-345074"></li>
-			<li data-slide-to="2" data-target="#carousel-345074"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="item active">
-				<img alt="" src="sources/pics/1.jpg"/ style=" width:100%; height:50%; z-index:-1; left:0; top:0;">
-				<div class="carousel-caption">
-					<h4>阅读 & 评论</h4>
-					<p>就像其他同类网站做的那样，阅读文章，发表评论</p>
-				</div>
-			</div>
-			<div class="item" >
-				<img alt="" src="sources/pics/2.jpg"/ style="left:0;top:0;" width="100%" height="80%">
-				<div class="carousel-caption">
-					<h4>分享 & 下载</h4>
-					<p>与他人分享，下载你感兴趣或对你有帮助的</p>
-				</div>
-			</div>
-			<div class="item">
-				<img alt="" src="sources/pics/3.jpg"/ style="left:0;top:0;" width="100%" height="80%">
-				<div class="carousel-caption">
-					<h4>创建你自己的树</h4>
-					<p>将意义非凡的痕迹记录在这儿</p>
-				</div>
-			</div>
-		</div> 
-		<a class="left carousel-control" href="#carousel-345074" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
-		<a class="right carousel-control" href="#carousel-345074" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
-	<div><br><br><br></div>
-	<div class="row">
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img alt="300x200" src="sources/pics/1.jpg" />
-				<div class="caption">
-					<h3>Thumbnail label</h3>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p>
-						<a class="btn btn-primary" href="#">Action</a> 
-						<a class="btn" href="#">Action</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img alt="300x200" src="sources/pics/2.jpg" />
-				<div class="caption">
-					<h3>Thumbnail label</h3>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p>
-						<a class="btn btn-primary" href="#">Action</a> 
-						<a class="btn" href="#">Action</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img alt="300x200" src="sources/pics/3.jpg" />
-				<div class="caption">
-					<h3>Thumbnail label</h3>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-					<p>
-						<a class="btn btn-primary" href="#">Action</a> 
-						<a class="btn" href="#">Action</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<%@ include file="bottom.jsp" %>
 	<!-- 登录界面 -->
 	<div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
 		<div class="modal-dialog">
@@ -275,10 +284,13 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button id="signup_button" class="btn btn-primary" onclick="submit();">注册</button>
+					<button type="submit" id="signup_button" class="btn btn-primary" onclick="submit();">注册</button>
 				</div>
 			</div>
 		</div>
+    </div>
+	<div class="gototop js-top active">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 </body>
 </html>

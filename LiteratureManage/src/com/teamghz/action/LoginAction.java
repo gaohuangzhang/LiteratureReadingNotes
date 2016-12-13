@@ -109,6 +109,10 @@ public class LoginAction {
 	}
 	// Action : Sign Up
 	public String signUp() {
+		if (!valid) {
+			correct = false;
+			return "INSERTERROR";
+		}
 		// insert
 		String sql = "insert into User(username, mail, password) "
 				+ "values(\"" + name + "\"," + "\"" + mail + "\"," + "\"" + passwd + "\")";
