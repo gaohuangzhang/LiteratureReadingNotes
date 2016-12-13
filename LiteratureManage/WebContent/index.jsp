@@ -117,7 +117,7 @@
 	<title>LiteratureManager Welcome</title>
 </head>
 <body>
-	<div class="container-fluid" ">
+	<div class="container-fluid">
 		<div class="row-fluid clearfix">
 			<div class="col-md-12 column">
 				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background: #036564; border: none" role="navigation">
@@ -225,15 +225,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 页脚 -->
-	<hr>
-	<div class="container site-footer-container">
-		<div class="site-footer" role="contentinfo">
-			<ul class="site-footer-links">
-				<li>&copy;2016 LiteratureManager</li>
-			</ul>
-		</div>
-	</div>
+	<%@ include file="bottom.jsp" %>
 	<!-- 登录界面 -->
 	<div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
 		<div class="modal-dialog">

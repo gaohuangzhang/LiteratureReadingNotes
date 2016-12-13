@@ -78,6 +78,8 @@ public class FileUpLoadAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		String root = ServletActionContext.getServletContext().getRealPath("/");
+		System.out.println(root);
+		System.out.println("HERE" + file);
 		InputStream is = new FileInputStream(file);
 		ServletRequest request = ServletActionContext.getRequest();		// 获取Servlet请求对象
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -141,7 +143,7 @@ public class FileUpLoadAction extends ActionSupport {
 			ArrayList<Map<String, String>> result1 = mc.select("select articleid from Article where url=\"" + url + "\"");
 			String articleid = result1.get(0).get("1");
 			String sql_log = "insert into Log(userid, articleid, action) values (" + userid + "," + articleid + ","
-					+ "'上传了" + articlename + "');";
+					+ "'上传了文章：" + articlename + "');";
 			System.out.println(sql_log);
 			mc.update(sql_log);
 			OutputStream os = new FileOutputStream(fs);		// 写出到目的文件中
@@ -170,6 +172,10 @@ public class FileUpLoadAction extends ActionSupport {
 		String sql_article = "insert into Article(userid, articlename, url, status, parentid, childid, comment, type) values("
 				+ userid + ", \"" + articlename + "\", \"" + url + "\", \"NOT_READ\", -1, \"#\", \"\", \"URL\")";
 		mc.update(sql_article);
+		String sql_log = "insert into Log(userid,  action) values (" + userid + "," 
+				+ "\"上传了URL：" + articlename + "\")";
+		System.out.println(sql_log);
+		mc.update(sql_log);
 		flag = "TRUE";
 		return "SUCCESS";
 	}

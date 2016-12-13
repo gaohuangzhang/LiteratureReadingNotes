@@ -51,7 +51,7 @@ public class Treemanage {
 		return result2;
 	}
 
-	public String getAllBooks() {
+	public String searchAllBooks() {
 		ServletRequest request = ServletActionContext.getRequest();
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
@@ -79,9 +79,8 @@ public class Treemanage {
 		String username = books.get(0).get("2");
 		sql = "select * from Tree where userid='" + userid + "'";
 		books = mc.select(sql);
-		
 		if (books.size() == 0) {
-			sql = "insert into Tree(nodename,pid,userid,url) values('" + username + "',0," + userid + ",null)";
+			sql = "insert into Tree(id,nodename,pid,userid,url) values(1,'" + username + "',0," + userid + ",null)";
 			int re = mc.update(sql);
 			sql = "select * from Tree where userid='" + userid + "'";
 			books = mc.select(sql);
@@ -100,7 +99,7 @@ public class Treemanage {
 		}
 		s = JSONArray.fromObject(lstTree).toString();
 		result1 = s;
-		return "success";
+		return "SUCCESS";
 	}
 
 	public String updateMysql() {
@@ -119,8 +118,6 @@ public class Treemanage {
 		int res = mc.delete(sql);
 		for (int i = 0; i < list.length; i++) {
 			ele = list[i].split(" ");
-			if (Configure.isOnWindows())
-				ele[3] = ele[3].replaceAll("\\\\", "\\\\\\\\");
 			sql = "insert into Tree(id,nodename,pid,userid,url) values(" + ele[0] + ",'" + ele[1] + "'," + ele[2] + ","
 					+ userid + ",'" + ele[3] + "')";
 			res = mc.update(sql);
