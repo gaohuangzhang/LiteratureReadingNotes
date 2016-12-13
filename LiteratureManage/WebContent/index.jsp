@@ -124,7 +124,7 @@
         .footer {
                 color: #777;
                 padding: 19px 0;
-                background-color: rgba(113, 93, 68, 0.95);
+                background-color: rgba(41, 54, 89, 0.85);
                 position: absolute;
                 bottom: 0;
                 width: 100%;
@@ -153,7 +153,7 @@
 				<div class="row">
 					<div class="col-sm-4 col-xs-12">
 						<div id="gtco-logo">
-							<a href="#">GHZ<em>.</em></a>
+							<a href="#">读而思之<em>.</em></a>
 						</div>
 					</div>
 					<div class="col-xs-8 text-right menu-1">

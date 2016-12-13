@@ -13,7 +13,7 @@
             .footer {
                 color: #777;
                 padding: 19px 0;
-                background-color: rgba(113, 93, 68, 0.95);
+                background-color: rgba(41, 54, 89, 0.85);
                 position: absolute;
                 bottom: 0;
                 width: 100%;
