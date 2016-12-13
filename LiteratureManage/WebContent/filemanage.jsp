@@ -9,6 +9,7 @@
 <link href="sources/css/bootstrap.min.css" rel="stylesheet">
 <link href="sources/css/bootstrap-theme.min.css" rel="stylesheet">
 <script src="sources/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="sources/js/toastr.js"></script>
 <script src="sources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="sources/css/demo.css" type="text/css">
 <link rel="stylesheet" href="sources/css/zTreeStyle/zTreeStyle.css" type="text/css">
@@ -204,14 +205,15 @@
                 data : {
                     "msg2" : msg2,
                 },
-                success : function() {
+                success : function(data) {
+                	toastr.success("打包成功");
                 	document.getElementById('down').setAttribute('href', data.zipPath);
                 },
                 dataType : "json"
             })}
         }
         $(document).ready(function() { 
-        
+        http://localhost:8080/LiteratureManage/sources/pics/bg11.jpg
         	$.ajax( {  
                 url : "searchAllBooks.action",  
                 type : "get",  
@@ -321,7 +323,7 @@ body{
 								<div>
 									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="myFunction()">保存树</button>
 									<button class="btn" style="width:20%;background-color: #84735F;color:#ffffff" onclick="count()">打包</button>
-									<a id="down" type="button" class="btn btn_primary" download>下载</a>
+									<a id="down" type="button" style="width:20%;background-color: #84735F;color:#ffffff" class="btn btn_primary" download>下载</a>
 								</div>
 							</div>
 						</div>
