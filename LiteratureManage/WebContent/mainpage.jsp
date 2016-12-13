@@ -184,17 +184,15 @@
 												<%out.print(notread.get(i).get("1")); %>
 											</a>
 										</span>
-										<br>
-										<a href=deleteArticle?articleid=<% out.print(notread.get(i).get("3")); %>>
-											<%out.print("删除");%>
+										
+										<a style="color: #000000;" href=deleteArticle?articleid=<% out.print(notread.get(i).get("3")); %>>
+											<span class="glyphicon glyphicon-remove pull-right"> 删除</span>
 										</a>
-										<br>
-										<!-- 显示分类标签 -->
-										<span class="glyphicon glyphicon-tags"></span>
-										<br>
+										<hr>
+									
 										<!-- 分享链接 -->
 										<a style="color: #000000;" href=toShare?articlename=<% out.print(notread.get(i).get("1")); %>&id=<% out.print(notread.get(i).get("3")); %>>
-											<span class="glyphicon glyphicon-share-alt pull-right"></span>
+											<span class="glyphicon glyphicon-share-alt pull-right"> 分享</span>
 										</a>
 									</div>								
 								<% } %>	
@@ -218,17 +216,15 @@
 												<% out.print(readlittle.get(i).get("1")); %>
 											</a>
 										</span>
-										<br>
-										<a href=deleteArticle?articleid=<% out.print(readlittle.get(i).get("3")); %>>
-											<%out.print("删除");%>
+										
+										<a style="color: #000000;" href=deleteArticle?articleid=<% out.print(readlittle.get(i).get("3")); %>>
+											<span class="glyphicon glyphicon-remove pull-right"> 删除</span>
 										</a>
-										<br>
-										<!-- 显示标签 -->
-										<span class="glyphicon glyphicon-tags"></span>
-										<br>
+										
+								<hr>
 										<!-- 分享链接 -->
 										<a style="color: #000000;" href=toShare?articlename=<% out.print(readlittle.get(i).get("1")); %>&id=<% out.print(readlittle.get(i).get("3")); %>>
-											<span class="glyphicon glyphicon-share-alt pull-right"></span>
+											<span class="glyphicon glyphicon-share-alt pull-right"> 分享</span>
 										</a>
 									</div>
 								<% } %>	
@@ -251,15 +247,13 @@
 	    										<% out.print(readall.get(i).get("1")); %>
 	    									</a>
 	    								</span>
-	    								<br>
-										<a href=deleteArticle?articleid=<% out.print(readall.get(i).get("3")); %>>
-											<%out.print("删除");%>
+	    							
+										<a  style="color: #000000;" href=deleteArticle?articleid=<% out.print(readall.get(i).get("3")); %>>
+											<span class="glyphicon glyphicon-remove pull-right"> 删除</span>
 										</a>
-	  									<br>
-										<span class="glyphicon glyphicon-tags"></span>
-										<br>
+	  									<hr>
 										<a style="color: #000000;" href=toShare?articlename=<% out.print(readall.get(i).get("1")); %>&id=<% out.print(readall.get(i).get("3")); %>>
-											<span class="glyphicon glyphicon-share-alt pull-right"></span>
+											<span class="glyphicon glyphicon-share-alt pull-right"> 分享</span>
 										</a>
 									</div>
 								<% } %>
@@ -281,15 +275,13 @@
 												<% out.print(all.get(i).get("1")); %>
 											</a>
 										</span>		
-										<br>	
-										<a href=deleteArticle?articleid=<% out.print(all.get(i).get("3")); %>>
-											<%out.print("删除");%>
+										
+										<a style="color: #000000;" href=deleteArticle?articleid=<% out.print(all.get(i).get("3")); %>>
+											<span class="glyphicon glyphicon-remove pull-right"> 删除</span>
 										</a>	
-										<br>
-										<span class="glyphicon glyphicon-tags"></span>
-										<br>
+										<hr>
 										<a style="color: #000000;" href=toShare?articlename=<% out.print(all.get(i).get("1")); %>&id=<% out.print(all.get(i).get("3")); %>>
-											<span class="glyphicon glyphicon-share-alt pull-right"></span>
+											<span class="glyphicon glyphicon-share-alt pull-right"> 分享</span>
 										</a>
 									</div>
 								<% } %>

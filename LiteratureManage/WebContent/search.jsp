@@ -110,9 +110,7 @@
 								<li>
 									<a href="#panel-3" data-toggle="tab">笔记</a>
 								</li>
-								<li>
-									<a href="#panel-4" data-toggle="tab">类别</a>
-								</li>
+								
 							</ul>
 							<br>
 							<div class="tab-content">
@@ -165,18 +163,7 @@
 									<% } %>
 									</div>
 								</div>
-								<div class="tab-pane" id="panel-4">
-									<form class="form-horizontal animated pulse" role="form">
-										<div class="form-group" >
-											<input class="form-control pull-right" id="inputEmail31" type="submit" style="width: 10%;" />
-											<input class="form-control pull-right" id="inputEmail3" type="text" style="width: 60%;" />
-										</div>
-									</form>
-									<hr>
-									<p>
-										Howdy, I'm in Section 4.
-									</p>
-								</div>
+							
 							</div>
 						</div>
 					</div>
