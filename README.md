@@ -7,10 +7,9 @@
 *  [经验总结](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/summary)
 *  [关于作者](https://github.com/gaohuangzhang/LiteratureReadingNotes/wiki/authors)
 
-### 注意
+### 如果需要在本地运行源代码
 
-
-*1.注意：如果需要在本地正常运行源代码，需要修改下面这个位置里的项目配置文件* 
+1.修改项目配置文件*
 
 ```
 source-code-ghz/LiteratureManage/src/com/teamghz/configure/Configure.java
@@ -30,7 +29,7 @@ source-code-ghz/LiteratureManage/src/com/teamghz/configure/Configure.java
 source-code-ghz/LiteratureManage/src/com/teamghz/configure/Configure.java
 ```
 
-*2.注意：登录之前需要按照DATABASE.md中的数据库命令创建数据库*
+2.使用DATABASE.md创建数据库
 
 ***
 
